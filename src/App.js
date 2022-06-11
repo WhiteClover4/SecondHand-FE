@@ -1,9 +1,9 @@
-import { SearchInput } from "./components/input";
+import { BackButton } from "./components/button";
 
 function App() {
   return (
     <div className="w-screen h-screen grid place-items-center px-[135px]">
-      <SearchInput placeholder="Nama Produk" />
+      <BackButton />
     </div>
   );
 }
