@@ -3,7 +3,7 @@ import { SearchIcon } from "../icon";
 
 export default function SearchInput({ ...rest }) {
   return (
-    <div className="relative">
+    <div className="relative w-[444px]">
       <input
         {...rest}
         className="w-full py-[14px] px-6 pr-16 rounded-2xl bg-[#EEEEEE] text-body-14 placeholder:text-neutral-03"
