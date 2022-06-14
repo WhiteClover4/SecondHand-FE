@@ -38,6 +38,7 @@ export default function Components() {
       <LabelTextareaInput placeholder="LabelTexareaInput" />
       <LabelOptionInput placeholder="LabelOptionInput" />
       <SearchInput placeholder="SearchInput" />
+     <PrimaryButton>tes lagi</PrimaryButton>
     </div>
   );
 }
