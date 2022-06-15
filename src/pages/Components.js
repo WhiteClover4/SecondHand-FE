@@ -1,5 +1,6 @@
 import { PrimaryAlert } from "../components/alert";
 import BackButton from "../components/button/BackButton";
+import InputButton from "../components/button/InputButton";
 import PrimaryButton from "../components/button/PrimaryButton";
 import SecondaryButton from "../components/button/SecondaryButton";
 import LabelOptionInput from "../components/input/LabelOptionInput";
