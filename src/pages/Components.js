@@ -44,7 +44,7 @@ export default function Components() {
       </div>
       <div className="h-fit w-fit gap-4 rounded-2xl p-6 shadow-high">
         <Card2 />
-        <img src="/img/divider.png" className="my-4" />
+        <img src="/img/divider.png" alt="divider" className="my-4" />
         <Card2 />
       </div>
     </div>
