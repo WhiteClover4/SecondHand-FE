@@ -1,4 +1,5 @@
 import { PrimaryAlert } from "../components/alert";
+import AddProductInput from "../components/button/AddProductInput";
 import BackButton from "../components/button/BackButton";
 import PrimaryButton from "../components/button/PrimaryButton";
 import SecondaryButton from "../components/button/SecondaryButton";
@@ -38,6 +39,7 @@ export default function Components() {
       <LabelTextareaInput placeholder="LabelTexareaInput" />
       <LabelOptionInput placeholder="LabelOptionInput" />
       <SearchInput placeholder="SearchInput" />
+      <div className="grid grid-cols-4"> <AddProductInput /> </div>
     </div>
   );
 }

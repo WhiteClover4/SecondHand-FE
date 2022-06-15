@@ -4,5 +4,5 @@ import EyeOffIcon from "./EyeOffIcon";
 import SearchIcon from "./SearchIcon";
 import ArrowLeftIcon from "./ArrowLeftIcon";
 import XIcon from "./XIcon";
-
-export { HeartIcon, EyeIcon, EyeOffIcon, SearchIcon, ArrowLeftIcon, XIcon };
+import PlusIcon from "./PlusIcon";
+export { HeartIcon, EyeIcon, EyeOffIcon, SearchIcon, ArrowLeftIcon, XIcon, PlusIcon };
