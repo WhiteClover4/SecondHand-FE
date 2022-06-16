@@ -3,10 +3,10 @@ import { useState } from "react";
 import PrimaryButton from "../button/PrimaryButton";
 
 export default function StatusModal() {
-  const [value, setValue] = useState("berhasil");
+  const [transaksi, setTransaksi] = useState("");
 
   const onOptionChange = (e) => {
-    setValue(e.target.value);
+    setTransaksi(e.target.value);
   };
 
   return (
@@ -21,7 +21,7 @@ export default function StatusModal() {
           type="radio"
           id="berhasil"
           value="berhasil"
-          checked={value === "berhasil"}
+          checked={transaksi === "berhasil"}
           onChange={onOptionChange}
         />
         <label htmlFor="berhasil" className="ml-4  text-body-14">
@@ -35,7 +35,7 @@ export default function StatusModal() {
           type="radio"
           id="batal"
           value="batal"
-          checked={value === "batal"}
+          checked={transaksi === "batal"}
           onChange={onOptionChange}
         />
         <label htmlFor="batal" className="ml-4 text-body-14">
@@ -43,7 +43,13 @@ export default function StatusModal() {
         </label>
       </div>
       <p className="ml-8 mb-8 text-body-14 text-neutral-03">Kamu membatalkan transaksi produk ini dengan pembeli</p>
-      <PrimaryButton className="text-center">Kirim</PrimaryButton>
+      {transaksi !== "" ? (
+        <PrimaryButton className="text-center">Kirim</PrimaryButton>
+      ) : (
+        <PrimaryButton isDisable className="text-center">
+          Kirim
+        </PrimaryButton>
+      )}
     </div>
   );
 }
