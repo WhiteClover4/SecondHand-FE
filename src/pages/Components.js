@@ -8,9 +8,10 @@ import LabelPasswordInput from "../components/input/LabelPasswordInput";
 import LabelTextareaInput from "../components/input/LabelTextareaInput";
 import LabelTextInput from "../components/input/LabelTextInput";
 import SearchInput from "../components/input/SearchInput";
-import Card from "../components/card/Card";
-import Card2 from "../components/card/Card2";
-import SuccessCheckoutModal from "../components/modal/SuccessCheckoutModal";
+import { Card } from "../components/card";
+import { Card2 } from "../components/card";
+import { SuccessCheckoutModal } from "../components/modal";
+import { StatusModal } from "../components/modal";
 
 export default function Components() {
   return (
@@ -50,6 +51,7 @@ export default function Components() {
         <Card2 />
       </div>
       <SuccessCheckoutModal />
+      <StatusModal />
     </div>
   );
 }
