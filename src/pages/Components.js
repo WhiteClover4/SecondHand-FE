@@ -10,10 +10,11 @@ import LabelTextInput from "../components/input/LabelTextInput";
 import SearchInput from "../components/input/SearchInput";
 import Card from "../components/card/Card";
 import Card2 from "../components/card/Card2";
+import SuccessCheckoutModal from "../components/modal/SuccessCheckoutModal";
 
 export default function Components() {
   return (
-    <div className="flex min-h-screen w-screen flex-col space-y-6 py-8 px-[135px]">
+    <div className="flex min-h-screen w-screen flex-col space-y-6 bg-slate-200 py-8 px-[135px]">
       <PrimaryButton>PrimaryButton</PrimaryButton>
       <PrimaryButton isSmall>PrimaryButton small</PrimaryButton>
       <PrimaryButton isDisable>PrimaryButton disabled</PrimaryButton>
@@ -43,11 +44,12 @@ export default function Components() {
         <Card />
         <Card />
       </div>
-      <div className="h-fit w-fit gap-4 rounded-2xl p-6 shadow-high">
+      <div className="h-fit w-fit gap-4 rounded-2xl bg-neutral-01 p-6 shadow-high">
         <Card2 />
         <img src="/img/divider.png" alt="divider" className="my-4" />
         <Card2 />
       </div>
+      <SuccessCheckoutModal />
     </div>
   );
 }
