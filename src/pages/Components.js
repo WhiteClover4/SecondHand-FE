@@ -7,6 +7,7 @@ import LabelPasswordInput from "../components/input/LabelPasswordInput";
 import LabelTextareaInput from "../components/input/LabelTextareaInput";
 import LabelTextInput from "../components/input/LabelTextInput";
 import SearchInput from "../components/input/SearchInput";
+import { AddProductInput } from "../components/button";
 
 export default function Components() {
   return (
@@ -38,6 +39,7 @@ export default function Components() {
       <LabelTextareaInput placeholder="LabelTexareaInput" />
       <LabelOptionInput placeholder="LabelOptionInput" />
       <SearchInput placeholder="SearchInput" />
+      <div className="grid grid-cols-4"> <AddProductInput /> </div>
     </div>
   );
 }
