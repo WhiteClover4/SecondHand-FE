@@ -9,6 +9,7 @@ import LabelTextareaInput from "../components/input/LabelTextareaInput";
 import LabelTextInput from "../components/input/LabelTextInput";
 import SearchInput from "../components/input/SearchInput";
 import Card from "../components/card/Card";
+import Card2 from "../components/card/Card2";
 
 export default function Components() {
   return (
@@ -41,6 +42,11 @@ export default function Components() {
         <Card />
         <Card />
         <Card />
+      </div>
+      <div className="h-fit w-fit gap-4 rounded-2xl p-6 shadow-high">
+        <Card2 />
+        <img src="/img/divider.png" alt="divider" className="my-4" />
+        <Card2 />
       </div>
     </div>
   );
