@@ -34,10 +34,10 @@ export default function Components() {
       <PrimaryAlert bgColor="bg-alert-warning">
         PrimaryAlert bg-alert-warning
       </PrimaryAlert>
-      <LabelTextInput placeholder="LabelTextInput" />
-      <LabelPasswordInput placeholder="LabelPasswordInput" />
-      <LabelTextareaInput placeholder="LabelTexareaInput" />
-      <LabelOptionInput placeholder="LabelOptionInput" />
+      <LabelTextInput label="LabelTextInput" placeholder="LabelTextInput" />
+      <LabelPasswordInput label="LabelPasswordInput" placeholder="LabelPasswordInput" />
+      <LabelTextareaInput label="LabelTexareaInput" placeholder="LabelTexareaInput" />
+      <LabelOptionInput label="LabelOptionInput" placeholder="LabelOptionInput" />
       <SearchInput placeholder="SearchInput" />
       <InputButton />
     </div>
