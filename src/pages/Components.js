@@ -1,6 +1,6 @@
 import { PrimaryAlert } from "../components/alert";
 import BackButton from "../components/button/BackButton";
-import InputButton from "../components/button/InputButton";
+// import InputButton from "../components/button/InputButton";
 import PrimaryButton from "../components/button/PrimaryButton";
 import SecondaryButton from "../components/button/SecondaryButton";
 import LabelOptionInput from "../components/input/LabelOptionInput";
@@ -31,10 +31,10 @@ export default function Components() {
       <PrimaryAlert bgColor="bg-alert-success">PrimaryAlert bg-alert-success</PrimaryAlert>
       <PrimaryAlert bgColor="bg-alert-danger">PrimaryAlert bg-alert-danger</PrimaryAlert>
       <PrimaryAlert bgColor="bg-alert-warning">PrimaryAlert bg-alert-warning</PrimaryAlert>
-      <LabelTextInput placeholder="LabelTextInput" />
-      <LabelPasswordInput placeholder="LabelPasswordInput" />
-      <LabelTextareaInput placeholder="LabelTexareaInput" />
-      <LabelOptionInput placeholder="LabelOptionInput" />
+      <LabelTextInput label="LabelTextInput" placeholder="LabelTextInput" />
+      <LabelPasswordInput label="LabelPasswordInput" placeholder="LabelPasswordInput" />
+      <LabelTextareaInput label="LabelTexareaInput" placeholder="LabelTexareaInput" />
+      <LabelOptionInput label="LabelOptionInput" placeholder="LabelOptionInput" />
       <SearchInput placeholder="SearchInput" />
       <div className="grid grid-cols-6 gap-4 ">
         <Card />
