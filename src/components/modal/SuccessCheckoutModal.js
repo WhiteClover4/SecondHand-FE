@@ -23,14 +23,16 @@ export default function SuccessCheckoutModal() {
           <img src="/img/img-notification.png" alt="img-modal-product" className="mr-4 h-12 w-12 rounded-xl object-cover" />
           <div className="flex grow flex-col gap-y-1">
             <p className="text-body-14">Jam Tangan Casio</p>
-            <p className="text-body-14 line-through">Rp 250.000</p>
-            <p className="text-body-14">Ditawar Rp 200.000</p>
+            <p className="text-body-14 text-neutral-05 line-through ">Rp 250.000</p>
+            <p className="text-body-14 text-neutral-05">Ditawar Rp 200.000</p>
           </div>
         </div>
       </div>
-      <PrimaryButton className="flex flex-row">
-        <p className="mr-1 grow  text-center">Hubungi via Whatsapp</p>
-        <WhatsappIcon />
+      <PrimaryButton>
+        <div className="flex flex-row items-center bg-slate-300">
+          <p className="mr-1 grow  text-center">Hubungi via Whatsapp</p>
+          <WhatsappIcon />
+        </div>
       </PrimaryButton>
     </div>
   );
