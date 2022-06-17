@@ -29,7 +29,7 @@ export default function SuccessCheckoutModal() {
         </div>
       </div>
       <PrimaryButton>
-        <div className="flex flex-row items-center bg-slate-300">
+        <div className="flex flex-row items-center">
           <p className="mr-1 grow  text-center">Hubungi via Whatsapp</p>
           <WhatsappIcon />
         </div>
