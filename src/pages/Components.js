@@ -8,9 +8,7 @@ import LabelPasswordInput from "../components/input/LabelPasswordInput";
 import LabelTextareaInput from "../components/input/LabelTextareaInput";
 import LabelTextInput from "../components/input/LabelTextInput";
 import SearchInput from "../components/input/SearchInput";
-import { AddProductInput } from "../components/button";
-import Card from "../components/card/Card";
-import Card2 from "../components/card/Card2";
+import ProfilCard from "../components/card/ProfilCard";
 
 export default function Components() {
   return (
@@ -36,21 +34,8 @@ export default function Components() {
       <LabelTextareaInput label="LabelTexareaInput" placeholder="LabelTexareaInput" />
       <LabelOptionInput label="LabelOptionInput" placeholder="LabelOptionInput" />
       <SearchInput placeholder="SearchInput" />
-
-      <div className="grid grid-cols-4"> <AddProductInput /> </div>
-      <div className="grid grid-cols-6 gap-4 ">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-      </div>
-      <div className="h-fit w-fit gap-4 rounded-2xl p-6 shadow-high">
-        <Card2 />
-        <img src="/img/divider.png" alt="divider" className="my-4" />
-        <Card2 />
-      </div>
+      <ProfilCard />
     </div>
+
   );
 }
