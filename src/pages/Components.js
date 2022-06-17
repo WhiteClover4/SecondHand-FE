@@ -1,16 +1,20 @@
 import { PrimaryAlert } from "../components/alert";
-import AddProductInput from "../components/button/AddProductInput";
-import BackButton from "../components/button/BackButton";
-// import InputButton from "../components/button/InputButton";
-import PrimaryButton from "../components/button/PrimaryButton";
-import SecondaryButton from "../components/button/SecondaryButton";
-import LabelOptionInput from "../components/input/LabelOptionInput";
-import LabelPasswordInput from "../components/input/LabelPasswordInput";
-import LabelTextareaInput from "../components/input/LabelTextareaInput";
-import LabelTextInput from "../components/input/LabelTextInput";
-import SearchInput from "../components/input/SearchInput";
-import Card from "../components/card/Card";
-import Card2 from "../components/card/Card2";
+import {
+  FileInput,
+  LabelOptionInput,
+  LabelPasswordInput,
+  LabelTextareaInput,
+  LabelTextInput,
+  SearchInput,
+} from "../components/input";
+
+import {
+  PrimaryButton,
+  SecondaryButton,
+  BackButton,
+} from "../components/button";
+
+import { Card, Card2 } from "../components/card";
 
 export default function Components() {
   return (
@@ -28,16 +32,34 @@ export default function Components() {
         SecondaryButton small disabled
       </SecondaryButton>
       <BackButton />
-      <PrimaryAlert bgColor="bg-alert-success">PrimaryAlert bg-alert-success</PrimaryAlert>
-      <PrimaryAlert bgColor="bg-alert-danger">PrimaryAlert bg-alert-danger</PrimaryAlert>
-      <PrimaryAlert bgColor="bg-alert-warning">PrimaryAlert bg-alert-warning</PrimaryAlert>
+      <PrimaryAlert bgColor="bg-alert-success">
+        PrimaryAlert bg-alert-success
+      </PrimaryAlert>
+      <PrimaryAlert bgColor="bg-alert-danger">
+        PrimaryAlert bg-alert-danger
+      </PrimaryAlert>
+      <PrimaryAlert bgColor="bg-alert-warning">
+        PrimaryAlert bg-alert-warning
+      </PrimaryAlert>
       <LabelTextInput label="LabelTextInput" placeholder="LabelTextInput" />
-      <LabelPasswordInput label="LabelPasswordInput" placeholder="LabelPasswordInput" />
-      <LabelTextareaInput label="LabelTexareaInput" placeholder="LabelTexareaInput" />
-      <LabelOptionInput label="LabelOptionInput" placeholder="LabelOptionInput" />
+      <LabelPasswordInput
+        label="LabelPasswordInput"
+        placeholder="LabelPasswordInput"
+      />
+      <LabelTextareaInput
+        label="LabelTexareaInput"
+        placeholder="LabelTexareaInput"
+      />
+      <LabelOptionInput
+        label="LabelOptionInput"
+        placeholder="LabelOptionInput"
+      />
       <SearchInput placeholder="SearchInput" />
 
-      <div className="grid grid-cols-4"> <AddProductInput /> </div>
+      <div className="grid grid-cols-4">
+        {" "}
+        <FileInput />{" "}
+      </div>
 
       <div className="grid grid-cols-6 gap-4 ">
         <Card />
