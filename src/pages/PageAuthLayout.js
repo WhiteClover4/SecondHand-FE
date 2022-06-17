@@ -1,4 +1,4 @@
-import AuthLayout from "../components/auth/AuthLayout";
+import AuthLayout from "../components/layout/AuthLayout";
 
 export default function PageAuthLayout() {
   return (
