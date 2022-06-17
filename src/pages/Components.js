@@ -3,6 +3,7 @@ import BackButton from "../components/button/BackButton";
 import InputButton from "../components/button/InputButton";
 import PrimaryButton from "../components/button/PrimaryButton";
 import SecondaryButton from "../components/button/SecondaryButton";
+import UploadProfilInput from "../components/input/UploadProfilInput";
 import LabelOptionInput from "../components/input/LabelOptionInput";
 import LabelPasswordInput from "../components/input/LabelPasswordInput";
 import LabelTextareaInput from "../components/input/LabelTextareaInput";
@@ -40,6 +41,7 @@ export default function Components() {
       <LabelOptionInput label="LabelOptionInput" placeholder="LabelOptionInput" />
       <SearchInput placeholder="SearchInput" />
       <InputButton />
+      <UploadProfilInput />
     </div>
   );
 }
