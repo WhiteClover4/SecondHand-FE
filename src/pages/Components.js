@@ -2,6 +2,7 @@ import { PrimaryAlert } from "../components/alert";
 import BackButton from "../components/button/BackButton";
 import PrimaryButton from "../components/button/PrimaryButton";
 import SecondaryButton from "../components/button/SecondaryButton";
+import { Category } from "../components/card";
 import LabelOptionInput from "../components/input/LabelOptionInput";
 import LabelPasswordInput from "../components/input/LabelPasswordInput";
 import LabelTextareaInput from "../components/input/LabelTextareaInput";
@@ -10,7 +11,7 @@ import SearchInput from "../components/input/SearchInput";
 
 export default function Components() {
   return (
-    <div className="w-screen min-h-screen py-8 px-[135px] flex flex-col space-y-6">
+    <div className="flex min-h-screen w-screen flex-col space-y-6 py-8 px-[135px]">
       <PrimaryButton>PrimaryButton</PrimaryButton>
       <PrimaryButton isSmall>PrimaryButton small</PrimaryButton>
       <PrimaryButton isDisable>PrimaryButton disabled</PrimaryButton>
@@ -24,20 +25,15 @@ export default function Components() {
         SecondaryButton small disabled
       </SecondaryButton>
       <BackButton />
-      <PrimaryAlert bgColor="bg-alert-success">
-        PrimaryAlert bg-alert-success
-      </PrimaryAlert>
-      <PrimaryAlert bgColor="bg-alert-danger">
-        PrimaryAlert bg-alert-danger
-      </PrimaryAlert>
-      <PrimaryAlert bgColor="bg-alert-warning">
-        PrimaryAlert bg-alert-warning
-      </PrimaryAlert>
+      <PrimaryAlert bgColor="bg-alert-success">PrimaryAlert bg-alert-success</PrimaryAlert>
+      <PrimaryAlert bgColor="bg-alert-danger">PrimaryAlert bg-alert-danger</PrimaryAlert>
+      <PrimaryAlert bgColor="bg-alert-warning">PrimaryAlert bg-alert-warning</PrimaryAlert>
       <LabelTextInput placeholder="LabelTextInput" />
       <LabelPasswordInput placeholder="LabelPasswordInput" />
       <LabelTextareaInput placeholder="LabelTexareaInput" />
       <LabelOptionInput placeholder="LabelOptionInput" />
       <SearchInput placeholder="SearchInput" />
+      <Category />
     </div>
   );
 }
