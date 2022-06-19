@@ -3,7 +3,7 @@ import BackButton from "../components/button/BackButton";
 import InputButton from "../components/button/InputButton";
 import PrimaryButton from "../components/button/PrimaryButton";
 import SecondaryButton from "../components/button/SecondaryButton";
-import UploadProfilInput from "../components/input/UploadProfilInput";
+import { FileInput2 } from "../components/input";
 import LabelOptionInput from "../components/input/LabelOptionInput";
 import LabelPasswordInput from "../components/input/LabelPasswordInput";
 import LabelTextareaInput from "../components/input/LabelTextareaInput";
@@ -11,7 +11,6 @@ import LabelTextInput from "../components/input/LabelTextInput";
 import SearchInput from "../components/input/SearchInput";
 import { Card, Card2 } from "../components/card";
 import { SuccessCheckoutModal } from "../components/modal";
-
 
 export default function Components() {
   return (
@@ -53,7 +52,7 @@ export default function Components() {
       />
       <SearchInput placeholder="SearchInput" />
       <InputButton />
-      <UploadProfilInput />
+      <FileInput2 />
       <div className="grid grid-cols-6 gap-4 ">
         <Card />
         <Card />
