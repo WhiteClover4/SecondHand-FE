@@ -1,19 +1,4 @@
-// import { PrimaryAlert } from "../components/alert";
-// import BackButton from "../components/button/BackButton";
-// import InputButton from "../components/button/InputButton";
-// import PrimaryButton from "../components/button/PrimaryButton";
-// import SecondaryButton from "../components/button/SecondaryButton";
-// import {  } from "../components/input";
-// import LabelOptionInput from "../components/input/LabelOptionInput";
-// import LabelPasswordInput from "../components/input/LabelPasswordInput";
-// import LabelTextareaInput from "../components/input/LabelTextareaInput";
-// import LabelTextInput from "../components/input/LabelTextInput";
-// import SearchInput from "../components/input/SearchInput";
-// import { Card, Card2 } from "../components/card";
-// import { SuccessCheckoutModal } from "../components/modal";
-
 import { PrimaryAlert } from "../components/alert";
-
 import {
   FileInput,
   FileInput2,
@@ -23,13 +8,11 @@ import {
   LabelTextInput,
   SearchInput,
 } from "../components/input";
-
 import {
   PrimaryButton,
   SecondaryButton,
   BackButton,
 } from "../components/button";
-
 import { Card, Card2 } from "../components/card";
 import { SuccessCheckoutModal } from "../components/modal";
 
