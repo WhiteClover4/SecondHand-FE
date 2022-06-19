@@ -6,13 +6,9 @@ import {
   LabelPasswordInput,
   LabelTextareaInput,
   LabelTextInput,
-  SearchInput,
+  SearchInput
 } from "../components/input";
-import {
-  PrimaryButton,
-  SecondaryButton,
-  BackButton,
-} from "../components/button";
+import { PrimaryButton, SecondaryButton, BackButton } from "../components/button";
 import { Card, Card2 } from "../components/card";
 import { SuccessCheckoutModal } from "../components/modal";
 
@@ -32,28 +28,13 @@ export default function Components() {
         SecondaryButton small disabled
       </SecondaryButton>
       <BackButton />
-      <PrimaryAlert bgColor="bg-alert-success">
-        PrimaryAlert bg-alert-success
-      </PrimaryAlert>
-      <PrimaryAlert bgColor="bg-alert-danger">
-        PrimaryAlert bg-alert-danger
-      </PrimaryAlert>
-      <PrimaryAlert bgColor="bg-alert-warning">
-        PrimaryAlert bg-alert-warning
-      </PrimaryAlert>
+      <PrimaryAlert bgColor="bg-alert-success">PrimaryAlert bg-alert-success</PrimaryAlert>
+      <PrimaryAlert bgColor="bg-alert-danger">PrimaryAlert bg-alert-danger</PrimaryAlert>
+      <PrimaryAlert bgColor="bg-alert-warning">PrimaryAlert bg-alert-warning</PrimaryAlert>
       <LabelTextInput label="LabelTextInput" placeholder="LabelTextInput" />
-      <LabelPasswordInput
-        label="LabelPasswordInput"
-        placeholder="LabelPasswordInput"
-      />
-      <LabelTextareaInput
-        label="LabelTexareaInput"
-        placeholder="LabelTexareaInput"
-      />
-      <LabelOptionInput
-        label="LabelOptionInput"
-        placeholder="LabelOptionInput"
-      />
+      <LabelPasswordInput label="LabelPasswordInput" placeholder="LabelPasswordInput" />
+      <LabelTextareaInput label="LabelTexareaInput" placeholder="LabelTexareaInput" />
+      <LabelOptionInput label="LabelOptionInput" placeholder="LabelOptionInput" />
       <SearchInput placeholder="SearchInput" />
       <FileInput />
       <FileInput2 />
