@@ -1,13 +1,16 @@
 import { PrimaryAlert } from "../components/alert";
-import BackButton from "../components/button/BackButton";
-import PrimaryButton from "../components/button/PrimaryButton";
-import SecondaryButton from "../components/button/SecondaryButton";
-import { Category } from "../components/card";
-import LabelOptionInput from "../components/input/LabelOptionInput";
-import LabelPasswordInput from "../components/input/LabelPasswordInput";
-import LabelTextareaInput from "../components/input/LabelTextareaInput";
-import LabelTextInput from "../components/input/LabelTextInput";
-import SearchInput from "../components/input/SearchInput";
+import {
+  FileInput,
+  FileInput2,
+  LabelOptionInput,
+  LabelPasswordInput,
+  LabelTextareaInput,
+  LabelTextInput,
+  SearchInput
+} from "../components/input";
+import { PrimaryButton, SecondaryButton, BackButton } from "../components/button";
+import { Card, Card2 } from "../components/card";
+import { SuccessCheckoutModal } from "../components/modal";
 
 export default function Components() {
   return (
@@ -28,12 +31,27 @@ export default function Components() {
       <PrimaryAlert bgColor="bg-alert-success">PrimaryAlert bg-alert-success</PrimaryAlert>
       <PrimaryAlert bgColor="bg-alert-danger">PrimaryAlert bg-alert-danger</PrimaryAlert>
       <PrimaryAlert bgColor="bg-alert-warning">PrimaryAlert bg-alert-warning</PrimaryAlert>
-      <LabelTextInput placeholder="LabelTextInput" />
-      <LabelPasswordInput placeholder="LabelPasswordInput" />
-      <LabelTextareaInput placeholder="LabelTexareaInput" />
-      <LabelOptionInput placeholder="LabelOptionInput" />
+      <LabelTextInput label="LabelTextInput" placeholder="LabelTextInput" />
+      <LabelPasswordInput label="LabelPasswordInput" placeholder="LabelPasswordInput" />
+      <LabelTextareaInput label="LabelTexareaInput" placeholder="LabelTexareaInput" />
+      <LabelOptionInput label="LabelOptionInput" placeholder="LabelOptionInput" />
       <SearchInput placeholder="SearchInput" />
-      <Category />
+      <FileInput />
+      <FileInput2 />
+      <div className="grid grid-cols-6 gap-4 ">
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+        <Card />
+      </div>
+      <div className="h-fit w-fit gap-4 rounded-2xl bg-neutral-01 p-6 shadow-high">
+        <Card2 />
+        <img src="/img/divider.png" alt="divider" className="my-4" />
+        <Card2 />
+      </div>
+      <SuccessCheckoutModal />
     </div>
   );
 }

@@ -5,10 +5,17 @@ import SearchIcon from "./SearchIcon";
 import ArrowLeftIcon from "./ArrowLeftIcon";
 import XIcon from "./XIcon";
 import PlusIcon from "./PlusIcon";
-import BoxIcon from "./BoxIcon";
-import ChevronRightIcon from "./ChevronRightIcon";
-import DollarSignIcon from "./DollarSignIcon";
-import HomeLogoIcon from "./HomeLogoIcon";
-import SignInIcon from "./SignInIcon";
+import CameraIcon from "./CameraIcon";
+import WhatsappIcon from "./WhatsappIcon";
 
-export { HeartIcon, EyeIcon, EyeOffIcon, SearchIcon, ArrowLeftIcon, XIcon, PlusIcon, BoxIcon, ChevronRightIcon, DollarSignIcon, HomeLogoIcon, SignInIcon };
+export {
+  HeartIcon,
+  EyeIcon,
+  EyeOffIcon,
+  SearchIcon,
+  ArrowLeftIcon,
+  XIcon,
+  PlusIcon,
+  CameraIcon,
+  WhatsappIcon
+};

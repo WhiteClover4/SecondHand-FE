@@ -4,6 +4,7 @@ import LabelTextareaInput from "./LabelTextareaInput";
 import LabelOptionInput from "./LabelOptionInput";
 import SearchInput from "./SearchInput";
 import FileInput from "./FileInput";
+import FileInput2 from "./FileInput2";
 
 export {
   LabelTextInput,
@@ -11,5 +12,6 @@ export {
   LabelTextareaInput,
   LabelOptionInput,
   SearchInput,
-  FileInput
+  FileInput,
+  FileInput2,
 };
