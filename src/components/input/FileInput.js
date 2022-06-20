@@ -1,10 +1,10 @@
 import { PlusIcon } from "../icon";
 
 export default function FileInput() {
-    return (
-        <button className=" w-full h-[198px] border border-neutral-02 border-dashed rounded-xl ">
-            <PlusIcon className=" w-6 h-6 text-neutral-03 m-auto " />
-            <p className="text-body-12 text-neutral-03 mt-2"> Tambah Produk </p>
-        </button >
-    );
+  return (
+    <button className="h-[198px] w-full rounded-xl border border-dashed border-neutral-02 bg-white ">
+      <PlusIcon className=" m-auto h-6 w-6 text-neutral-03 " />
+      <p className="mt-2 text-body-12 text-neutral-03"> Tambah Produk </p>
+    </button>
+  );
 }

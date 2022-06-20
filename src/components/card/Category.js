@@ -1,7 +1,4 @@
-import { BoxIcon } from "../icon";
-import { ChevronRightIcon } from "../icon";
-import { HeartIcon } from "../icon";
-import { DollarSignIcon } from "../icon";
+import { BoxIcon, ChevronRightIcon, HeartIcon, DollarSignIcon } from "../icon";
 
 export default function Category() {
   return (
@@ -10,18 +7,24 @@ export default function Category() {
       <div className="flex flex-col gap-4">
         <button type="button" className="group flex gap-2 border-b-[1px] border-neutral-02 pb-4">
           <BoxIcon className="h-6 w-6 text-neutral-03 group-hover:text-primary-04" />
-          <p className="w-[156px] text-start text-title-16 group-hover:font-medium group-hover:text-primary-04">Semua Produk</p>
-          <ChevronRightIcon className="h-6 w-6 text-neutral-03 group-hover:text-primary-04" />
+          <p className="w-[156px] text-start text-title-16 group-hover:font-medium group-hover:text-primary-04">
+            Semua Produk
+          </p>
+          <ChevronRightIcon className="h-6 w-6 text-neutral-02 group-hover:text-primary-04" />
         </button>
         <button type="button" className="group flex gap-2 border-b-[1px] border-neutral-02 pb-4">
           <HeartIcon className="h-6 w-6 text-neutral-03 group-hover:text-primary-04" />
-          <p className="w-[156px] text-start text-title-16 group-hover:font-medium group-hover:text-primary-04">Diminati</p>
-          <ChevronRightIcon className="h-6 w-6 text-neutral-03 group-hover:text-primary-04" />
+          <p className="w-[156px] text-start text-title-16 group-hover:font-medium group-hover:text-primary-04">
+            Diminati
+          </p>
+          <ChevronRightIcon className="h-6 w-6 text-neutral-02 group-hover:text-primary-04" />
         </button>
         <button type="button" className="group flex gap-2 border-neutral-02 pb-4">
           <DollarSignIcon className="h-6 w-6 text-neutral-03 group-hover:text-primary-04" />
-          <p className="w-[156px] text-start text-title-16 group-hover:font-medium group-hover:text-primary-04">Terjual</p>
-          <ChevronRightIcon className="h-6 w-6 text-neutral-03 group-hover:text-primary-04" />
+          <p className="w-[156px] text-start text-title-16 group-hover:font-medium group-hover:text-primary-04">
+            Terjual
+          </p>
+          <ChevronRightIcon className="h-6 w-6 text-neutral-02 group-hover:text-primary-04" />
         </button>
       </div>
     </div>
