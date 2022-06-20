@@ -11,11 +11,11 @@ import SearchInput from "../components/input/SearchInput";
 import ProfilCard from "../components/card/ProfilCard";
 import {
   FileInput,
-// LabelOptionInput,
-// LabelPasswordInput,
-// LabelTextareaInput,
-//  LabelTextInput,
-//  SearchInput,
+  // LabelOptionInput,
+  // LabelPasswordInput,
+  // LabelTextareaInput,
+  //  LabelTextInput,
+  //  SearchInput,
 } from "../components/input";
 
 /*import {
@@ -86,8 +86,8 @@ export default function Components() {
       </div>
       <SuccessCheckoutModal />
       <div>
-      <ProfilCard />
-    </div>
+        <ProfilCard />
+      </div>
     </div>
 
   );
