@@ -1,7 +1,4 @@
-import { BoxIcon } from "../icon";
-import { ChevronRightIcon } from "../icon";
-import { HeartIcon } from "../icon";
-import { DollarSignIcon } from "../icon";
+import { BoxIcon, ChevronRightIcon, HeartIcon, DollarSignIcon } from "../icon";
 
 export default function Category() {
   return (

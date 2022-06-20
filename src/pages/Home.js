@@ -6,7 +6,7 @@ import { PlusIcon } from "../components/icon";
 
 export default function Home() {
   return (
-    <div className="relative h-[1400px]">
+    <div>
       <Navbar />
       <PrimaryButton className="fixed inset-x-0 bottom-5 mx-auto w-fit shadow-high">
         <div className="flex flex-row">
@@ -57,7 +57,7 @@ export default function Home() {
         </div>
       </div>
       <div className="px-[136px]">
-        <div className="grid grid-cols-6">
+        <div className="grid grid-cols-6 gap-4">
           <Card />
           <Card />
           <Card />
