@@ -7,6 +7,10 @@ import XIcon from "./XIcon";
 import PlusIcon from "./PlusIcon";
 import CameraIcon from "./CameraIcon";
 import WhatsappIcon from "./WhatsappIcon";
+import HomeLogoIcon from "./HomeLogoIcon";
+import ListIcon from "./ListIcon";
+import BellIcon from "./BellIcon";
+import UserIcon from "./UserIcon";
 
 export {
   HeartIcon,
@@ -17,5 +21,9 @@ export {
   XIcon,
   PlusIcon,
   CameraIcon,
-  WhatsappIcon
+  WhatsappIcon,
+  HomeLogoIcon,
+  ListIcon,
+  BellIcon,
+  UserIcon
 };
