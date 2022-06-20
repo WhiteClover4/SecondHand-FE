@@ -6,7 +6,7 @@ import {
   LabelPasswordInput,
   LabelTextareaInput,
   LabelTextInput,
-  SearchInput
+  SearchInput,
 } from "../components/input";
 import { PrimaryButton, SecondaryButton, BackButton } from "../components/button";
 import { Card, Card2 } from "../components/card";
