@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
@@ -38,7 +39,6 @@ module.exports = {
       fontSize: {
         "body-10": ["10px", "14px"],
         "body-12": ["12px", "18px"],
-        "body-14": ["14px", "20px"],
         "body-14": ["14px", "20px"],
         "title-16": ["16px", "24px"],
         "title-18": ["18px", "26px"],
