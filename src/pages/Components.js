@@ -1,17 +1,23 @@
 import { PrimaryAlert } from "../components/alert";
-import BackButton from "../components/button/BackButton";
-import PrimaryButton from "../components/button/PrimaryButton";
-import SecondaryButton from "../components/button/SecondaryButton";
-import { Category } from "../components/card";
-import LabelOptionInput from "../components/input/LabelOptionInput";
-import LabelPasswordInput from "../components/input/LabelPasswordInput";
-import LabelTextareaInput from "../components/input/LabelTextareaInput";
-import LabelTextInput from "../components/input/LabelTextInput";
-import SearchInput from "../components/input/SearchInput";
+import {
+  FileInput,
+  FileInput2,
+  FileInput3,
+  LabelOptionInput,
+  LabelPasswordInput,
+  LabelTextareaInput,
+  LabelTextInput,
+  SearchInput,
+} from "../components/input";
+import { PrimaryButton, SecondaryButton, BackButton } from "../components/button";
+
+import { Card, Card2, ProfileCard } from "../components/card";
+import { SuccessCheckoutModal } from "../components/modal";
+import { CategorySection } from "../components/section";
 
 export default function Components() {
   return (
-    <div className="flex min-h-screen w-screen flex-col space-y-6 py-8 px-[135px]">
+    <div className="flex min-h-screen w-screen flex-col space-y-6 bg-slate-200 py-8 px-[135px]">
       <PrimaryButton>PrimaryButton</PrimaryButton>
       <PrimaryButton isSmall>PrimaryButton small</PrimaryButton>
       <PrimaryButton isDisable>PrimaryButton disabled</PrimaryButton>
@@ -33,7 +39,14 @@ export default function Components() {
       <LabelTextareaInput placeholder="LabelTexareaInput" />
       <LabelOptionInput placeholder="LabelOptionInput" />
       <SearchInput placeholder="SearchInput" />
-      <Category />
+      <FileInput />
+      <FileInput2 />
+      <FileInput3 />
+      <Card />
+      <Card2 />
+      <ProfileCard />
+      <SuccessCheckoutModal />
+      <CategorySection />
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import { BoxIcon, ChevronRightIcon, HeartIcon, DollarSignIcon } from "../icon";
 
-export default function Category() {
+export default function CategorySection() {
   return (
     <div className="flex w-fit flex-col gap-6 rounded-2xl bg-[#FFFFFF] p-6 shadow-high">
       <p className="text-title-16 font-medium">Kategori</p>
