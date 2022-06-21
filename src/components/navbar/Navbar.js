@@ -1,7 +1,6 @@
 import PrimaryButton from "../button/PrimaryButton";
 import SearchInput from "../input/SearchInput";
-import { HomeLogoIcon } from "../icon";
-import { SignInIcon } from "../icon";
+import { HomeLogoIcon, SignInIcon } from "../icon";
 
 export default function Navbar() {
   return (
