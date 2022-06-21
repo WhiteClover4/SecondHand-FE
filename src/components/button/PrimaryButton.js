@@ -1,10 +1,4 @@
-export default function PrimaryButton({
-  className,
-  isSmall,
-  isDisable,
-  children,
-  ...rest
-}) {
+export default function PrimaryButton({ className, isSmall, isDisable, children, ...rest }) {
   return (
     <button
       {...rest}
