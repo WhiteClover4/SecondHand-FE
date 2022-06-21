@@ -1,4 +1,4 @@
-export default function ProfilCard() {
+export default function ProfileCard() {
     return (
         <div className="w-[336px] h-20 flex flex-row items-center p-4 rounded-xl shadow-low bg-neutral-01">
             <img src="/img/profilcard.png" alt="profilcard" className="h-12 w-12 rounded object-cover" />
