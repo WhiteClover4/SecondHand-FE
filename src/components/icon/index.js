@@ -27,5 +27,5 @@ export {
   ChevronRightIcon,
   DollarSignIcon,
   HomeLogoIcon,
-  SignInIcon
+  SignInIcon,
 };
