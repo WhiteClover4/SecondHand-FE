@@ -7,10 +7,16 @@ export default function Home() {
   return (
     <div>
       <Navbar />
-      <PrimaryButton className="fixed inset-x-0 bottom-5 mx-auto w-fit shadow-[0_10px_30px] shadow-primary-03">
+      <PrimaryButton className="fixed inset-x-0 bottom-5 mx-auto w-fit">
         <div className="flex flex-row">
           <PlusIcon className="mr-2 w-5" />
-          <p>Jual</p>
+          <p className="font-medium text-body-14">Jual</p>
+        </div>
+        <div className="absolute bottom-0 left-0 w-full translate-y-1/2 px-[6px]">
+          <div
+            style={{ filter: "blur(30px)" }}
+            className="h-[22px] w-full bg-primary-03 ring z-10"
+          >sad</div>
         </div>
       </PrimaryButton>
       <div className="mb-10 h-[288px] bg-primary2-04">Sliders</div>
