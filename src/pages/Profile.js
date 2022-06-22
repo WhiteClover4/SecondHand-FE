@@ -1,8 +1,7 @@
 import ProfileLayout from "../components/layout/ProfileLayout";
 
-export default function login() {
+export default function Profile () {
   return (
-    <ProfileLayout>
-    </ProfileLayout>
+    <ProfileLayout />
   );
 }
