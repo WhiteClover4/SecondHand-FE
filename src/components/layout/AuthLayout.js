@@ -8,9 +8,11 @@ export default function AuthLayout({ children }) {
         <div className="absolute h-full w-full bg-gradient-to-t from-[#A06ECE] opacity-50"></div>
         <img src="/img/img-bg-auth.png" className="h-full w-full object-cover" />
       </div>
-      <div className="flex h-full w-1/2 items-center px-[134px]">
-        <div className="flex w-full flex-col items-center">{children}</div>
-      </div>
+      <main className="flex h-full w-1/2 items-center px-[134px]">
+        <div className="flex w-full flex-col items-center">
+          <div className="w-full">{children}</div>
+        </div>
+      </main>
     </div>
   );
 }
