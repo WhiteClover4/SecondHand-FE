@@ -1,7 +1,9 @@
-import LoginLayout from "../components/layout/LoginLayout";
+import LoginLayout from '../components/layout/LoginLayout';
 
-export default function login() {
+export default function Login() {
   return (
-    <LoginLayout />
+    <div>
+      <LoginLayout />
+    </div>
   );
 }

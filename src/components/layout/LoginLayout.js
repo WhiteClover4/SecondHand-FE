@@ -2,7 +2,7 @@ import LabelPasswordInput from "../input/LabelPasswordInput";
 import LabelTextInput from "../input/LabelTextInput";
 import AuthLayout from "./AuthLayout";
 
-export default function login ({ children }) {
+export default function LoginLayout ({ children }) {
   return (
     <div className="flex h-screen w-screen">
       <div className="relative h-full w-1/2 bg-slate-600">
