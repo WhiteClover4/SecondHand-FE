@@ -5,9 +5,10 @@ import Login from "../pages/Login";
 export default function RoutesApp() {
   return (
     <Switch>
-      {/* <Route path="/" element={<Components />} /> */}
+      <Route path="/" element={<Home />} />
       <Route path="/components" element={<Components />} />
-      <Route path="/Login" element={<Login />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/page-auth" element={<PageAuthLayout />} />
     </Switch>
   );
 }

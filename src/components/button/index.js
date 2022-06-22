@@ -1,6 +1,5 @@
-import PrimaryButton from "./PrimaryButton";
-import SecondaryButton from "./SecondaryButton";
-import BackButton from "./BackButton";
-import AddProductInput from "./AddProductInput";
+import PrimaryButton from './PrimaryButton';
+import SecondaryButton from './SecondaryButton';
+import BackButton from './BackButton';
 
-export { PrimaryButton, SecondaryButton, BackButton, AddProductInput };
+export { PrimaryButton, SecondaryButton, BackButton };
