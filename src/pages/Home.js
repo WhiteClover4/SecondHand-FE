@@ -1,7 +1,7 @@
-import PrimaryButton from "../components/button/PrimaryButton";
-import { Navbar } from "../components/navbar";
-import { SearchIcon, PlusIcon } from "../components/icon";
-import { Card } from "../components/card";
+import PrimaryButton from '../components/button/PrimaryButton';
+import { Navbar } from '../components/navbar';
+import { SearchIcon, PlusIcon } from '../components/icon';
+import { Card } from '../components/card';
 
 export default function Home() {
   return (
@@ -13,7 +13,7 @@ export default function Home() {
           <p className="text-body-14 font-medium">Jual</p>
         </div>
         <div className="absolute bottom-0 left-0 w-full translate-y-1/2 px-[6px]">
-          <div style={{ filter: "blur(30px)" }} className="z-10 h-[22px] w-full bg-primary-03 ring">
+          <div style={{ filter: 'blur(30px)' }} className="z-10 h-[22px] w-full bg-primary-03 ring">
             sad
           </div>
         </div>

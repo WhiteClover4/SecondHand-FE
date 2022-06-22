@@ -1,4 +1,4 @@
-import { PrimaryAlert } from "../components/alert";
+import { PrimaryAlert } from '../components/alert';
 import {
   FileInput,
   FileInput2,
@@ -8,12 +8,12 @@ import {
   LabelTextareaInput,
   LabelTextInput,
   SearchInput,
-} from "../components/input";
-import { PrimaryButton, SecondaryButton, BackButton } from "../components/button";
+} from '../components/input';
+import { PrimaryButton, SecondaryButton, BackButton } from '../components/button';
 
-import { Card, Card2, ProfileCard } from "../components/card";
-import { SuccessCheckoutModal } from "../components/modal";
-import { CategorySection } from "../components/section";
+import { Card, Card2, ProfileCard } from '../components/card';
+import { SuccessCheckoutModal } from '../components/modal';
+import { CategorySection } from '../components/section';
 
 export default function Components() {
   return (

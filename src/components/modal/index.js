@@ -1,3 +1,3 @@
-import SuccessCheckoutModal from "./SuccessCheckoutModal";
+import SuccessCheckoutModal from './SuccessCheckoutModal';
 
 export { SuccessCheckoutModal };

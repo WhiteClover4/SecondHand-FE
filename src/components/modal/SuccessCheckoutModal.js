@@ -1,5 +1,5 @@
-import PrimaryButton from "../button/PrimaryButton";
-import { XIcon, WhatsappIcon } from "../icon";
+import PrimaryButton from '../button/PrimaryButton';
+import { XIcon, WhatsappIcon } from '../icon';
 
 export default function SuccessCheckoutModal() {
   return (

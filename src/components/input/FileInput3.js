@@ -1,4 +1,4 @@
-import { CameraIcon } from "../icon";
+import { CameraIcon } from '../icon';
 
 export default function FileInput3() {
   return (

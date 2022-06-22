@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { EyeIcon, EyeOffIcon } from "../icon";
+import { useState } from 'react';
+import { EyeIcon, EyeOffIcon } from '../icon';
 
 export default function LabelPasswordInput({ id, label, ...rest }) {
   const [isPasswordShown, setPasswordShown] = useState(true);
@@ -12,7 +12,7 @@ export default function LabelPasswordInput({ id, label, ...rest }) {
         <input
           {...rest}
           id={id}
-          type={isPasswordShown ? "text" : "password"}
+          type={isPasswordShown ? 'text' : 'password'}
           className="w-full rounded-2xl border border-neutral-02 bg-neutral-01 px-4 py-[16px] pr-16 text-body-14 placeholder:text-neutral-03"
         />
         <button

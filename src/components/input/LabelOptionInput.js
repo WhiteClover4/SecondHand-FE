@@ -1,4 +1,4 @@
-export default function LabelOptionInput({ id, label, value = "default", ...rest }) {
+export default function LabelOptionInput({ id, label, value = 'default', ...rest }) {
   return (
     <div className="flex w-full flex-col space-y-1">
       <label htmlFor={id} className="text-body-12">
@@ -9,7 +9,7 @@ export default function LabelOptionInput({ id, label, value = "default", ...rest
           {...rest}
           id="id"
           value={value}
-          className={`${value === "default" && "text-neutral-03"} w-full focus:outline-none`}
+          className={`${value === 'default' && 'text-neutral-03'} w-full focus:outline-none`}
         >
           <option disabled value="default" className="text-neutral-100 ">
             Pilih Kota
