@@ -1,4 +1,4 @@
-import { ArrowLeftIcon } from "../icon";
+import { ArrowLeftIcon } from '../icon';
 
 export default function BackButton({ ...rest }) {
   return (
