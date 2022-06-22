@@ -8,7 +8,7 @@ export default function RoutesApp() {
     <Switch>
       <Route path="/components" element={<Components />} />
       <Route path="/page-auth" element={<PageAuthLayout />} />
-<Route path="/register" element={<Register />} />
+      <Route path="/register" element={<Register />} />
     </Switch>
   );
 }
