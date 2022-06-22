@@ -10,13 +10,12 @@ export default function Home() {
       <PrimaryButton className="fixed inset-x-0 bottom-5 mx-auto w-fit">
         <div className="flex flex-row">
           <PlusIcon className="mr-2 w-5" />
-          <p className="font-medium text-body-14">Jual</p>
+          <p className="text-body-14 font-medium">Jual</p>
         </div>
         <div className="absolute bottom-0 left-0 w-full translate-y-1/2 px-[6px]">
-          <div
-            style={{ filter: "blur(30px)" }}
-            className="h-[22px] w-full bg-primary-03 ring z-10"
-          >sad</div>
+          <div style={{ filter: "blur(30px)" }} className="z-10 h-[22px] w-full bg-primary-03 ring">
+            sad
+          </div>
         </div>
       </PrimaryButton>
       <div className="mb-10 h-[288px] bg-primary2-04">Sliders</div>
