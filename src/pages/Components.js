@@ -12,7 +12,7 @@ import {
 import { PrimaryButton, SecondaryButton, BackButton } from '../components/button';
 
 import { Card, Card2, ProfileCard } from '../components/card';
-import { SuccessCheckoutModal } from '../components/modal';
+import { SuccessCheckoutModal, StatusModal } from '../components/modal';
 import { CategorySection } from '../components/section';
 
 export default function Components() {
@@ -46,6 +46,7 @@ export default function Components() {
       <Card2 />
       <ProfileCard />
       <SuccessCheckoutModal />
+      <StatusModal />
       <CategorySection />
     </div>
   );
