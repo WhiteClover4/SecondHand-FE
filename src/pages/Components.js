@@ -1,17 +1,19 @@
-import { PrimaryAlert } from "../components/alert";
-import BackButton from "../components/button/BackButton";
-import InputButton from "../components/button/InputButton";
-import PrimaryButton from "../components/button/PrimaryButton";
-import SecondaryButton from "../components/button/SecondaryButton";
-import LabelOptionInput from "../components/input/LabelOptionInput";
-import LabelPasswordInput from "../components/input/LabelPasswordInput";
-import LabelTextareaInput from "../components/input/LabelTextareaInput";
-import LabelTextInput from "../components/input/LabelTextInput";
-import SearchInput from "../components/input/SearchInput";
-import { Card } from "../components/card";
-import { Card2 } from "../components/card";
-import { SuccessCheckoutModal } from "../components/modal";
-import { StatusModal } from "../components/modal";
+import { PrimaryAlert } from '../components/alert';
+import {
+  FileInput,
+  FileInput2,
+  FileInput3,
+  LabelOptionInput,
+  LabelPasswordInput,
+  LabelTextareaInput,
+  LabelTextInput,
+  SearchInput,
+} from '../components/input';
+import { PrimaryButton, SecondaryButton, BackButton } from '../components/button';
+
+import { Card, Card2, ProfileCard } from '../components/card';
+import { SuccessCheckoutModal, StatusModal } from '../components/modal';
+import { CategorySection } from '../components/section';
 
 export default function Components() {
   return (
@@ -37,21 +39,15 @@ export default function Components() {
       <LabelTextareaInput placeholder="LabelTexareaInput" />
       <LabelOptionInput placeholder="LabelOptionInput" />
       <SearchInput placeholder="SearchInput" />
-      <div className="grid grid-cols-6 gap-4 ">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-      </div>
-      <div className="h-fit w-fit gap-4 rounded-2xl bg-neutral-01 p-6 shadow-high">
-        <Card2 />
-        <img src="/img/divider.png" alt="divider" className="my-4" />
-        <Card2 />
-      </div>
+      <FileInput />
+      <FileInput2 />
+      <FileInput3 />
+      <Card />
+      <Card2 />
+      <ProfileCard />
       <SuccessCheckoutModal />
       <StatusModal />
+      <CategorySection />
     </div>
   );
 }

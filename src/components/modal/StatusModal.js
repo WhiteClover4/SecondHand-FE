@@ -1,9 +1,9 @@
-import { XIcon } from "../icon";
-import { useState } from "react";
-import PrimaryButton from "../button/PrimaryButton";
+import { XIcon } from '../icon';
+import { useState } from 'react';
+import PrimaryButton from '../button/PrimaryButton';
 
 export default function StatusModal() {
-  const [transaksi, setTransaksi] = useState("");
+  const [transaksi, setTransaksi] = useState('');
 
   const onOptionChange = (e) => {
     setTransaksi(e.target.value);
@@ -21,29 +21,33 @@ export default function StatusModal() {
           type="radio"
           id="berhasil"
           value="berhasil"
-          checked={transaksi === "berhasil"}
+          checked={transaksi === 'berhasil'}
           onChange={onOptionChange}
         />
         <label htmlFor="berhasil" className="ml-4  text-body-14">
           Berhasil terjual
         </label>
       </div>
-      <p className="ml-8 mb-6 text-body-14 text-neutral-03">Kamu telah sepakat menjual produk ini kepada pembeli</p>
+      <p className="ml-8 mb-6 text-body-14 text-neutral-03">
+        Kamu telah sepakat menjual produk ini kepada pembeli
+      </p>
       <div className="mb-2 flex flex-row items-center">
         <input
           className="h-[16px] w-[16px] cursor-pointer appearance-none rounded-full border-[3px] border-[#C4C4C4] bg-[#C4C4C4] checked:bg-primary-04 hover:bg-primary-03"
           type="radio"
           id="batal"
           value="batal"
-          checked={transaksi === "batal"}
+          checked={transaksi === 'batal'}
           onChange={onOptionChange}
         />
         <label htmlFor="batal" className="ml-4 text-body-14">
           Batalkan transaksi
         </label>
       </div>
-      <p className="ml-8 mb-8 text-body-14 text-neutral-03">Kamu membatalkan transaksi produk ini dengan pembeli</p>
-      {transaksi !== "" ? (
+      <p className="ml-8 mb-8 text-body-14 text-neutral-03">
+        Kamu membatalkan transaksi produk ini dengan pembeli
+      </p>
+      {transaksi !== '' ? (
         <PrimaryButton className="text-center">Kirim</PrimaryButton>
       ) : (
         <PrimaryButton isDisable className="text-center">
