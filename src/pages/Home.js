@@ -2,6 +2,7 @@ import PrimaryButton from '../components/button/PrimaryButton';
 import { Navbar } from '../components/navbar';
 import { SearchIcon, PlusIcon } from '../components/icon';
 import { Card } from '../components/card';
+import { Carousel } from '../components/carousel';
 
 export default function Home() {
   return (
@@ -18,7 +19,7 @@ export default function Home() {
           </div>
         </div>
       </PrimaryButton>
-      <div className="mb-10 h-[288px] bg-primary2-04">Sliders</div>
+      <Carousel />
       <div className="px-[136px]">
         <p className="mb-4 text-title-16 font-bold">Telusuri Kategori</p>
         <div className="mb-10 flex flex-row gap-4">
