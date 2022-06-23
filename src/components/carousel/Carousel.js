@@ -14,7 +14,7 @@ export default function Carousel() {
                 isActive ? 'scale-y-100' : 'scale-y-[0.84722222]'
               } rounded-[20px] duration-300`}
             >
-              {i == 0 && (
+              {i === 0 && (
                 <div className="flex h-full w-full">
                   <div className="ml-[80px] flex h-full w-full flex-col justify-center">
                     <h1 className="text-4xl font-bold leading-[54px]">
