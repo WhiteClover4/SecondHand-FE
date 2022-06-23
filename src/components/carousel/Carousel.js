@@ -34,7 +34,7 @@ export default function Carousel() {
                       ></div>
                       <img
                         src="/img/png_gift_88837.png"
-                        className="absolute top-1/2 -translate-y-1/2 left-0 -translate-x-1/2"
+                        className="absolute top-1/2 left-0 -translate-y-1/2 -translate-x-1/2"
                       />
                       <img src="/img/Rectangle 137.png" className="h-full w-full" />
                     </div>
