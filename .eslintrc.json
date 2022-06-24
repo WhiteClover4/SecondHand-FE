@@ -22,7 +22,7 @@
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "react/prop-types": "off",
     "spaced-comment": 1,
-    "quotes": [2, ["backtick", "single"]],
+    "quotes": [1, "single"],
     "no-duplicate-imports": 1
   }
 }
