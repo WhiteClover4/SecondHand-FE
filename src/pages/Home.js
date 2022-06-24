@@ -14,7 +14,7 @@ export default function Home() {
           <p className="text-body-14 font-medium">Jual</p>
         </div>
         <div className="absolute bottom-0 left-0 w-full translate-y-1/2 px-[6px]">
-          <div style={{ filter: 'blur(30px)' }} className="z-10 h-[22px] w-full bg-primary-03 ring">
+          <div className="z-10 h-[22px] w-full bg-primary-03 ring" style={{ filter: 'blur(30px)' }}>
             sad
           </div>
         </div>

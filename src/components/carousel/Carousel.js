@@ -26,17 +26,17 @@ export default function Carousel() {
                   <div>
                     <div className="relative h-full w-[424px]">
                       <div
+                        className="absolute top-0 left-0 h-full w-full"
                         style={{
                           background:
                             'linear-gradient(90deg, #FFE9CA 0%, rgba(255, 233, 202, 0) 100%)',
                         }}
-                        className="absolute top-0 left-0 h-full w-full"
                       ></div>
                       <img
-                        src="/img/png_gift_88837.png"
                         className="absolute top-1/2 left-0 -translate-y-1/2 -translate-x-1/2"
+                        src="/img/png_gift_88837.png"
                       />
-                      <img src="/img/Rectangle 137.png" className="h-full w-full" />
+                      <img className="h-full w-full" src="/img/Rectangle 137.png" />
                     </div>
                   </div>
                 </div>

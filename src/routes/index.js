@@ -6,9 +6,9 @@ import Home from '../pages/Home';
 export default function RoutesApp() {
   return (
     <Switch>
-      <Route path="/" element={<Home />} />
-      <Route path="/components" element={<Components />} />
-      <Route path="/page-auth" element={<PageAuthLayout />} />
+      <Route element={<Home />} path="/" />
+      <Route element={<Components />} path="/components" />
+      <Route element={<PageAuthLayout />} path="/page-auth" />
     </Switch>
   );
 }

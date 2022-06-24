@@ -21,13 +21,13 @@ export default function Components() {
       <PrimaryButton>PrimaryButton</PrimaryButton>
       <PrimaryButton isSmall>PrimaryButton small</PrimaryButton>
       <PrimaryButton isDisable>PrimaryButton disabled</PrimaryButton>
-      <PrimaryButton isSmall isDisable>
+      <PrimaryButton isDisable isSmall>
         PrimaryButton small disabled
       </PrimaryButton>
       <SecondaryButton>SecondaryButton</SecondaryButton>
       <SecondaryButton isSmall>SecondaryButton small</SecondaryButton>
       <SecondaryButton isDisable>SecondaryButton disabled</SecondaryButton>
-      <SecondaryButton isSmall isDisable>
+      <SecondaryButton isDisable isSmall>
         SecondaryButton small disabled
       </SecondaryButton>
       <BackButton />

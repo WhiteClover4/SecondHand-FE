@@ -6,7 +6,7 @@ export default function AuthLayout({ children }) {
           Second Hand.
         </p>
         <div className="absolute h-full w-full bg-gradient-to-t from-[#A06ECE] opacity-50"></div>
-        <img src="/img/img-bg-auth.png" alt="backround" className="h-full w-full object-cover" />
+        <img alt="backround" className="h-full w-full object-cover" src="/img/img-bg-auth.png" />
       </div>
       <main className="flex h-full w-1/2 items-center px-[134px]">
         <div className="flex w-full flex-col items-center">

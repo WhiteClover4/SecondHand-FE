@@ -19,6 +19,9 @@
   },
   "plugins": ["react", "react-hooks", "prettier"],
   "rules": {
+    "jsx-a11y/anchor-is-valid": "off",
+    "jsx-a11y/accessible-emoji": "off",
+    "react/jsx-sort-props": [1, { "reservedFirst": ["key"] }],
     "react/react-in-jsx-scope": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "react/prop-types": "off",
