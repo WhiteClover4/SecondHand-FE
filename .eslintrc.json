@@ -25,6 +25,7 @@
     "no-duplicate-imports": "error",
     "no-multi-spaces": "warn",
     "no-unused-vars": "warn",
+    "no-useless-rename": "warn",
     "react/jsx-sort-props": ["warn", { "reservedFirst": ["key"] }],
     "react/react-in-jsx-scope": "off",
     "react/jsx-filename-extension": ["warn", { "extensions": [".js", ".jsx"] }],
