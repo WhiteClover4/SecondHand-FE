@@ -1,5 +1,6 @@
 {
   "env": {
+    "node": true,
     "browser": true,
     "es2021": true
   },
@@ -23,6 +24,7 @@
     "react/prop-types": "off",
     "spaced-comment": 1,
     "quotes": [1, "single"],
-    "no-duplicate-imports": 1
+    "no-duplicate-imports": 1,
+    "no-unused-vars": 1
   }
 }
