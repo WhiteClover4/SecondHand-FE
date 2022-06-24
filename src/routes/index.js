@@ -1,13 +1,17 @@
-import { Route, Routes as Switch } from "react-router-dom";
-import Components from "../pages/Components";
-import InfoPenawaran from "../pages/InfoPenawaran";
+import { Route, Routes as Switch } from 'react-router-dom';
+import Components from '../pages/Components';
+import Bid from '../pages/seller/Bid';
+import PageAuthLayout from '../pages/PageAuthLayout';
+import Home from '../pages/Home';
 
 export default function RoutesApp() {
   return (
     <Switch>
       {/* <Route path="/" element={<Components />} /> */}
-      <Route path="/components" element={<Components />} />
-      <Route path="/penawaran" element={<InfoPenawaran />} />
+      <Route element={<Components />} path="/components" />
+      <Route element={<Bid />} path="/Bid" />
+      <Route element={<Home />} path="/" />
+      <Route element={<PageAuthLayout />} path="/page-auth" />
     </Switch>
   );
 }

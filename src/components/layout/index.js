@@ -1,4 +1,3 @@
-import InfoPenawaranLayout from "../../layout/InfoPenawaranLaout";
+import AuthLayout from './AuthLayout';
 
-export { InfoPenawaranLayout };
-
+export { AuthLayout };
