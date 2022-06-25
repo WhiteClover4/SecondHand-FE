@@ -1,3 +1,4 @@
-import SellerLayout from "./SellerLayout";
+import AuthLayout from './AuthLayout';
+import SellerLayout from './SellerLayout';
 
-export { SellerLayout };
+export { AuthLayout, SellerLayout };

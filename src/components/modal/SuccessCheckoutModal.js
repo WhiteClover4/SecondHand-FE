@@ -1,10 +1,10 @@
-import PrimaryButton from "../button/PrimaryButton";
-import { XIcon, WhatsappIcon } from "../icon";
+import PrimaryButton from '../button/PrimaryButton';
+import { XIcon, WhatsappIcon } from '../icon';
 
 export default function SuccessCheckoutModal() {
   return (
     <div className="relative flex  w-[360px] flex-col rounded-2xl bg-neutral-01  px-8 pt-4 pb-6">
-      <button type="button" className="place-self-star mb-4 place-self-end ">
+      <button className="place-self-star mb-4 place-self-end " type="button">
         <XIcon className="h-6 w-6 text-neutral-05 " />
       </button>
       <p className="mb-2  text-body-14 font-medium">
@@ -17,9 +17,9 @@ export default function SuccessCheckoutModal() {
         <p className="text-center text-body-14 font-medium">Product Match</p>
         <div className="flex flex-row items-center">
           <img
-            src="/img/img-profile1.png"
             alt="img-profile"
             className="mr-4 h-12 w-12 rounded-xl object-cover"
+            src="/img/img-profile1.png"
           />
           <div className="flex grow flex-col gap-y-1">
             <p className="text-body-14 font-medium">Nama Pembeli</p>
@@ -28,9 +28,9 @@ export default function SuccessCheckoutModal() {
         </div>
         <div className="flex flex-row items-start">
           <img
-            src="/img/img-notification.png"
             alt="img-modal-product"
             className="mr-4 h-12 w-12 rounded-xl object-cover"
+            src="/img/img-notification.png"
           />
           <div className="flex grow flex-col gap-y-1">
             <p className="text-body-14">Jam Tangan Casio</p>

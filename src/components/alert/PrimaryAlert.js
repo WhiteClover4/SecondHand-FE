@@ -1,7 +1,7 @@
-import React from "react";
-import { XIcon } from "../icon";
+import React from 'react';
+import { XIcon } from '../icon';
 
-export default function PrimaryAlert({ bgColor = "bg-alert-success", children }) {
+export default function PrimaryAlert({ bgColor = 'bg-alert-success', children }) {
   return (
     <div
       className={`${bgColor} flex w-[500px] items-center justify-between space-x-4 rounded-xl px-6 py-4 shadow-high`}
