@@ -2,13 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 export const alertSlice = createSlice({
   name: 'alert',
-  initialState: {
-    alerts: [
-      { status: 'error', message: 'ehe' },
-      { status: 'warning', message: 'ehe' },
-      { status: 'success', message: 'ehe' },
-    ],
-  },
+  initialState: { alerts: [] },
   reducers: {
     SET_ALERT: (state, action) => {
       state.alerts = action.payload;
