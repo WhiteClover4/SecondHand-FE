@@ -2,7 +2,7 @@ import { BoxIcon, ChevronRightIcon, HeartIcon, DollarSignIcon } from '../icon';
 
 export default function CategorySection() {
   return (
-    <div className="flex w-fit flex-col gap-6 rounded-2xl bg-[#FFFFFF] p-6 shadow-high">
+    <div className="flex h-fit w-fit flex-col gap-6 rounded-2xl bg-[#FFFFFF] p-6 shadow-high">
       <p className="text-title-16 font-medium">Kategori</p>
       <div className="flex flex-col gap-4">
         <button className="group flex gap-2 border-b-[1px] border-neutral-02 pb-4" type="button">
