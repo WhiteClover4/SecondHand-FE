@@ -4,7 +4,7 @@ export default function SellerLayout({ children }) {
   return(
     <div className="flex flex-row gap-8">
       <CategorySection/>
-      <div className="grid grid-cols-3 gap-6">{children}</div>
+      <div className="grid grid-cols-3 gap-6 w-full">{children}</div>
     </div>
   );
 }
