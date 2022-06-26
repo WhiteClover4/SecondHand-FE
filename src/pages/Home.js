@@ -11,7 +11,6 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <SellButton />
       <main>
         <Carousel />
         <section className="px-[136px]">
@@ -28,6 +27,7 @@ export default function Home() {
           ))}
         </section>
       </main>
+      <SellButton />
     </>
   );
 }
@@ -50,7 +50,7 @@ const Tab = ({ activeTab, setActiveTab, tab }) => {
 
 const SellButton = () => {
   return (
-    <PrimaryButton className="fixed inset-x-0 bottom-5 mx-auto w-fit">
+    <PrimaryButton className="fixed inset-x-0 bottom-7 mx-auto w-fit">
       <div className="flex flex-row">
         <PlusIcon className="mr-2 w-5" />
         <p className="text-body-14 font-medium">Jual</p>

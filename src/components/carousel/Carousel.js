@@ -17,7 +17,7 @@ export default function Carousel() {
               {i === 0 && (
                 <div className="flex h-full w-full">
                   <div className="ml-[80px] flex h-full w-full flex-col justify-center">
-                    <h1 className="text-4xl font-bold leading-[54px]">
+                    <h1 className="text-[36px] font-bold leading-[54px]">
                       Bulan Ramadhan Banyak diskon!
                     </h1>
                     <p className="mt-4 text-body-14 text-[#151515]">Diskon Hingga</p>
