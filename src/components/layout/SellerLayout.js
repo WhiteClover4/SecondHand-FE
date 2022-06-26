@@ -1,10 +1,10 @@
 import { CategorySection } from '../section';
 
 export default function SellerLayout({ children }) {
-  return(
+  return (
     <div className="flex flex-row gap-8">
-      <CategorySection/>
-      <div className="grid grid-cols-3 gap-6">{children}</div>
+      <CategorySection />
+      <main className="w-full">{children}</main>
     </div>
   );
 }
