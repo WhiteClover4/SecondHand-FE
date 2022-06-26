@@ -12,6 +12,9 @@ import ChevronRightIcon from './ChevronRightIcon';
 import DollarSignIcon from './DollarSignIcon';
 import HomeLogoIcon from './HomeLogoIcon';
 import SignInIcon from './SignInIcon';
+import BellIcon from './BellIcon';
+import ListIcon from './ListIcon';
+import UserIcon from './UserIcon';
 
 export {
   HeartIcon,
@@ -28,4 +31,7 @@ export {
   DollarSignIcon,
   HomeLogoIcon,
   SignInIcon,
+  BellIcon,
+  ListIcon,
+  UserIcon,
 };
