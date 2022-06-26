@@ -2,7 +2,7 @@ import { Route, Routes as Switch } from 'react-router-dom';
 import Components from '../pages/Components';
 import PageAuthLayout from '../pages/PageAuthLayout';
 import Home from '../pages/Home';
-import ProductsSeller from '../pages/seller/Products';
+import SoldSeller from '../pages/seller/Sold';
 
 export default function RoutesApp() {
   return (
@@ -10,7 +10,7 @@ export default function RoutesApp() {
       <Route element={<Home />} path="/" />
       <Route element={<Components />} path="/components" />
       <Route element={<PageAuthLayout />} path="/page-auth" />
-      <Route element={<ProductsSeller />} path="/seller/products" />
+      <Route element={<SoldSeller />} path="/seller/sold" />
     </Switch>
   );
 }
