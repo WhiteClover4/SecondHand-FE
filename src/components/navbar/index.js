@@ -1,3 +1,4 @@
-import Navbar2 from "./Navbar2";
+import Navbar from './Navbar';
+import Navbar2 from './Navbar2';
 
-export { Navbar2 };
+export { Navbar, Navbar2 };

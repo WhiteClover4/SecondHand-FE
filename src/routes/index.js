@@ -1,13 +1,16 @@
-import { Route, Routes as Switch } from "react-router-dom";
-import Components from "../pages/Components";
-import Product from "../pages/Product";
+import { Route, Routes as Switch } from 'react-router-dom';
+import Components from '../pages/Components';
+import PageAuthLayout from '../pages/PageAuthLayout';
+import Home from '../pages/Home';
+import Product from '../pages/Product';
 
 export default function RoutesApp() {
   return (
     <Switch>
-      {/* <Route path="/" element={<Components />} /> */}
-      <Route path="/components" element={<Components />} />
-      <Route path="/product" element={<Product />} />
+      <Route element={<Home />} path="/" />
+      <Route element={<Product />} path="/product" />
+      <Route element={<Components />} path="/components" />
+      <Route element={<PageAuthLayout />} path="/page-auth" />
     </Switch>
   );
 }

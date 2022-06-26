@@ -1,7 +1,7 @@
-import PrimaryButton from "../button/PrimaryButton";
-import SecondaryButton from "../button/SecondaryButton";
+import PrimaryButton from '../button/PrimaryButton';
+import SecondaryButton from '../button/SecondaryButton';
 
-export default function CardSellerProductInfo() {
+export default function SellerProductInfoCard() {
   return (
     <div className="flex flex-col rounded-2xl px-4 pb-6 pt-4 shadow-high">
       <p className="mb-2 text-title-16 font-medium text-black">Jam Tangan Casio</p>

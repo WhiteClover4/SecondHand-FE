@@ -1,4 +1,4 @@
-import { PlusIcon } from "../icon";
+import { PlusIcon } from '../icon';
 
 export default function FileInput() {
   return (

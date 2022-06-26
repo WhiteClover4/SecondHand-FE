@@ -1,7 +1,6 @@
-import Card from "./Card";
-import Card2 from "./Card2";
-import CardSellerProductDesc from "./CardSellerProductDesc";
-import CardSellerProductInfo from "./CardSellerProductInfo";
-import CardSellerProductProfile from "./CardSellerProductProfile";
+import Card from './Card';
+import Card2 from './Card2';
+import SellerProductInfoCard from './SellerProductInfoCard';
+import ProfileCard from './ProfileCard';
 
-export { Card, Card2, CardSellerProductDesc, CardSellerProductInfo, CardSellerProductProfile };
+export { Card, Card2, SellerProductInfoCard, ProfileCard };

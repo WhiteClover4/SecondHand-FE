@@ -1,5 +1,5 @@
-import { BellIcon, HomeLogoIcon, ListIcon, UserIcon } from "../icon";
-import { SearchInput } from "../input";
+import { BellIcon, HomeLogoIcon, ListIcon, UserIcon } from '../icon';
+import { SearchInput } from '../input';
 
 export default function Navbar2() {
   return (
