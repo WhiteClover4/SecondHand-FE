@@ -24,7 +24,7 @@
     "jsx-a11y/accessible-emoji": "off",
     "no-duplicate-imports": "error",
     "no-multi-spaces": "warn",
-    "no-undef":"off",
+    "no-undef": "off",
     "no-unused-vars": "warn",
     "no-useless-rename": "warn",
     "react/jsx-sort-props": ["warn", { "reservedFirst": ["key"] }],
