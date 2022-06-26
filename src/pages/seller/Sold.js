@@ -10,15 +10,17 @@ export default function SoldSeller() {
         <p className="text-black text-heading-20 font-bold">Daftar Jual Saya</p>
         <ProfileCard2 />
         <SellerLayout>
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
+          <div className="grid grid-cols-3 gap-6">
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+          </div>
         </SellerLayout>
       </div>
     </>
