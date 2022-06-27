@@ -41,7 +41,7 @@ export default function Bid() {
               <p className=" text-body-14 font-medium text-neutral-01"> Terima </p>
             </button>
           </div>
-          <div className="bg-neutral-06 mt-4 h-[1px] w-[568px] divide-y divide-none"></div>
+          <div className="bg-[#F5F5F5] mt-4 h-[1px] w-[568px] divide-y divide-none"></div>
         </div>
       </div>
     </div>
