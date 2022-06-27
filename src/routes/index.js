@@ -14,15 +14,14 @@ export default function RoutesApp() {
   return (
     <Switch>
       <Route element={<Home />} path="/" />
-      <Route element={<Profile />} path="/profile" />
-      <Route element={<Home />} path="/" />
       <Route element={<Login />} path="/login" />
       <Route element={<Register />} path="/register" />
       <Route element={<Product />} path="/product/:productName" />
+      <Route element={<ProductSeller />} path="/seller/product" />
       <Route element={<ProductsSeller />} path="/seller/products" />
       <Route element={<InterestedSeller />} path="/seller/interested" />
       <Route element={<SoldSeller />} path="/seller/sold" />
-      <Route element={<ProductSeller />} path="/seller/product" />
+      <Route element={<Profile />} path="/profile" />
       <Route element={<Components />} path="/components" />
     </Switch>
   );

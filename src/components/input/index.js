@@ -3,7 +3,6 @@ import LabelPasswordInput from './LabelPasswordInput';
 import LabelTextareaInput from './LabelTextareaInput';
 import LabelOptionInput from './LabelOptionInput';
 import SearchInput from './SearchInput';
-import UserProfilInput from './UserProfilInput';
 import FileInput from './FileInput';
 import FileInput2 from './FileInput2';
 import FileInput3 from './FileInput3';
@@ -15,7 +14,6 @@ export {
   LabelTextareaInput,
   LabelOptionInput,
   SearchInput,
-  UserProfilInput,
   LabelOptionInputProduct,
   FileInput,
   FileInput2,
