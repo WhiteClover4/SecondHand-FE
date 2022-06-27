@@ -7,10 +7,13 @@ import XIcon from './XIcon';
 import PlusIcon from './PlusIcon';
 import CameraIcon from './CameraIcon';
 import WhatsappIcon from './WhatsappIcon';
+import HomeLogoIcon from './HomeLogoIcon';
+import ListIcon from './ListIcon';
+import BellIcon from './BellIcon';
+import UserIcon from './UserIcon';
 import BoxIcon from './BoxIcon';
 import ChevronRightIcon from './ChevronRightIcon';
 import DollarSignIcon from './DollarSignIcon';
-import HomeLogoIcon from './HomeLogoIcon';
 import SignInIcon from './SignInIcon';
 
 export {
@@ -23,9 +26,12 @@ export {
   PlusIcon,
   CameraIcon,
   WhatsappIcon,
+  HomeLogoIcon,
+  ListIcon,
+  BellIcon,
+  UserIcon,
   BoxIcon,
   ChevronRightIcon,
   DollarSignIcon,
-  HomeLogoIcon,
   SignInIcon,
 };
