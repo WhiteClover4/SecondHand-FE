@@ -4,7 +4,7 @@ import LabelTextInput from "../input/LabelTextInput";
 import LabelTextareaInput from "../input/LabelTextareaInput";
 import { UserProfilInput } from "../input";
 
-export default function ProfileLayout({ children }) {
+export default function ProfileLayout() {
   return (
     <div className="h-[950px] w-[1440px] bg-neutral-01">
       <div className=" flex h-[84px] w-[1440px] items-center shadow-low">

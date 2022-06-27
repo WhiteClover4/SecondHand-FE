@@ -1,7 +1,3 @@
-/*import CameraIcon from "./CameraIcon";
-
-export { HeartIcon, EyeIcon, EyeOffIcon, SearchIcon, ArrowLeftIcon, XIcon, PlusIcon, CameraIcon };*/
-
 import CameraIcon from "./CameraIcon";
 import WhatsappIcon from "./WhatsappIcon";
 import BoxIcon from "./BoxIcon";
