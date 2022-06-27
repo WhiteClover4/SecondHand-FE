@@ -11,7 +11,6 @@ export default function SellerProduct() {
     <div className="h-[950px] w-[1440px] bg-neutral-01">
       <div className=" flex h-[84px] w-[1440px] items-center shadow-low">
         <img alt="Rectangle-127" className="ml-[136px]" src="/img/Rectangle-127.png" />
-        <p className=" text-body-16 ml-[409px] font-normal">Lengkapi Info Akun</p>
       </div>
       <button className="mt-[45px] ml-[341px]" type="button">
         <ArrowLeftIcon className="h-6 w-6 text-neutral-05 " />
