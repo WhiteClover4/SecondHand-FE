@@ -19,46 +19,18 @@ module.exports = {
           '05': '#AA9B87',
         },
         neutral: {
-          "01": "#FFFFFF",
-          "02": "#D0D0D0",
-          "03": "#8A8A8A",
-          "04": "#3C3C3C",
-          "05": "#151515",
+          '01': '#FFFFFF',
+          '02': '#D0D0D0',
+          '03': '#8A8A8A',
+          '04': '#3C3C3C',
+          '05': '#151515',
         },
         alert: {
           danger: '#FA2C5A',
           warning: '#F9CC00',
           success: '#73CA5C',
         },
-    colors: {
-      transparent: 'transparent',
-      primary: {
-        '01': '#E2D4F0',
-        '02': '#D0B7E6',
-        '03': '#A06ECE',
-        '04': '#7126B5',
-        '05': '#4B1979',
       },
-      primary2: {
-        '01': '#FFF8ED',
-        '02': '#FFF0DC',
-        '03': '#FFE9CA',
-        '04': '#D4C2A8',
-        '05': '#AA9B87',
-      },
-      neutral: {
-        '01': '#FFFFFF',
-        '02': '#D0D0D0',
-        '03': '#8A8A8A',
-        '04': '#3C3C3C',
-        '05': '#151515',
-      },
-      alert: {
-        danger: '#FA2C5A',
-        warning: '#F9CC00',
-        success: '#73CA5C',
-      },
-    },
     boxShadow: {
       low: '0px 0px 4px rgba(0, 0, 0, 0.15)',
       high: '0px 0px 10px rgba(0, 0, 0, 0.15)',
@@ -74,6 +46,5 @@ module.exports = {
     },
   },
   plugins: [],
-};
   }
-}
+};
