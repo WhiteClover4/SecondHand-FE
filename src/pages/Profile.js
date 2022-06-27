@@ -1,17 +1,16 @@
-import { BackButton, PrimaryButton } from '../components/button';
+import { BackButton, PrimaryButton } from '../components/buttons';
 import {
   FileInput3,
   LabelOptionInput,
   LabelTextareaInput,
   LabelTextInput,
-} from '../components/input';
+} from '../components/inputs';
+import { SimpleNavbar } from '../components/navbars';
 
 export default function SellerProduct() {
   return (
     <div className="absolute top-0 h-screen w-full overflow-auto">
-      <header className="sticky top-0 flex h-[84px] w-full items-center bg-neutral-01 px-[136px] shadow-high">
-        <div className="h-[34px] w-[100px] bg-primary-05"></div>
-      </header>
+      <SimpleNavbar title="Lengkapi Info Akun" />
       <div className="relative mx-auto mt-10 w-[568px]" onSubmit={(e) => e.preventDefault()}>
         <BackButton className="absolute -left-[76px] top-0" />
         <div className="flex w-full justify-center">

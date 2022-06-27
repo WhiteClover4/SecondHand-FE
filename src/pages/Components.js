@@ -1,4 +1,4 @@
-import { PrimaryAlert } from '../components/alert';
+import { MainAlert } from '../components/alerts';
 import {
   FileInput,
   FileInput2,
@@ -8,12 +8,12 @@ import {
   LabelTextareaInput,
   LabelTextInput,
   SearchInput,
-} from '../components/input';
-import { PrimaryButton, SecondaryButton, BackButton } from '../components/button';
+} from '../components/inputs';
+import { PrimaryButton, SecondaryButton, BackButton } from '../components/buttons';
 
-import { Card, Card2, ProfileCard } from '../components/card';
-import { SuccessCheckoutModal, StatusModal } from '../components/modal';
-import { CategorySection } from '../components/section';
+import { ProductCard, NotifCard, ProfileCard } from '../components/cards';
+import { SuccessCheckoutModal, StatusModal } from '../components/modals';
+import { CategorySection } from '../components/sections';
 
 export default function Components() {
   return (
@@ -31,9 +31,9 @@ export default function Components() {
         SecondaryButton small disabled
       </SecondaryButton>
       <BackButton />
-      <PrimaryAlert bgColor="bg-alert-success">PrimaryAlert bg-alert-success</PrimaryAlert>
-      <PrimaryAlert bgColor="bg-alert-danger">PrimaryAlert bg-alert-danger</PrimaryAlert>
-      <PrimaryAlert bgColor="bg-alert-warning">PrimaryAlert bg-alert-warning</PrimaryAlert>
+      <MainAlert bgColor="bg-alert-success">MainAlert bg-alert-success</MainAlert>
+      <MainAlert bgColor="bg-alert-danger">MainAlert bg-alert-danger</MainAlert>
+      <MainAlert bgColor="bg-alert-warning">MainAlert bg-alert-warning</MainAlert>
       <LabelTextInput placeholder="LabelTextInput" />
       <LabelPasswordInput placeholder="LabelPasswordInput" />
       <LabelTextareaInput placeholder="LabelTexareaInput" />
@@ -42,8 +42,8 @@ export default function Components() {
       <FileInput />
       <FileInput2 />
       <FileInput3 />
-      <Card />
-      <Card2 />
+      <ProductCard />
+      <NotifCard />
       <ProfileCard />
       <SuccessCheckoutModal />
       <StatusModal />

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { PrimaryButton } from '../components/button';
-import { LabelPasswordInput, LabelTextInput } from '../components/input';
-import { AuthLayout } from '../components/layout';
+import { PrimaryButton } from '../components/buttons';
+import { LabelPasswordInput, LabelTextInput } from '../components/inputs';
+import { AuthLayout } from '../components/layouts';
 import useAuth from '../hooks/dependent/useAuth';
 
 export default function Login() {

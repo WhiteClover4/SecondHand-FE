@@ -1,18 +1,18 @@
 import { useState } from 'react';
-import { PrimaryButton } from '../components/button';
-import { Navbar } from '../components/navbar';
-import { SearchIcon, PlusIcon } from '../components/icon';
-import { Card } from '../components/card';
-import { Carousel } from '../components/carousel';
+import { PrimaryButton } from '../components/buttons';
+import { MainNavbar } from '../components/navbars';
+import { SearchIcon, PlusIcon } from '../components/icons';
+import { ProductCard } from '../components/cards';
+import { HomeCarousel } from '../components/carousels';
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState('Semua');
 
   return (
     <>
-      <Navbar />
+      <MainNavbar />
       <main>
-        <Carousel />
+        <HomeCarousel />
         <section className="px-[136px]">
           <p className="mb-4 text-title-16 font-bold">Telusuri Kategori</p>
           <div className="flex flex-row gap-4">
@@ -23,7 +23,7 @@ export default function Home() {
         </section>
         <section className="my-10 grid grid-cols-6 gap-4 px-[136px]">
           {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((el, i) => (
-            <Card key={i} />
+            <ProductCard key={i} />
           ))}
         </section>
       </main>
