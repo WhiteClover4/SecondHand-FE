@@ -1,27 +1,21 @@
-import { ArrowLeftIcon } from "../icon";
-import LabelOptionInput from "../input/LabelOptionInput";
-import LabelTextInput from "../input/LabelTextInput";
-import LabelTextareaInput from "../input/LabelTextareaInput";
-import { UserProfilInput } from "../input";
+import { ArrowLeftIcon } from '../icon';
+import LabelOptionInput from '../input/LabelOptionInput';
+import LabelTextInput from '../input/LabelTextInput';
+import LabelTextareaInput from '../input/LabelTextareaInput';
+import { UserProfilInput } from '../input';
 
 export default function ProfileLayout() {
   return (
     <div className="h-[950px] w-[1440px] bg-neutral-01">
       <div className=" flex h-[84px] w-[1440px] items-center shadow-low">
-        <img
-          src="/img/Rectangle-127.png"
-          alt="Rectangle-127"
-          className="ml-[136px]"
-        />
-        <p className=" text-body-16 ml-[409px] font-normal">
-          Lengkapi Info Akun
-        </p>
+        <img alt="Rectangle-127" className="ml-[136px]" src="/img/Rectangle-127.png" />
+        <p className=" text-body-16 ml-[409px] font-normal">Lengkapi Info Akun</p>
       </div>
-      <div className="flex item-center">
-        <button type="button" className="ml-[341px]">
+      <div className="item-center flex">
+        <button className="ml-[341px]" type="button">
           <ArrowLeftIcon className="h-6 w-6 text-neutral-05 " />
         </button>
-        <button type="button" className="ml-[317px] mt-10">
+        <button className="ml-[317px] mt-10" type="button">
           <UserProfilInput />
         </button>
       </div>
@@ -35,10 +29,7 @@ export default function ProfileLayout() {
         <p className="mt-4 text-body-12 font-normal"> No Handphone* </p>
         <LabelTextInput placeholder="Contoh: +621843459434" />
         <p className="mt-6 text-neutral-01">
-          <button
-            type="button"
-            className="h-12 w-[568px] rounded-xl bg-primary-04 text-center"
-          >
+          <button className="h-12 w-[568px] rounded-xl bg-primary-04 text-center" type="button">
             <p className=" text-body- font-medium"> Simpan </p>
           </button>
         </p>

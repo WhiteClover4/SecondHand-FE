@@ -1,3 +1,3 @@
-import CategorySection from "./CategorySection";
+import CategorySection from './CategorySection';
 
 export { CategorySection };

@@ -1,13 +1,22 @@
-import React from "react";
-import { XIcon } from "../icon";
+import React from 'react';
+import { XIcon } from '../icon';
 
-export default function PrimaryAlert({ bgColor = "bg-alert-success", children }) {
+export default function PrimaryAlert({ status, children, remove }) {
+  function bgColor(status) {
+    if (status === 'success') return 'bg-alert-success';
+    if (status === 'warning') return 'bg-alert-warning';
+    if (status === 'error') return 'bg-alert-danger';
+    return 'bg-alert-danger';
+  }
+
   return (
     <div
-      className={`${bgColor} flex w-[500px] items-center justify-between space-x-4 rounded-xl px-6 py-4 shadow-high`}
+      className={`${bgColor(
+        status,
+      )} flex w-full items-center justify-between space-x-4 rounded-xl px-6 py-4 shadow-high`}
     >
       <span className="text-body-14 font-medium text-neutral-01">{children}</span>
-      <button type="button">
+      <button onClick={remove} type="button">
         <XIcon className="h-5 w-5 text-neutral-01" />
       </button>
     </div>

@@ -1,59 +1,70 @@
-# SecondHand
-## _Final Project FE JS X BE JS - Binar Academy X Kampus Merdeka_
+# Getting Started with Create React App
 
-### Tema:
-E-Commerce Platform (Benchmark dari OLX)
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-### Nama Aplikasi:
-SecondHand
+## Available Scripts
 
-### Deskripsi:
-Platform ini merupakan tempat jual-beli barang secara online, khususnya barang bekas. Platform ini membuka dan menyediakan berbagai jenis
-kategori kebutuhan. User yang mendaftarkan diri pada aplikasi ini dapat berperan sebagai seller dan buyer dengan menggunakan 1 (satu) akun
-yang sama. Platform ini akan mempertemukan seller dan buyer untuk dapat melakukan negosiasi barang dan melakukan transaksi langsung di luar
-platform.
+In the project directory, you can run:
 
-### Fitur Wajib
-Fitur yang wajib dikerjakan oleh tim. Jika tidak diselesaikan, akan ada
-pengurangan nilai secara kolektif.
-- Registrasi User
-- Implementasi In App Notification (Fitur lonceng di dalam notifikasi, bukan push notifikasi)
-- Profil User
-- Histori Transaksi
+### `yarn start`
 
-### Fitur Wajib untuk Buyer
-*Listing Jualan dari user lain (Produk, deskripsi, gambar produk dan lain
-lain)
-- Wishlist produk
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-### Fitur Wajib untuk Seller
-Fitur yang wajib dikerjakan oleh tim. Jika tidak diselesaikan, akan ada
-pengurangan nilai secara kolektif.
-- Seller product list
-- Produk listing (gambar, lokasi, harga deskripsi), gambar memiliki maksimum foto
-- Item yang dijual memiliki kategori(maksimum 5)
-- Maksimum postingan user jualan adalah 4
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-## Minimum Requirement for Front End
+### `yarn test`
 
-| Objectives |  |
-| ------ | ------ |
-| Design | Support Responsive Mobile Design |
-| Component | Custom component |
-| State Management | React Redux |
-| Role | Buyer, Seller |
-| Deployment | Heroku (Staging), Vercel (Production) |
-| Testing | JEST + React Testing Library |
-| Output Deliverable | Live web yang dapat diakses umum. |
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### Additional Features (Front End)
-Kamu dan member tim lainnya pasti ingin dong punya nilai tambah yang
-bisa bikin final project kamu makin keren?
+### `yarn build`
 
-Yaps, untuk itu sebagai nilai tambah, kamu dapat menambahkan fitur-fitur
-lain dalam produk final project ini. Apa aja fitur tambahannya?
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-Ini dia:
-- Fitur Chat penjual dan pembeli
-- Google Oauth
-- Push notifikasi
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
+
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### `yarn eject`
+
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+
+### Analyzing the Bundle Size
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+
+### Making a Progressive Web App
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+
+### Advanced Configuration
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+
+### Deployment
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
+### `yarn build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

@@ -1,3 +1,3 @@
-import PrimaryAlert from "./PrimaryAlert";
+import PrimaryAlert from './PrimaryAlert';
 
 export { PrimaryAlert };
