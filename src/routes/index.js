@@ -5,11 +5,15 @@ import Product from '../pages/[productName]';
 import InterestedSeller from '../pages/seller/Interested';
 import SoldSeller from '../pages/seller/Sold';
 import ProductsSeller from '../pages/seller/Products';
+import Login from '../pages/Login';
+import Register from '../pages/Register';
 
 export default function RoutesApp() {
   return (
     <Switch>
       <Route element={<Home />} path="/" />
+      <Route element={<Login />} path="/login" />
+      <Route element={<Register />} path="/register" />
       <Route element={<Product />} path="/product/:productName" />
       <Route element={<Components />} path="/components" />
       <Route element={<InterestedSeller />} path="/seller/interested" />
