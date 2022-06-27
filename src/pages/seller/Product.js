@@ -21,9 +21,11 @@ export default function SellerProduct() {
             <LabelOptionInput label="Kategori" />
             <LabelTextareaInput label="Deskripsi" placeholder="Contoh: Jalan Ikan Hiu 33" />
           </div>
-          <div className="mt-4">
-            <label className="text-body-12 font-normal"> Foto Produk </label>
-            <FileInput2 className="mt-1" />
+          <div className="mt-4 flex flex-col space-y-1">
+            <p className="text-body-12 font-normal"> Foto Produk </p>
+            <div className="grid grid-cols-4 gap-x-6">
+              <FileInput2 />
+            </div>
           </div>
           <div className="mt-6 flex items-center space-x-4">
             <SecondaryButton className="w-full" type="button">
