@@ -11,13 +11,13 @@ import {
 } from '../components/input';
 import { PrimaryButton, SecondaryButton, BackButton } from '../components/button';
 
-import { Card, Card2, ProfileCard } from '../components/card';
+import { Card, Card2, ProfileCard, ProfileCard2 } from '../components/card';
 import { SuccessCheckoutModal, StatusModal } from '../components/modal';
 import { CategorySection } from '../components/section';
 
 export default function Components() {
   return (
-    <div className="flex min-h-screen w-screen flex-col space-y-6 bg-slate-200 py-8 px-[135px]">
+    <div className="bg-slate-200 flex min-h-screen w-screen flex-col space-y-6 py-8 px-[135px]">
       <PrimaryButton>PrimaryButton</PrimaryButton>
       <PrimaryButton isSmall>PrimaryButton small</PrimaryButton>
       <PrimaryButton isDisable>PrimaryButton disabled</PrimaryButton>
@@ -48,6 +48,7 @@ export default function Components() {
       <SuccessCheckoutModal />
       <StatusModal />
       <CategorySection />
+      <ProfileCard2 />
     </div>
   );
 }
