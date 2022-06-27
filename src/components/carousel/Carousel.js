@@ -17,7 +17,7 @@ export default function Carousel() {
               {i === 0 && (
                 <div className="flex h-full w-full">
                   <div className="ml-[80px] flex h-full w-full flex-col justify-center">
-                    <h1 className="text-4xl font-bold leading-[54px]">
+                    <h1 className="text-[36px] font-bold leading-[54px]">
                       Bulan Ramadhan Banyak diskon!
                     </h1>
                     <p className="mt-4 text-body-14 text-[#151515]">Diskon Hingga</p>
@@ -26,17 +26,17 @@ export default function Carousel() {
                   <div>
                     <div className="relative h-full w-[424px]">
                       <div
+                        className="absolute top-0 left-0 h-full w-full"
                         style={{
                           background:
                             'linear-gradient(90deg, #FFE9CA 0%, rgba(255, 233, 202, 0) 100%)',
                         }}
-                        className="absolute top-0 left-0 h-full w-full"
                       ></div>
                       <img
-                        src="/img/png_gift_88837.png"
                         className="absolute top-1/2 left-0 -translate-y-1/2 -translate-x-1/2"
+                        src="/img/png_gift_88837.png"
                       />
-                      <img src="/img/Rectangle 137.png" className="h-full w-full" />
+                      <img className="h-full w-full" src="/img/Rectangle 137.png" />
                     </div>
                   </div>
                 </div>
