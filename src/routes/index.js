@@ -1,3 +1,4 @@
+import Profile from '../pages/Profile';
 import { Route, Routes as Switch } from 'react-router-dom';
 import Components from '../pages/Components';
 import ProductSeller from '../pages/seller/Product';
@@ -16,10 +17,11 @@ export default function RoutesApp() {
       <Route element={<Login />} path="/login" />
       <Route element={<Register />} path="/register" />
       <Route element={<Product />} path="/product/:productName" />
+      <Route element={<ProductSeller />} path="/seller/product" />
       <Route element={<ProductsSeller />} path="/seller/products" />
       <Route element={<InterestedSeller />} path="/seller/interested" />
       <Route element={<SoldSeller />} path="/seller/sold" />
-      <Route element={<ProductSeller />} path="/seller/product" />
+      <Route element={<Profile />} path="/profile" />
       <Route element={<Components />} path="/components" />
     </Switch>
   );
