@@ -9,6 +9,7 @@ import SoldSeller from '../pages/seller/Sold';
 import ProductsSeller from '../pages/seller/Products';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
+import BidSeller from '../pages/seller/Bid';
 
 export default function RoutesApp() {
   return (
@@ -17,10 +18,11 @@ export default function RoutesApp() {
       <Route element={<Login />} path="/login" />
       <Route element={<Register />} path="/register" />
       <Route element={<Product />} path="/product/:productName" />
-      <Route element={<ProductSeller />} path="/seller/product" />
       <Route element={<ProductsSeller />} path="/seller/products" />
       <Route element={<InterestedSeller />} path="/seller/interested" />
       <Route element={<SoldSeller />} path="/seller/sold" />
+      <Route element={<ProductSeller />} path="/seller/product" />
+      <Route element={<BidSeller />} path="/seller/bid" />
       <Route element={<Profile />} path="/profile" />
       <Route element={<Components />} path="/components" />
     </Switch>

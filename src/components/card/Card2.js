@@ -1,6 +1,6 @@
 export default function Card2() {
   return (
-    <div className="flex w-[328px] flex-row">
+    <div className="flex w-full flex-row">
       <img
         alt="img-notification"
         className="mr-4 h-12 w-12 rounded-xl object-cover"

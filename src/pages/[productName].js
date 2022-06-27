@@ -6,7 +6,7 @@ export default function Product() {
     <div>
       <Navbar2 />
       <div className="flex flex-row justify-center gap-8 px-[236px] ">
-        <div className="w-fit space-y-6 ">
+        <div className="w-2/3 space-y-6 ">
           <div className="relative overflow-hidden">
             <img className="w-full" src="/img/img.png" />
             <p className="text-white absolute inset-x-0 bottom-1/2 w-full bg-primary-04 py-4 text-center text-title-18">
@@ -33,7 +33,7 @@ export default function Product() {
             </p>
           </div>
         </div>
-        <div className="w-[336px] space-y-6">
+        <div className="w-1/3 space-y-6">
           <SellerProductInfoCard />
           <ProfileCard />
         </div>
