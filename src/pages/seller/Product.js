@@ -22,10 +22,8 @@ export default function SellerProduct() {
             <LabelTextareaInput label="Deskripsi" placeholder="Contoh: Jalan Ikan Hiu 33" />
           </div>
           <div className="mt-4">
-            <p className="text-body-12 font-normal"> Foto Produk </p>
-            <button className="mt-1">
-              <FileInput2 />
-            </button>
+            <label className="text-body-12 font-normal"> Foto Produk </label>
+            <FileInput2 className="mt-1" />
           </div>
           <div className="mt-6 flex items-center space-x-4">
             <SecondaryButton className="w-full" type="button">
