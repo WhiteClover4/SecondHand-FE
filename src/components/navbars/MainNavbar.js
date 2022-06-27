@@ -1,15 +1,16 @@
 import { PrimaryButton } from '../buttons';
 import { SearchInput } from '../inputs';
-import { BellIcon, HomeLogoIcon, ListIcon, SignInIcon, UserIcon } from '../icons';
+import { BellIcon, ListIcon, SignInIcon, UserIcon } from '../icons';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 export default function MainNavbar() {
   const { isAuthenticated } = useSelector((state) => state.auth);
 
   return (
     <header className="sticky top-0 z-10 mb-8 flex h-[84px] items-center justify-between bg-neutral-01 px-[136px] shadow-high">
-      <div className="flex flex-row items-center">
-        <HomeLogoIcon className="mr-6 h-[34px] w-[100px] text-primary-05" />
+      <div className="flex flex-row items-center space-x-6">
+        <Link className="inline-block h-[34px] w-[100px] bg-primary-05" to="/" />
         <SearchInput />
       </div>
       {isAuthenticated ? (
@@ -26,10 +27,10 @@ export default function MainNavbar() {
         </div>
       ) : (
         <PrimaryButton>
-          <div className="flex flex-row">
+          <Link className="flex flex-row" to="/login">
             <SignInIcon className="mr-2 w-5" />
             <p>Masuk</p>
-          </div>
+          </Link>
         </PrimaryButton>
       )}
     </header>

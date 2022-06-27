@@ -7,9 +7,10 @@ import ProductsSeller from '../pages/seller/Products';
 import InterestedSeller from '../pages/seller/Interested';
 import SoldSeller from '../pages/seller/Sold';
 import ProductSeller from '../pages/seller/product/ProductSeller';
-import PreviewProduct from '../pages/seller/product/[product-name]/PreviewProduct';
+import PreviewProduct from '../pages/seller/product/[product_name]/PreviewProduct';
 import Bid from '../pages/seller/Bid';
 import Components from '../pages/Components';
+import ProductDetail from '../pages/product/[product_name]';
 
 export default function RoutesApp() {
   return (
@@ -25,6 +26,7 @@ export default function RoutesApp() {
       <Route element={<ProductSeller />} path="/seller/product/:product_name" />
       <Route element={<PreviewProduct />} path="/seller/product/:product_name/preview" />
       <Route element={<Bid />} path="/seller/bid/:buyer_name" />
+      <Route element={<ProductDetail />} path="/product/:product_name" />
       <Route element={<Components />} path="/components" />
     </Switch>
   );
