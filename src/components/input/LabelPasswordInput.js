@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { EyeIcon, EyeOffIcon } from '../icon';
 
 export default function LabelPasswordInput({ margin, id, label, ...rest }) {
-  const [isPasswordShown, setPasswordShown] = useState(true);
+  const [isPasswordShown, setPasswordShown] = useState(false);
   return (
     <div className={`flex w-full flex-col space-y-1 ${margin}`}>
       <label className="text-body-12" htmlFor={id}>
