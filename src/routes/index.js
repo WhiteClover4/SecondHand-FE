@@ -9,7 +9,7 @@ export default function RoutesApp() {
     <Switch>
       {/* <Route path="/" element={<Components />} /> */}
       <Route element={<Components />} path="/components" />
-      <Route element={<Bid />} path="/Bid" />
+      <Route element={<Bid />} path="/seller/bid" />
       <Route element={<Home />} path="/" />
       <Route element={<PageAuthLayout />} path="/page-auth" />
     </Switch>

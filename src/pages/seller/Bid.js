@@ -1,5 +1,4 @@
-import ProfileCard from '../../components/card/ProfilCard';
-import ProfileCard2 from '../../components/card/ProfilCard2';
+import { Card3, ProfileCard } from '../../components/card';
 import { ArrowLeftIcon } from '../../components/icon';
 
 export default function Bid() {
@@ -14,11 +13,11 @@ export default function Bid() {
           <ArrowLeftIcon className="h-6 w-6 text-neutral-05 " />
         </button>
         <div className="m-auto mt-10 h-[80px] w-screen items-center">
-          <ProfileCard2 />
+          <ProfileCard />
           <div className="m-auto mt-6 w-screen items-center">
             <p className="text-body-14 font-medium"> Daftar Produkmu yang Ditawar </p>
             <div className="m-auto mt-6">
-              <ProfileCard />
+              <Card3 />
             </div>
           </div>
           <div className="mt-6 flex w-[568px] items-center justify-end">
@@ -32,7 +31,7 @@ export default function Bid() {
               <p className=" text-body-14 font-medium text-neutral-01"> Terima </p>
             </button>
           </div>
-          <div className="mt-4 h-[1px] w-[568px] divide-y divide-none bg-neutral-06"></div>
+          <div className="mt-4 h-[1px] w-[568px] divide-y divide-none bg-[#E5E5E5] "></div>
         </div>
       </div>
     </div>

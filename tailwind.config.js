@@ -25,7 +25,6 @@ module.exports = {
           "03": "#8A8A8A",
           "04": "#3C3C3C",
           "05": "#151515",
-          "06": "#E5E5E5",
         },
         alert: {
           danger: '#FA2C5A',
