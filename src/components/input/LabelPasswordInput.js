@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { EyeIcon, EyeOffIcon } from '../icon';
 
-export default function LabelPasswordInput({ id, label, ...rest }) {
-  const [isPasswordShown, setPasswordShown] = useState(true);
+export default function LabelPasswordInput({ margin, id, label, ...rest }) {
+  const [isPasswordShown, setPasswordShown] = useState(false);
   return (
-    <div className="flex w-full flex-col space-y-1">
+    <div className={`flex w-full flex-col space-y-1 ${margin}`}>
       <label className="text-body-12" htmlFor={id}>
         {label}
       </label>
@@ -30,3 +30,7 @@ export default function LabelPasswordInput({ id, label, ...rest }) {
     </div>
   );
 }
+
+LabelPasswordInput.defaultProps = {
+  margin: 'm-0',
+};

@@ -1,6 +1,6 @@
-export default function LabelTextInput({ id, label, ...rest }) {
+export default function LabelTextInput({ margin, id, label, ...rest }) {
   return (
-    <div className="flex w-full flex-col space-y-1">
+    <div className={`flex w-full flex-col space-y-1 ${margin}`}>
       <label className="text-body-12" htmlFor={id}>
         {label}
       </label>
@@ -13,3 +13,7 @@ export default function LabelTextInput({ id, label, ...rest }) {
     </div>
   );
 }
+
+LabelTextInput.defaultProps = {
+  margin: 'm-0',
+};
