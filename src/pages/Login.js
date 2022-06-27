@@ -4,7 +4,7 @@ import PageAuthLayout from './PageAuthLayout';
 export default function Login() {
   return (
     <div className="flex h-screen w-screen">
-      <div className="relative h-full w-1/2 bg-slate-600">
+      <div className="bg-slate-600 relative h-full w-1/2">
         <PageAuthLayout />
       </div>
       <main className="flex h-full w-1/2 items-center px-[134px]">
@@ -21,7 +21,7 @@ export default function Login() {
               <LabelPasswordInput className="mt-1 h-12 " placeholder="Masukkan Password" />
             </div>
             <div className="mt-6">
-              <button type="button" className="h-12 w-[452px] rounded-xl bg-primary-04 text-center">
+              <button className="h-12 w-[452px] rounded-xl bg-primary-04 text-center" type="button">
                 <p className=" text-body-14 font-medium text-neutral-01"> Masuk </p>
               </button>
             </div>
