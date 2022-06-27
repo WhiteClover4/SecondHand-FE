@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { ADD_ALERT } from '../../redux/slice/alert';
+import { useNavigate } from 'react-router-dom';
+import { ADD_ALERT, SET_ALERT } from '../../redux/slice/alert';
 import { CHANGE_AUTH, SET_TOKEN } from '../../redux/slice/auth';
 import { loginService, registerService } from '../../services/api/auth';
 
 export default function useAuth() {
+  const navigate = useNavigate();
   const [isLoading, setLoading] = useState(false);
 
   const dispatch = useDispatch();
@@ -20,6 +22,10 @@ export default function useAuth() {
         });
         return;
       }
+
+      dispatch(SET_ALERT([{ status: 'success', message: res.msg }]));
+
+      navigate('/login');
     } catch (error) {
       console.log('login error', error);
 
@@ -40,6 +46,8 @@ export default function useAuth() {
         });
         return;
       }
+
+      dispatch(SET_ALERT([{ status: 'success', message: res.msg }]));
 
       dispatch(SET_TOKEN(res.token));
 

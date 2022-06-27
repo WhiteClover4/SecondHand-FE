@@ -40,7 +40,7 @@ export function loginService(email, password) {
   };
 
   return new Promise((resolve, reject) => {
-    fetch(`${apiStagingURL}/login`, requestOptions)
+    fetch(`${apiStagingURL}/api/login`, requestOptions)
       .then((response) => response.json())
       .then((result) => resolve(result))
       .catch((error) => reject(error));
