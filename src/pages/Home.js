@@ -4,7 +4,7 @@ import { MainNavbar } from '../components/navbars';
 import { SearchIcon, PlusIcon } from '../components/icons';
 import { ProductCard } from '../components/cards';
 import { HomeCarousel } from '../components/carousels';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function Home() {
   const navigate = useNavigate();
