@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { BackButton, PrimaryButton, SecondaryButton } from '../../../components/buttons';
 import {
   FileInput2,
@@ -8,6 +9,7 @@ import {
 import { SimpleNavbar } from '../../../components/navbars';
 
 export default function ProductSeller() {
+  const navigate = useNavigate();
   return (
     <div className="absolute top-0 h-screen w-full overflow-auto">
       <SimpleNavbar />
@@ -27,7 +29,11 @@ export default function ProductSeller() {
             </div>
           </div>
           <div className="mt-6 flex items-center space-x-4">
-            <SecondaryButton className="w-full" type="button">
+            <SecondaryButton
+              className="w-full"
+              onClick={() => navigate('/seller/product/add/preview')}
+              type="button"
+            >
               Preview
             </SecondaryButton>
             <PrimaryButton className="w-full" type="submit">

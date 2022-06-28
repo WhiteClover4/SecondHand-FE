@@ -1,8 +1,11 @@
 import { MainNavbar } from '../../../../components/navbars';
 import { PrimaryButton, SecondaryButton } from '../../../../components/buttons';
 import { ProfileCard2 } from '../../../../components/cards';
+import { useNavigate } from 'react-router-dom';
 
 export default function PreviewProduct() {
+  const navigate = useNavigate();
+
   return (
     <div>
       <MainNavbar />
@@ -37,7 +40,9 @@ export default function PreviewProduct() {
             <p className="mb-4 text-body-14 text-neutral-03">Aksesoris</p>
             <div className="text-black mb-6 text-title-16">Rp 250.000</div>
             <PrimaryButton className="mb-[14px]">Terbitkan</PrimaryButton>
-            <SecondaryButton>Edit</SecondaryButton>
+            <SecondaryButton onClick={() => navigate('/seller/product/add')} type="button">
+              Edit
+            </SecondaryButton>
           </div>
           <ProfileCard2 />
         </div>

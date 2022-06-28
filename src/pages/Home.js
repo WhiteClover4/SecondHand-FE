@@ -52,20 +52,23 @@ const Tab = ({ activeTab, tab }) => {
 };
 
 const SellButton = () => {
+  const navigate = useNavigate();
   return (
-    <PrimaryButton className="fixed inset-x-0 bottom-7 mx-auto w-fit">
-      <Link to="/seller/product/add">
-        <div className="flex flex-row">
-          <PlusIcon className="mr-2 w-5" />
-          <p className="text-body-14 font-medium">Jual</p>
-        </div>
-        <div className="absolute bottom-0 left-0 w-full translate-y-1/2 px-[6px]">
-          <div
-            className="z-10 h-[22px] w-full bg-primary-03 ring"
-            style={{ filter: 'blur(30px)' }}
-          ></div>
-        </div>
-      </Link>
+    <PrimaryButton
+      className="fixed inset-x-0 bottom-7 mx-auto w-fit"
+      onClick={() => navigate('/seller/product/add')}
+      type="button"
+    >
+      <div className="flex flex-row">
+        <PlusIcon className="mr-2 w-5" />
+        <p className="text-body-14 font-medium">Jual</p>
+      </div>
+      <div className="absolute bottom-0 left-0 w-full translate-y-1/2 px-[6px]">
+        <div
+          className="z-10 h-[22px] w-full bg-primary-03 ring"
+          style={{ filter: 'blur(30px)' }}
+        ></div>
+      </div>
     </PrimaryButton>
   );
 };
