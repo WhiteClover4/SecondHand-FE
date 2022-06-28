@@ -24,9 +24,6 @@ jobs:
       - name: Install locked dependencies
         run: yarn install --frozen-lockfile
 
-      - name: Fetch the latest data
-        run: yarn run mirror-box
-
       - name: Cache dependencies
         uses: actions/cache@v1
         id: cache-deps
