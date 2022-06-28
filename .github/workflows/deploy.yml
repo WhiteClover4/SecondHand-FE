@@ -19,14 +19,19 @@ jobs:
     if: github.event.ref == 'refs/heads/staging'
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        node-version: [16.x]
+
     steps:
-    - name: Checkout 🛎️
+    - name: Checkout
       uses: actions/checkout@v3
 
-    - name: Setup Node.js 14.x
-        uses: actions/setup-node@v1
-        with:
-          node-version: 14.x
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'yarn'
 
     - name: Install dependencies
       run: yarn
