@@ -1,0 +1,39 @@
+{
+  "env": {
+    "node": true,
+    "browser": true,
+    "es2021": true
+  },
+  "extends": ["eslint:recommended", "plugin:react/recommended", "prettier"],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "plugins": ["react", "react-hooks", "prettier"],
+  "rules": {
+    "indent": ["warn", 2],
+    "jsx-a11y/anchor-is-valid": "off",
+    "jsx-a11y/accessible-emoji": "off",
+    "no-duplicate-imports": "error",
+    "no-multi-spaces": "warn",
+    "no-undef": "off",
+    "no-unused-vars": "warn",
+    "no-useless-rename": "warn",
+    "react/jsx-sort-props": ["warn", { "reservedFirst": ["key"] }],
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": ["warn", { "extensions": [".js", ".jsx"] }],
+    "react/prop-types": "off",
+    "semi": "warn",
+    "semi-spacing": "warn",
+    "spaced-comment": "warn",
+    "quotes": ["warn", "single"]
+  }
+}
