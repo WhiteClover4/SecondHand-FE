@@ -7,12 +7,12 @@ import { loginService, registerService } from '../../services/api/auth';
 
 export default function useAuth() {
   const navigate = useNavigate();
-  const [isLoading, setLoading] = useState(false);
+  const [loading, setLoading] = useState({ register: false, login: false });
 
   const dispatch = useDispatch();
 
   async function register(name, email, password) {
-    setLoading(true);
+    setLoading({ ...loading, register: true });
     try {
       const res = await registerService(name, email, password);
 
@@ -27,16 +27,16 @@ export default function useAuth() {
 
       navigate('/login');
     } catch (error) {
-      console.log('login error', error);
+      console.log('register error', error);
 
       dispatch(ADD_ALERT({ status: 'error', message: 'internal server error' }));
     } finally {
-      setLoading(false);
+      setLoading({ ...loading, register: false });
     }
   }
 
   async function login(email, password) {
-    setLoading(true);
+    setLoading({ ...loading, login: true });
     try {
       const res = await loginService(email, password);
 
@@ -57,7 +57,7 @@ export default function useAuth() {
 
       dispatch(ADD_ALERT({ status: 'error', message: 'internal server error' }));
     } finally {
-      setLoading(false);
+      setLoading({ ...loading, login: false });
     }
   }
 
@@ -67,5 +67,5 @@ export default function useAuth() {
     localStorage.removeItem('token');
   }
 
-  return { isLoading, register, login, logout };
+  return { loading, register, login, logout };
 }

@@ -6,37 +6,41 @@ import { AuthLayout } from '../components/layouts';
 import useAuth from '../hooks/dependent/useAuth';
 
 export default function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const { login, loading } = useAuth();
+  const [form, setForm] = useState({ email: '', password: '' });
 
-  const { login, isLoading } = useAuth();
-
-  const submit = (e) => {
-    e.preventDefault();
-    login(email, password);
-  };
+  const setFormInput = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
   return (
     <AuthLayout>
       <h1 className="text-heading-24 font-bold">Masuk</h1>
-      <form onSubmit={(e) => submit(e)}>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          login(form.email, form.password);
+        }}
+      >
         <LabelTextInput
           autoFocus
+          id="email"
           label="Email"
           margin="mt-6"
-          onChange={(e) => setEmail(e.target.value)}
+          name="email"
+          onChange={setFormInput}
           placeholder="Contoh: johndee@gmail.com"
-          value={email}
+          value={form.email}
         />
         <LabelPasswordInput
+          id="password"
           label="Password"
           margin="mt-4"
-          onChange={(e) => setPassword(e.target.value)}
+          name="password"
+          onChange={setFormInput}
           placeholder="Masukkan password"
-          value={password}
+          value={form.password}
         />
-        <PrimaryButton className="mt-6 w-full" isDisable={isLoading} type="submit">
-          {!isLoading ? 'Masuk' : 'Loading...'}
+        <PrimaryButton className="mt-6 w-full" isDisable={loading.login} type="submit">
+          Masuk
         </PrimaryButton>
       </form>
       <div className="mt-10 flex items-center justify-center space-x-2">

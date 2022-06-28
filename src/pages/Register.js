@@ -6,45 +6,50 @@ import { AuthLayout } from '../components/layouts';
 import useAuth from '../hooks/dependent/useAuth';
 
 export default function Register() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
   const { register, loading } = useAuth();
+  const [form, setForm] = useState({ name: '', email: '', password: '' });
 
-  const submit = (e) => {
-    e.preventDefault();
-    register(name, email, password);
-  };
+  const setFormInput = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
   return (
     <AuthLayout>
       <h1 className="text-heading-24 font-bold">Daftar</h1>
-      <form onSubmit={(e) => submit(e)}>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          register(form.name, form.email, form.password);
+        }}
+      >
         <LabelTextInput
           autoFocus
+          id="name"
           label="Nama"
           margin="mt-6"
-          onChange={(e) => setName(e.target.value)}
+          name="name"
+          onChange={setFormInput}
           placeholder="Nama Lengkap"
-          value={name}
+          value={form.name}
         />
         <LabelTextInput
+          id="email"
           label="Email"
           margin="mt-4"
-          onChange={(e) => setEmail(e.target.value)}
+          name="email"
+          onChange={setFormInput}
           placeholder="Contoh: johndee@gmail.com"
-          value={email}
+          value={form.email}
         />
         <LabelPasswordInput
+          id="password"
           label="Password"
           margin="mt-4"
-          onChange={(e) => setPassword(e.target.value)}
+          name="password"
+          onChange={setFormInput}
           placeholder="Masukkan password"
-          value={password}
+          value={form.password}
         />
-        <PrimaryButton className="mt-6 w-full" isDisable={loading} type="submit">
-          {!loading ? 'Daftar' : 'Loading....'}
+        <PrimaryButton className="mt-6 w-full" isDisable={loading.register} type="submit">
+          Daftar
         </PrimaryButton>
       </form>
       <div className="mt-10 flex items-center justify-center space-x-2">

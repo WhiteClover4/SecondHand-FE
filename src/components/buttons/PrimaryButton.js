@@ -15,7 +15,7 @@ export default function PrimaryButton({
       }  rounded-2xl border border-transparent px-6 text-body-14 font-medium ${color} ${className}`}
       disabled={isDisable}
     >
-      {children}
+      {!isDisable ? children : 'Loading ...'}
     </button>
   );
 }
