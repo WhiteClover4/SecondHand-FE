@@ -1,3 +1,3 @@
-import HomeCarousel from './HomeCarousel';
+import SimpleCarousel from './SimpleCarousel';
 
-export { HomeCarousel };
+export { SimpleCarousel };

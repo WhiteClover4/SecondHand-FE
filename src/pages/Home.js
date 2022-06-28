@@ -3,7 +3,7 @@ import { PrimaryButton } from '../components/buttons';
 import { MainNavbar } from '../components/navbars';
 import { SearchIcon, PlusIcon } from '../components/icons';
 import { ProductCard } from '../components/cards';
-import { HomeCarousel } from '../components/carousels';
+import { SimpleCarousel } from '../components/carousels';
 import { useNavigate } from 'react-router-dom';
 
 export default function Home() {
@@ -14,7 +14,7 @@ export default function Home() {
     <>
       <MainNavbar />
       <main>
-        <HomeCarousel />
+        <SimpleCarousel />
         <section className="px-[136px]">
           <p className="mb-4 text-title-16 font-bold">Telusuri Kategori</p>
           <div className="flex flex-row gap-4">

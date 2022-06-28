@@ -1,6 +1,6 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-export default function HomeCarousel() {
+export default function SimpleCarousel() {
   return (
     <Swiper {...settings} className="mb-10">
       {slides.map((el, i) => (
