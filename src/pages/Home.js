@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { PrimaryButton } from '../components/buttons';
 import { MainNavbar } from '../components/navbars';
@@ -5,13 +7,22 @@ import { SearchIcon, PlusIcon } from '../components/icons';
 import { ProductCard } from '../components/cards';
 import { SimpleCarousel } from '../components/carousels';
 import useQuery from '../hooks/independent/useQuery';
+import useProduct from '../hooks/dependent/useProduct';
 
 export default function Home() {
-  const navigate = useNavigate();
+  const { products } = useSelector((state) => state.product);
+  const { getProducts, loading } = useProduct();
+  const [search, setSearch] = useState('');
+  const query = useQuery();
+  const category = query.get('category');
+
+  useEffect(() => {
+    getProducts(search, category);
+  }, [getProducts, category, search]);
 
   return (
     <>
-      <MainNavbar />
+      <MainNavbar search={search} setSearch={setSearch} />
       <main>
         <SimpleCarousel />
         <section className="px-[136px]">
@@ -23,8 +34,8 @@ export default function Home() {
           </div>
         </section>
         <section className="my-10 grid grid-cols-6 gap-4 px-[136px]">
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((el, i) => (
-            <ProductCard key={i} navigate={() => navigate('/product/product_name?id=123')} />
+          {(!loading.products ? products : dummiesProducts).map((product, i) => (
+            <ProductCard key={i} data={product} isSekeleton={loading.products} />
           ))}
         </section>
       </main>
@@ -77,3 +88,14 @@ const SellButton = () => {
 };
 
 const tabs = ['Semua', 'Hobi', 'Kendaraan', 'Elektronik', 'Kesehatan'];
+
+const dummyProduct = {
+  id: 0,
+  name: '',
+  price: 0,
+  Category: { name: '' },
+};
+
+const dummiesProducts = [];
+
+for (let i = 1; i <= 12; i++) dummiesProducts.push(dummyProduct);
