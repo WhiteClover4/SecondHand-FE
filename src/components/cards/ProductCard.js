@@ -5,7 +5,7 @@ export default function ProductCard({ data, isSekeleton }) {
         <img
           alt="CardImage"
           className="h-[100px] w-full rounded object-cover"
-          src="/img/card-image.png"
+          src={data.image || '/img/no-product-image.png'}
         />
       ) : (
         <div className="h-[100px] w-full animate-pulse rounded bg-neutral-02 object-cover" />
