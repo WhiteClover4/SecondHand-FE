@@ -2,9 +2,10 @@ import { PrimaryButton } from '../buttons';
 import { SearchInput } from '../inputs';
 import { BellIcon, ListIcon, SignInIcon, UserIcon } from '../icons';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function MainNavbar() {
+  const navigate = useNavigate();
   const { isAuthenticated } = useSelector((state) => state.auth);
 
   return (
@@ -26,11 +27,11 @@ export default function MainNavbar() {
           </button>
         </div>
       ) : (
-        <PrimaryButton>
-          <Link className="flex flex-row" to="/login">
+        <PrimaryButton onClick={() => navigate('/login')} type="button">
+          <div className="flex flex-row">
             <SignInIcon className="mr-2 w-5" />
             <p>Masuk</p>
-          </Link>
+          </div>
         </PrimaryButton>
       )}
     </header>
