@@ -1,14 +1,13 @@
-import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { PrimaryButton } from '../components/buttons';
 import { MainNavbar } from '../components/navbars';
 import { SearchIcon, PlusIcon } from '../components/icons';
 import { ProductCard } from '../components/cards';
 import { SimpleCarousel } from '../components/carousels';
-import { useNavigate } from 'react-router-dom';
+import useQuery from '../hooks/independent/useQuery';
 
 export default function Home() {
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState('Semua');
 
   return (
     <>
@@ -19,7 +18,7 @@ export default function Home() {
           <p className="mb-4 text-title-16 font-bold">Telusuri Kategori</p>
           <div className="flex flex-row gap-4">
             {tabs.map((tab, i) => (
-              <Tab key={i} activeTab={activeTab} setActiveTab={setActiveTab} tab={tab} />
+              <Tab key={i} tab={tab} />
             ))}
           </div>
         </section>
@@ -34,13 +33,16 @@ export default function Home() {
   );
 }
 
-const Tab = ({ activeTab, tab }) => {
+const Tab = ({ tab }) => {
   const navigate = useNavigate();
+  const query = useQuery();
+  const category = query.get('category') || 'Semua';
+
   return (
     <PrimaryButton
-      bgColor={activeTab === tab ? 'bg-primary-04' : 'bg-primary-01'}
-      color={activeTab === tab ? 'text-neutral-01' : 'text-neutral-04'}
-      onClick={() => navigate(`/?category=${tab}`)}
+      bgColor={category === tab ? 'bg-primary-04' : 'bg-primary-01'}
+      color={category === tab ? 'text-neutral-01' : 'text-neutral-04'}
+      onClick={() => navigate(`${tab !== 'Semua' ? `?category=${tab}` : '/'}`)}
       type="button"
     >
       <div className="flex flex-row">
@@ -53,6 +55,7 @@ const Tab = ({ activeTab, tab }) => {
 
 const SellButton = () => {
   const navigate = useNavigate();
+
   return (
     <PrimaryButton
       className="fixed inset-x-0 bottom-7 mx-auto w-fit"
