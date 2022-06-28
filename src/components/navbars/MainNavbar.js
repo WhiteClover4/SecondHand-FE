@@ -4,7 +4,7 @@ import { BellIcon, ListIcon, SignInIcon, UserIcon } from '../icons';
 import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
-export default function MainNavbar() {
+export default function MainNavbar({ search, setSearch }) {
   const navigate = useNavigate();
   const { isAuthenticated } = useSelector((state) => state.auth);
 
@@ -12,7 +12,7 @@ export default function MainNavbar() {
     <header className="sticky top-0 z-10 mb-8 flex h-[84px] items-center justify-between bg-neutral-01 px-[136px] shadow-high">
       <div className="flex flex-row items-center space-x-6">
         <Link className="inline-block h-[34px] w-[100px] bg-primary-05" to="/" />
-        <SearchInput />
+        <SearchInput onChange={(e) => setSearch(e.target.value)} value={search} />
       </div>
       {isAuthenticated ? (
         <div className="flex flex-row gap-6">
