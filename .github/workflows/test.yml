@@ -1,10 +1,9 @@
 on:
   push:
     branches:
-      - 'staging'
-      - 'main'
-  pull_request:
-    types: [opened, synchronize]
+      - '**'
+      - '!staging'
+      - '!main'
 
 name: CI
 
