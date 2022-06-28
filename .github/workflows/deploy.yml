@@ -30,3 +30,37 @@ jobs:
         heroku_app_name: 'secondhand-binar-staging  '
         heroku_email: 'alfirman.pahlepi@gmail.com'
         branch: 'staging'
+
+  production:
+    name: Production Deployment
+    environment:
+      name: Production
+      url: https://secondhand-binar.netlify.app
+    runs-on: ubuntu-latest
+    if: github.event.ref == 'refs/heads/main'
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'yarn'
+
+    - name: Install dependencies
+      run: yarn
+
+    - name: Build
+      run: yarn build
+
+    - name: Install Netlify CLI
+      run: yarn global add netlify-cli@4.1.2
+
+    - name: Deploy to Netlify
+      run: netlify deploy --prod --dir=out --message "GitHub Actions"
+      env:
+        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
