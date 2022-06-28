@@ -1,0 +1,43 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+    - 'staging'
+    - 'main'
+  pull_request:
+    branches:
+    - 'staging'
+    - 'main'
+
+jobs:
+  staging-deploy:
+    name: Staging Deployment
+    environment:
+      name: Staging
+      url: https://secondhand-binar-staging.herokuapp.com
+    if: github.event.ref == 'refs/heads/staging'
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout 🛎️
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js 14.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+
+    - name: Install dependencies
+      run: yarn
+
+    - name: Build
+      run: yarn build
+
+    - name: Deploy the Staging App to Heroku
+      uses: akhileshns/heroku-deploy@v3.12.12
+      with:
+        heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+        heroku_app_name: 'secondhand-binar-staging'
+        heroku_email: 'alfirman.pahlepi@gmail.com'
+        branch: 'staging'
