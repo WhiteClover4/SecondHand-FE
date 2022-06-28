@@ -23,7 +23,7 @@ export default function Home() {
   return (
     <>
       <MainNavbar search={search} setSearch={setSearch} />
-      <main>
+      <main className="h-[500vh]">
         <SimpleCarousel />
         <section className="px-[136px]">
           <p className="mb-4 text-title-16 font-bold">Telusuri Kategori</p>
