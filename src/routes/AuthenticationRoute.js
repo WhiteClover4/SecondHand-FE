@@ -13,6 +13,7 @@ export default function AuthenticationRoute({ children }) {
   const { isAuthenticated } = useSelector((state) => state.auth);
 
   useEffect(() => {
+    if (!isAuthenticated) return;
     if (isAuthenticated && visit) return navigate(visit, { replace: true, state: location });
     if (isAuthenticated) return navigate('/', { replace: true, state: location });
   }, [isAuthenticated, location]);
