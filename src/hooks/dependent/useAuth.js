@@ -46,6 +46,9 @@ export default function useAuth() {
         return;
       }
 
+      if (res.status === 'Failed')
+        return dispatch(ADD_ALERT({ status: 'error', message: res.msg }));
+
       dispatch(SET_ALERT([{ status: 'success', message: res.msg }]));
 
       dispatch(SET_TOKEN(res.token));
