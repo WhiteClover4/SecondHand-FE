@@ -8,25 +8,25 @@ export default function ProductCard({ data, isSekeleton }) {
           src={data.image || '/img/no-product-image.png'}
         />
       ) : (
-        <div className="h-[100px] w-full animate-pulse rounded bg-neutral-02 object-cover" />
+        <div className="h-[100px] w-full animate-pulse rounded bg-neutral-02/30 object-cover" />
       )}
       <p
         className={`${
-          isSekeleton && 'h-4 w-5/6 animate-pulse rounded bg-neutral-02'
+          isSekeleton && 'h-5 w-5/6 animate-pulse rounded bg-neutral-02/30'
         } mt-2 text-body-14`}
       >
         {!isSekeleton ? data.name : ''}
       </p>
       <p
         className={`${
-          isSekeleton && 'h-2 w-1/3 animate-pulse rounded bg-neutral-02'
+          isSekeleton && 'h-[14px] w-1/3 animate-pulse rounded bg-neutral-02/30'
         } mt-1 text-body-10 text-neutral-03`}
       >
         {!isSekeleton ? data.Category.name : ''}
       </p>
       <p
         className={`${
-          isSekeleton && 'h-4 w-1/2 animate-pulse rounded bg-neutral-02'
+          isSekeleton && 'h-5 w-1/2 animate-pulse rounded bg-neutral-02/30'
         } mt-2 text-body-14`}
       >
         {!isSekeleton ? 'RP ' + data.price.toLocaleString('id-ID') : ''}
