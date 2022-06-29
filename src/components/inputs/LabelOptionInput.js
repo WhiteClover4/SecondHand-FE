@@ -1,4 +1,4 @@
-export default function LabelOptionInput({ id, label, value = 'default', ...rest }) {
+export default function LabelOptionInput({ id, label, value, values = [], ...rest }) {
   return (
     <div className="flex w-full flex-col space-y-1">
       <label className="text-body-12" htmlFor={id}>
@@ -9,12 +9,16 @@ export default function LabelOptionInput({ id, label, value = 'default', ...rest
           {...rest}
           className={`${value === 'default' && 'text-neutral-03'} w-full focus:outline-none`}
           id="id"
-          value={value}
+          value={value || 'default'}
         >
           <option className="text-neutral-100 " disabled value="default">
             Pilih Kota
           </option>
-          <option value="aceh">aceh</option>
+          {values.map((value, i) => (
+            <option key={i} value={value.name}>
+              {value.name}
+            </option>
+          ))}
         </select>
       </div>
     </div>
