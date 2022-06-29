@@ -1,13 +1,15 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useCallback, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { ADD_ALERT, SET_ALERT } from '../../redux/slice/alert';
 import { CHANGE_AUTH, SET_TOKEN } from '../../redux/slice/auth';
 import { loginService, registerService } from '../../services/api/auth';
 
 export default function useAuth() {
+  const { pathname } = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { isAuthenticated } = useSelector((state) => state.auth);
   const [loading, setLoading] = useState({ register: false, login: false });
 
   async function register(name, email, password) {
@@ -52,7 +54,12 @@ export default function useAuth() {
 
       dispatch(CHANGE_AUTH(true));
 
-      localStorage.setItem('token', res.token);
+      const saveToken = {
+        value: res.token,
+        expiry: new Date().getTime() + 3600000, // 1 hour
+      };
+
+      localStorage.setItem('token', JSON.stringify(saveToken));
     } catch (error) {
       console.log('login error', error);
 
@@ -68,5 +75,25 @@ export default function useAuth() {
     localStorage.removeItem('token');
   }
 
-  return { loading, register, login, logout };
+  const checkToken = useCallback(() => {
+    const tokenStr = localStorage.getItem('token');
+
+    if (!tokenStr) return;
+
+    const getToken = JSON.parse(tokenStr);
+
+    if (new Date().getTime() > getToken.expiry) {
+      dispatch(SET_TOKEN(''));
+      dispatch(CHANGE_AUTH(false));
+      localStorage.removeItem('token');
+      return;
+    }
+
+    if (isAuthenticated) return;
+
+    dispatch(SET_TOKEN(getToken.value));
+    dispatch(CHANGE_AUTH(true));
+  }, [dispatch, isAuthenticated, pathname]);
+
+  return { loading, register, login, logout, checkToken };
 }
