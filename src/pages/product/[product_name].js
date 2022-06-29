@@ -32,7 +32,10 @@ export default function ProductDetail() {
         <div className="flex flex-row justify-center gap-8 px-[236px] ">
           <div className="w-2/3 space-y-6 ">
             <div className="relative h-[436px] overflow-hidden rounded-2xl">
-              <img className="h-full w-full object-cover" src="/img/img.png" />
+              <img
+                className="h-full w-full object-cover"
+                src={product.image || '/img/no-product-image.png'}
+              />
             </div>
             <div className="space-y-4 rounded-2xl px-4 pb-[27px] pt-4 shadow-low">
               <p className="text-black text-body-14 font-medium">Deskripsi</p>
