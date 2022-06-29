@@ -13,7 +13,6 @@ export default function ProductCard({ data }) {
         className="h-[100px] w-full rounded object-cover"
         src={data.image || '/img/no-product-image.png'}
       />
-
       <p className="mt-2 text-body-14">{data.name}</p>
       <p className="mt-1 text-body-10 text-neutral-03">{data.Category.name}</p>
       <p className="mt-2 text-body-14">{data.price.toLocaleString('id-ID')}</p>
