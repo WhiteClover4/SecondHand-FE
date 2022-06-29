@@ -8,6 +8,7 @@ import { ProductCard } from '../components/cards';
 import { SimpleCarousel } from '../components/carousels';
 import useQuery from '../hooks/independent/useQuery';
 import useProduct from '../hooks/dependent/useProduct';
+import { ProductCardSkeleton } from '../components/skeletons';
 
 export default function Home() {
   const { products } = useSelector((state) => state.product);
@@ -35,9 +36,9 @@ export default function Home() {
           </div>
         </section>
         <section className="my-10 grid grid-cols-6 gap-4 px-[136px]">
-          {(!loading.products ? products : dummiesProducts).map((product, i) => (
-            <ProductCard key={i} data={product} isSekeleton={loading.products} />
-          ))}
+          {!loading.products
+            ? products.map((product, i) => <ProductCard key={i} data={product} />)
+            : dummiesProducts.map((el, i) => <ProductCardSkeleton key={i} />)}
         </section>
       </main>
       <SellButton />
