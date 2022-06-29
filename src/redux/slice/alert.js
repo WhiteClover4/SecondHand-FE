@@ -11,7 +11,7 @@ export const alertSlice = createSlice({
       state.alerts.push(action.payload);
     },
     REMOVE_ALERT: (state, action) => {
-      state.alerts.splice(action.payload);
+      state.alerts.splice(action.payload, 1);
     },
   },
 });
