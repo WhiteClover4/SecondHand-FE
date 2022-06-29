@@ -11,4 +11,8 @@ export const store = configureStore({
     alert: alertReducer,
     product: productReducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
