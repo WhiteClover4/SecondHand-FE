@@ -5,11 +5,13 @@ import { SET_USER_DATA } from '../../redux/slice/profile';
 import { getProfileService } from '../../services/api/profile';
 
 export default function useProfile() {
-  const { token } = useSelector((state) => state.auth);
+  const { token, isAuthenticated } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const [loading, setLoading] = useState({ getProfile: false });
 
   const getProfile = useCallback(async () => {
+    if (!isAuthenticated) return;
+
     setLoading({ ...loading, getProfile: true });
     try {
       const res = await getProfileService(token);
