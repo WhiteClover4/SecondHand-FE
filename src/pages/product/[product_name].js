@@ -1,8 +1,17 @@
 import { MainNavbar } from '../../components/navbars';
-import { PrimaryButton, SecondaryButton } from '../../components/buttons';
-import { ProfileCard2 } from '../../components/cards';
+import { PrimaryButton } from '../../components/buttons';
+import { ProfileCard } from '../../components/cards';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 export default function ProductDetail() {
+  const navigate = useNavigate();
+  const { isAuthenticated } = useSelector((state) => state.auth);
+
+  function checkout() {
+    if (!isAuthenticated) navigate('/login');
+  }
+
   return (
     <div>
       <MainNavbar />
@@ -36,10 +45,11 @@ export default function ProductDetail() {
             <p className="text-black mb-2 text-title-16 font-medium">Jam Tangan Casio</p>
             <p className="mb-4 text-body-14 text-neutral-03">Aksesoris</p>
             <div className="text-black mb-6 text-title-16">Rp 250.000</div>
-            <PrimaryButton className="mb-[14px]">Terbitkan</PrimaryButton>
-            <SecondaryButton>Edit</SecondaryButton>
+            <PrimaryButton onClick={checkout} type="button">
+              Saya tertarik dan ingin nego
+            </PrimaryButton>
           </div>
-          <ProfileCard2 />
+          <ProfileCard />
         </div>
       </div>
     </div>
