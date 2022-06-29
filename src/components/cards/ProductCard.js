@@ -3,8 +3,9 @@ import { useNavigate } from 'react-router-dom';
 export default function ProductCard({ data }) {
   const navigate = useNavigate();
 
-  const navigateToDetail = () =>
+  function navigateToDetail() {
     navigate(`/product/${encodeURIComponent(data.name)}?product_id=${data.id}`);
+  }
 
   return (
     <div className="w-full rounded bg-neutral-01 p-2 pb-4 shadow-low" onClick={navigateToDetail}>
