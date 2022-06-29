@@ -4,7 +4,20 @@ export const prodcutSlice = createSlice({
   name: 'product',
   initialState: {
     products: [],
-    product: {},
+    product: {
+      id: 0,
+      name: '',
+      description: '',
+      price: 0,
+      status: '',
+      category_id: 0,
+      isPublished: '',
+      Category: {
+        id: 0,
+        name: '',
+      },
+      Transactions: {},
+    },
   },
   reducers: {
     SET_PRODUCTS: (state, action) => {
