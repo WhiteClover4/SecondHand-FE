@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { PrimaryButton } from '../components/buttons';
@@ -12,9 +12,10 @@ import useProduct from '../hooks/dependent/useProduct';
 export default function Home() {
   const { products } = useSelector((state) => state.product);
   const { getProducts, loading } = useProduct();
-  const [search, setSearch] = useState('');
+
   const query = useQuery();
   const category = query.get('category');
+  const search = query.get('search');
 
   useEffect(() => {
     getProducts(search, category);
@@ -22,7 +23,7 @@ export default function Home() {
 
   return (
     <>
-      <MainNavbar search={search} setSearch={setSearch} />
+      <MainNavbar />
       <main>
         <SimpleCarousel />
         <section className="px-[136px]">
@@ -48,12 +49,18 @@ const Tab = ({ tab }) => {
   const navigate = useNavigate();
   const query = useQuery();
   const category = query.get('category') || 'Semua';
+  const searchQuery = query.get('search');
+
+  function navigateQuerySearch(tab) {
+    if (tab === 'Semua') return navigate('/');
+    navigate(`/?category=${tab}&search=${searchQuery || ''}`);
+  }
 
   return (
     <PrimaryButton
       bgColor={category === tab ? 'bg-primary-04' : 'bg-primary-01'}
       color={category === tab ? 'text-neutral-01' : 'text-neutral-04'}
-      onClick={() => navigate(`${tab !== 'Semua' ? `?category=${tab}` : '/'}`)}
+      onClick={() => navigateQuerySearch(tab)}
       type="button"
     >
       <div className="flex flex-row">

@@ -6,11 +6,16 @@ import { PrimaryButton } from '../buttons';
 import { SearchInput } from '../inputs';
 import useOutsideClick from '../../hooks/independent/useOutsideClick';
 import useAuth from '../../hooks/dependent/useAuth';
+import useQuery from '../../hooks/independent/useQuery';
 
-export default function MainNavbar({ search, setSearch }) {
+export default function MainNavbar() {
   const navigate = useNavigate();
   const { isAuthenticated } = useSelector((state) => state.auth);
   const [isDropdownShown, setDropdownShown] = useState(false);
+
+  const query = useQuery();
+  const category = query.get('category');
+  const searchQuery = query.get('search');
 
   const dropdownRef = useRef();
   useOutsideClick(dropdownRef, () => {
@@ -21,7 +26,10 @@ export default function MainNavbar({ search, setSearch }) {
     <header className="sticky top-0 z-10 mb-8 flex h-[84px] items-center justify-between bg-neutral-01 px-[136px] shadow-high">
       <div className="flex flex-row items-center space-x-6">
         <Link className="inline-block h-[34px] w-[100px] bg-primary-05" to="/" />
-        <SearchInput onChange={(e) => setSearch(e.target.value)} value={search} />
+        <SearchInput
+          onChange={(e) => navigate(`/?category=${category || ''}&search=${e.target.value}`)}
+          value={searchQuery || ''}
+        />
       </div>
       {isAuthenticated ? (
         <nav>
