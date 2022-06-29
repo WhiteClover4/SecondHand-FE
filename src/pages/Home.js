@@ -6,9 +6,9 @@ import { MainNavbar } from '../components/navbars';
 import { SearchIcon, PlusIcon } from '../components/icons';
 import { ProductCard } from '../components/cards';
 import { SimpleCarousel } from '../components/carousels';
+import { ProductCardSkeleton } from '../components/skeletons';
 import useQuery from '../hooks/independent/useQuery';
 import useProduct from '../hooks/dependent/useProduct';
-import { ProductCardSkeleton } from '../components/skeletons';
 
 export default function Home() {
   const { products } = useSelector((state) => state.product);
