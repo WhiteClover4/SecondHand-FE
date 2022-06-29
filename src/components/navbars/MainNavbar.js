@@ -1,8 +1,8 @@
-import { PrimaryButton } from '../buttons';
-import { SearchInput } from '../inputs';
-import { BellIcon, ListIcon, SignInIcon, UserIcon } from '../icons';
 import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import { BellIcon, ListIcon, SignInIcon, UserIcon } from '../icons';
+import { PrimaryButton } from '../buttons';
+import { SearchInput } from '../inputs';
 
 export default function MainNavbar({ search, setSearch }) {
   const navigate = useNavigate();

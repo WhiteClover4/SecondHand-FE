@@ -7,9 +7,8 @@ import { loginService, registerService } from '../../services/api/auth';
 
 export default function useAuth() {
   const navigate = useNavigate();
-  const [loading, setLoading] = useState({ register: false, login: false });
-
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState({ register: false, login: false });
 
   async function register(name, email, password) {
     setLoading({ ...loading, register: true });
@@ -52,6 +51,8 @@ export default function useAuth() {
       dispatch(SET_TOKEN(res.token));
 
       dispatch(CHANGE_AUTH(true));
+
+      localStorage.setItem('token', res.token);
     } catch (error) {
       console.log('login error', error);
 

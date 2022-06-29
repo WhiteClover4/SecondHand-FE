@@ -69,7 +69,7 @@ const SellButton = () => {
 
   return (
     <PrimaryButton
-      className="fixed inset-x-0 bottom-7 mx-auto w-fit"
+      className="fixed inset-x-0 bottom-7 z-10 mx-auto w-fit"
       onClick={() => navigate('/seller/product/add')}
       type="button"
     >
