@@ -1,9 +1,13 @@
-import { CameraIcon } from '../icons';
-
-export default function FileInput3() {
+export default function FileInput3({ preview, onChange }) {
   return (
-    <button className="h-24 w-24 rounded-[12px] bg-primary-01 ">
-      <CameraIcon className=" m-auto h-6 w-6 text-primary-04 " />
+    <button className="relative h-24 w-24 overflow-hidden rounded-xl">
+      <img className="h-full w-full object-cover" src={preview} />
+      <input
+        accept="image/*"
+        className="absolute top-0 left-0 h-full w-full opacity-0"
+        onChange={onChange}
+        type="file"
+      />
     </button>
   );
 }

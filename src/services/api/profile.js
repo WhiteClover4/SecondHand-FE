@@ -1,3 +1,5 @@
+import { apiStagingURL } from '../../constants/environment';
+
 export function getProfileService(token) {
   var myHeaders = new Headers();
   myHeaders.append('Authorization', `Bearer ${token}`);
@@ -10,8 +12,10 @@ export function getProfileService(token) {
 
   return new Promise((resolve, reject) => {
     fetch(`${apiStagingURL}/api/user/data`, requestOptions)
-      .then((response) => response.text())
+      .then((response) => response.json())
       .then((result) => resolve(result))
       .catch((error) => reject(error));
   });
 }
+
+// export function updateProfileService(token, data) {}
