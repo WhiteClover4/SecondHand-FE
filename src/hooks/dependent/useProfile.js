@@ -22,7 +22,7 @@ export default function useProfile() {
     } catch (error) {
       console.log('get profile error', error);
 
-      dispatch(ADD_ALERT({ status: 'error', message: 'internal server error' }));
+      dispatch(ADD_ALERT({ status: 'error', message: 'something went wrong' }));
     } finally {
       setLoading({ ...loading, getProfile: false });
     }

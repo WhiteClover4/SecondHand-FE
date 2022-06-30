@@ -31,7 +31,7 @@ export default function useAuth() {
     } catch (error) {
       console.log('register error', error);
 
-      dispatch(ADD_ALERT({ status: 'error', message: 'internal server error' }));
+      dispatch(ADD_ALERT({ status: 'error', message: 'something went wrong' }));
     } finally {
       setLoading({ ...loading, register: false });
     }
@@ -67,7 +67,7 @@ export default function useAuth() {
     } catch (error) {
       console.log('login error', error);
 
-      dispatch(ADD_ALERT({ status: 'error', message: 'internal server error' }));
+      dispatch(ADD_ALERT({ status: 'error', message: 'something went wrong' }));
     } finally {
       setLoading({ ...loading, login: false });
     }

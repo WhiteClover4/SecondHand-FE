@@ -22,7 +22,7 @@ export default function useProduct() {
       } catch (error) {
         console.log('error get products', error);
 
-        dispatch(ADD_ALERT({ status: 'error', message: 'internal server error' }));
+        dispatch(ADD_ALERT({ status: 'error', message: 'something went wrong' }));
       } finally {
         setLoading({ ...loading, products: false });
       }
@@ -42,7 +42,7 @@ export default function useProduct() {
       } catch (error) {
         console.log('error get product', error);
 
-        dispatch(ADD_ALERT({ status: 'error', message: 'internal server error' }));
+        dispatch(ADD_ALERT({ status: 'error', message: 'something went wrong' }));
       } finally {
         setLoading({ ...loading, product: false });
       }
