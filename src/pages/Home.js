@@ -9,6 +9,7 @@ import { SimpleCarousel } from '../components/carousels';
 import { ProductCardSkeleton } from '../components/skeletons';
 import useQuery from '../hooks/independent/useQuery';
 import useProduct from '../hooks/dependent/useProduct';
+import categories from '../_content/categories.json';
 
 export default function Home() {
   const { products } = useSelector((state) => state.product);
@@ -30,8 +31,8 @@ export default function Home() {
         <section className="px-[136px]">
           <p className="mb-4 text-title-16 font-bold">Telusuri Kategori</p>
           <div className="flex flex-row gap-4">
-            {tabs.map((tab, i) => (
-              <Tab key={i} tab={tab} />
+            {categories.map((category, i) => (
+              <Tab key={i} tab={category.name} />
             ))}
           </div>
         </section>
@@ -94,8 +95,6 @@ const SellButton = () => {
     </PrimaryButton>
   );
 };
-
-const tabs = ['Semua', 'Hobi', 'Kendaraan', 'Elektronik', 'Kesehatan'];
 
 const dummyProduct = {
   id: 0,
