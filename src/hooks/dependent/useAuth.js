@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { localStorageTokenKey } from '../../constants/environment';
 import { ADD_ALERT, SET_ALERT } from '../../redux/slice/alert';
 import { CHANGE_AUTH, SET_TOKEN } from '../../redux/slice/auth';
 import { loginService, registerService } from '../../services/api/auth';
@@ -59,10 +60,10 @@ export default function useAuth() {
 
       const saveToken = {
         value: res.token,
-        expiry: new Date().getTime() + 3600000, // 1 hour
+        expiry: new Date().getTime() + 3600000, // 1 hour in milliseconds
       };
 
-      localStorage.setItem('token', JSON.stringify(saveToken));
+      localStorage.setItem(localStorageTokenKey, JSON.stringify(saveToken));
     } catch (error) {
       console.log('login error', error);
 
@@ -75,11 +76,11 @@ export default function useAuth() {
   function logout() {
     dispatch(SET_TOKEN(''));
     dispatch(CHANGE_AUTH(false));
-    localStorage.removeItem('token');
+    localStorage.removeItem(localStorageTokenKey);
   }
 
   const checkToken = useCallback(() => {
-    const tokenStr = localStorage.getItem('token');
+    const tokenStr = localStorage.getItem(localStorageTokenKey);
 
     if (!tokenStr) return;
 
@@ -88,7 +89,7 @@ export default function useAuth() {
     if (new Date().getTime() > getToken.expiry) {
       dispatch(SET_TOKEN(''));
       dispatch(CHANGE_AUTH(false));
-      localStorage.removeItem('token');
+      localStorage.removeItem(localStorageTokenKey);
       return;
     }
 
