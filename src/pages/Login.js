@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { PrimaryButton } from '../components/buttons';
+import { PrimaryButton, BackButton } from '../components/buttons';
 import { LabelPasswordInput, LabelTextInput } from '../components/inputs';
 import { AuthLayout } from '../components/layouts';
 import useAuth from '../hooks/dependent/useAuth';
@@ -12,7 +12,8 @@ export default function Login() {
   const setFormInput = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
   return (
-    <AuthLayout>
+    <AuthLayout >
+      <BackButton className="lg:hidden mb-6" />
       <h1 className="text-heading-24 font-bold">Masuk</h1>
       <form
         onSubmit={(e) => {
@@ -43,7 +44,7 @@ export default function Login() {
           Masuk
         </PrimaryButton>
       </form>
-      <div className="mt-10 flex items-center justify-center space-x-2">
+      <div className="mt-[202px] lg:mt-10 flex items-center justify-center space-x-2">
         <p className="text-body-14">Belum punya akun?</p>
         <Link className="inline-block text-body-14 font-bold text-primary-04" to="/register">
           Daftar di sini
