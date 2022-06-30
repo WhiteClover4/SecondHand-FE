@@ -23,7 +23,7 @@ import AuthenticatedRoute from '../routes/AuthenticatedRoute';
 export default function SellerProduct() {
   const dispatch = useDispatch();
   const { userData } = useSelector((state) => state.profile);
-  const { getProfile } = useProfile();
+  const { getProfile, updateProfile, loading } = useProfile();
 
   useEffect(() => {
     getProfile();
@@ -45,7 +45,13 @@ export default function SellerProduct() {
               preview={userData.profile_picture}
             />
           </div>
-          <form className="mt-6">
+          <form
+            className="mt-6"
+            onSubmit={(e) => {
+              e.preventDefault();
+              updateProfile();
+            }}
+          >
             <div className="space-y-4">
               <LabelTextInput
                 autoFocus
@@ -82,7 +88,11 @@ export default function SellerProduct() {
               />
             </div>
             <div className="mt-6 flex items-center space-x-4">
-              <PrimaryButton className="w-full" type="submit">
+              <PrimaryButton
+                className="w-full"
+                isDisable={loading.updateProfile || loading.getProfile}
+                type="submit"
+              >
                 Simpan
               </PrimaryButton>
             </div>
