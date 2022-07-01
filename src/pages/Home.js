@@ -1,13 +1,26 @@
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { PrimaryButton } from '../components/buttons';
 import { MainNavbar } from '../components/navbars';
 import { SearchIcon, PlusIcon } from '../components/icons';
 import { ProductCard } from '../components/cards';
 import { SimpleCarousel } from '../components/carousels';
+import { ProductCardSkeleton } from '../components/skeletons';
 import useQuery from '../hooks/independent/useQuery';
+import useProduct from '../hooks/dependent/useProduct';
 
 export default function Home() {
-  const navigate = useNavigate();
+  const { products } = useSelector((state) => state.product);
+  const { getProducts, loading } = useProduct();
+
+  const query = useQuery();
+  const category = query.get('category');
+  const search = query.get('search');
+
+  useEffect(() => {
+    getProducts(search, category);
+  }, [getProducts, category, search]);
 
   return (
     <>
@@ -23,9 +36,9 @@ export default function Home() {
           </div>
         </section>
         <section className="my-10 grid grid-cols-6 gap-4 px-[136px]">
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((el, i) => (
-            <ProductCard key={i} navigate={() => navigate('/product/product_name?id=123')} />
-          ))}
+          {!loading.products
+            ? products.map((product, i) => <ProductCard key={i} data={product} />)
+            : dummiesProducts.map((el, i) => <ProductCardSkeleton key={i} />)}
         </section>
       </main>
       <SellButton />
@@ -37,12 +50,18 @@ const Tab = ({ tab }) => {
   const navigate = useNavigate();
   const query = useQuery();
   const category = query.get('category') || 'Semua';
+  const searchQuery = query.get('search');
+
+  function navigateQuerySearch(tab) {
+    if (tab === 'Semua') return navigate('/');
+    navigate(`/?category=${tab}&search=${searchQuery || ''}`);
+  }
 
   return (
     <PrimaryButton
       bgColor={category === tab ? 'bg-primary-04' : 'bg-primary-01'}
       color={category === tab ? 'text-neutral-01' : 'text-neutral-04'}
-      onClick={() => navigate(`${tab !== 'Semua' ? `?category=${tab}` : '/'}`)}
+      onClick={() => navigateQuerySearch(tab)}
       type="button"
     >
       <div className="flex flex-row">
@@ -58,7 +77,7 @@ const SellButton = () => {
 
   return (
     <PrimaryButton
-      className="fixed inset-x-0 bottom-7 mx-auto w-fit"
+      className="fixed inset-x-0 bottom-7 z-10 mx-auto w-fit"
       onClick={() => navigate('/seller/product/add')}
       type="button"
     >
@@ -77,3 +96,14 @@ const SellButton = () => {
 };
 
 const tabs = ['Semua', 'Hobi', 'Kendaraan', 'Elektronik', 'Kesehatan'];
+
+const dummyProduct = {
+  id: 0,
+  name: '',
+  price: 0,
+  Category: { name: '' },
+};
+
+const dummiesProducts = [];
+
+for (let i = 1; i <= 12; i++) dummiesProducts.push(dummyProduct);
