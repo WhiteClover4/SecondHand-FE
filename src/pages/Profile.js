@@ -23,7 +23,7 @@ export default function SellerProduct() {
     <AuthenticatedRoute>
       <div className="absolute top-0 h-screen w-full overflow-auto">
         <SimpleNavbar title="Lengkapi Info Akun" />
-        <div className="relative mx-auto mt-10 w-[568px]" onSubmit={(e) => e.preventDefault()}>
+        <div className="relative mx-auto mt-10 w-[568px]">
           <BackButton className="absolute -left-[76px] top-0" />
           <div className="flex w-full justify-center">
             <FileInput3 onChange={setFileInput} preview={userData.profile_picture} />

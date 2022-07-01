@@ -30,6 +30,7 @@ export default function Home() {
         <section className="px-[136px]">
           <p className="mb-4 text-title-16 font-bold">Telusuri Kategori</p>
           <div className="flex flex-row gap-4">
+            <Tab tab="Semua" />
             {categories.map((category, i) => (
               <Tab key={i} tab={category.name} />
             ))}

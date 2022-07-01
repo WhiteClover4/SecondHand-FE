@@ -13,6 +13,14 @@ export const initialProduct = {
   Transactions: {},
 };
 
+export const initialProductInput = {
+  name: '',
+  price: '',
+  category: '',
+  description: '',
+  images: [],
+};
+
 export const initialUserData = {
   name: '',
   email: '',
