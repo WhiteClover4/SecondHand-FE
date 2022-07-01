@@ -11,8 +11,7 @@ import useQuery from '../../hooks/independent/useQuery';
 export default function ProductDetail() {
   const navigate = useNavigate();
   const { isAuthenticated } = useSelector((state) => state.auth);
-  const { product } = useSelector((state) => state.product);
-  const { getProduct, loading } = useProduct();
+  const { getProduct, product, loading } = useProduct();
 
   const query = useQuery();
   const productId = query.get('product_id');
@@ -28,7 +27,7 @@ export default function ProductDetail() {
   return (
     <div>
       <MainNavbar />
-      {!loading.product ? (
+      {!loading.getProduct ? (
         <div className="flex flex-row justify-center gap-8 px-[236px] ">
           <div className="w-2/3 space-y-6 ">
             <div className="relative h-[436px] overflow-hidden rounded-2xl">
@@ -44,7 +43,7 @@ export default function ProductDetail() {
           </div>
           <div className="w-1/3 space-y-6">
             <div className="flex flex-col rounded-2xl px-4 pb-6 pt-4 shadow-high">
-              <p className="text-black mb-2 text-title-16 font-medium">{product.name}</p>
+              <p className="text-black mb-2 text-title-16 font-medium">{product?.name}</p>
               <p className="mb-4 text-body-14 text-neutral-03">{product.Category.name}</p>
               <div className="text-black mb-6 text-title-16">
                 Rp {product.price.toLocaleString('id-ID')}
