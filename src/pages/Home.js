@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { PrimaryButton } from '../components/buttons';
 import { MainNavbar } from '../components/navbars';
@@ -12,8 +11,7 @@ import useProduct from '../hooks/dependent/useProduct';
 import categories from '../_content/categories.json';
 
 export default function Home() {
-  const { products } = useSelector((state) => state.product);
-  const { getProducts, loading } = useProduct();
+  const { getProducts, products, loading } = useProduct();
 
   const query = useQuery();
   const category = query.get('category');
@@ -37,7 +35,7 @@ export default function Home() {
           </div>
         </section>
         <section className="my-10 grid grid-cols-6 gap-4 px-[136px]">
-          {!loading.products
+          {!loading.getProducts
             ? products.map((product, i) => <ProductCard key={i} data={product} />)
             : dummiesProducts.map((el, i) => <ProductCardSkeleton key={i} />)}
         </section>

@@ -1,16 +1,18 @@
 import { useCallback, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { ADD_ALERT } from '../../redux/slice/alert';
-import { SET_PRODUCT, SET_PRODUCTS } from '../../redux/slice/product';
 import { getProductService, getProductsService } from '../../services/api/product';
+import { initialProduct } from '../../utils/initial';
 
 export default function useProduct() {
   const dispatch = useDispatch();
-  const [loading, setLoading] = useState({ products: false, product: false });
+  const [products, setProducts] = useState([]);
+  const [product, setProduct] = useState(initialProduct);
+  const [loading, setLoading] = useState({ getProducts: false, getProduct: false });
 
   const getProducts = useCallback(
     async (search, category) => {
-      setLoading({ ...loading, products: true });
+      setLoading({ ...loading, getProducts: true });
 
       try {
         const res = await getProductsService(search, category);
@@ -18,13 +20,13 @@ export default function useProduct() {
         if (res.status === 'error')
           return dispatch(ADD_ALERT({ status: 'error', message: res.msg }));
 
-        dispatch(SET_PRODUCTS(res.data));
+        setProducts(res.data);
       } catch (error) {
         console.log('error get products', error);
 
         dispatch(ADD_ALERT({ status: 'error', message: 'something went wrong' }));
       } finally {
-        setLoading({ ...loading, products: false });
+        setLoading({ ...loading, getProducts: false });
       }
     },
     [dispatch],
@@ -32,23 +34,23 @@ export default function useProduct() {
 
   const getProduct = useCallback(
     async (productId) => {
-      setLoading({ ...loading, product: true });
+      setLoading({ ...loading, getProduct: true });
       try {
         const res = await getProductService(productId);
 
         if (!res.data) return dispatch(ADD_ALERT({ status: 'error', message: res.msg }));
 
-        dispatch(SET_PRODUCT(res.data));
+        setProduct(res.data);
       } catch (error) {
         console.log('error get product', error);
 
         dispatch(ADD_ALERT({ status: 'error', message: 'something went wrong' }));
       } finally {
-        setLoading({ ...loading, product: false });
+        setLoading({ ...loading, getProduct: false });
       }
     },
     [dispatch],
   );
 
-  return { getProducts, getProduct, loading };
+  return { getProducts, getProduct, products, product, loading };
 }

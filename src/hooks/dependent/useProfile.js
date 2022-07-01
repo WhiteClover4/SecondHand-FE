@@ -1,14 +1,22 @@
 import { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ADD_ALERT } from '../../redux/slice/alert';
-import { SET_USER_DATA } from '../../redux/slice/profile';
 import { getProfileService, updateProfileService } from '../../services/api/profile';
+import { initialUserData } from '../../utils/initial';
 
 export default function useProfile() {
   const dispatch = useDispatch();
   const { token, isAuthenticated } = useSelector((state) => state.auth);
-  const { userData } = useSelector((state) => state.profile);
+  const [userData, setUserData] = useState(initialUserData);
   const [loading, setLoading] = useState({ getProfile: false, updateProfile: false });
+
+  const setUserDataInput = (e) => setUserData({ ...userData, [e.target.name]: e.target.value });
+
+  function setFileInput(e) {
+    const file = e.target.files[0];
+    const url = URL.createObjectURL(file);
+    setUserData({ ...userData, profile_picture: url, file });
+  }
 
   const getProfile = useCallback(async () => {
     if (!isAuthenticated) return;
@@ -19,7 +27,7 @@ export default function useProfile() {
 
       if (!res.data) return ADD_ALERT({ status: 'error', message: res });
 
-      dispatch(SET_USER_DATA({ ...res.data, file: null }));
+      setUserData({ ...res.data, file: null });
     } catch (error) {
       console.log('get profile error', error);
 
@@ -39,6 +47,9 @@ export default function useProfile() {
 
       const res = await updateProfileService(token, name, city, address, phone_number, file);
 
+      if (res.status !== 'Success')
+        return dispatch(ADD_ALERT({ status: 'error', message: res.msg }));
+
       dispatch(ADD_ALERT({ status: 'success', message: res.msg }));
 
       await getProfile();
@@ -51,5 +62,5 @@ export default function useProfile() {
     }
   }
 
-  return { getProfile, updateProfile, loading };
+  return { getProfile, updateProfile, userData, setUserDataInput, setFileInput, loading };
 }
