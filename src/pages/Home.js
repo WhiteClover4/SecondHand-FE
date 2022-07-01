@@ -1,20 +1,22 @@
-import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PrimaryButton } from '../components/buttons';
 import { MainNavbar } from '../components/navbars';
 import { SearchIcon, PlusIcon } from '../components/icons';
 import { ProductCard } from '../components/cards';
 import { SimpleCarousel } from '../components/carousels';
+import { ProductCardSkeleton } from '../components/skeletons';
 import useQuery from '../hooks/independent/useQuery';
 import useProduct from '../hooks/dependent/useProduct';
+import categories from '../_content/categories.json';
+import { initialProduct } from '../utils/initial';
 
 export default function Home() {
-  const { products } = useSelector((state) => state.product);
-  const { getProducts, loading } = useProduct();
-  const [search, setSearch] = useState('');
+  const { getProducts, products, loading } = useProduct();
+
   const query = useQuery();
   const category = query.get('category');
+  const search = query.get('search');
 
   useEffect(() => {
     getProducts(search, category);
@@ -22,21 +24,22 @@ export default function Home() {
 
   return (
     <>
-      <MainNavbar search={search} setSearch={setSearch} />
+      <MainNavbar />
       <main>
         <SimpleCarousel />
         <section className="px-[136px]">
           <p className="mb-4 text-title-16 font-bold">Telusuri Kategori</p>
           <div className="flex flex-row gap-4">
-            {tabs.map((tab, i) => (
-              <Tab key={i} tab={tab} />
+            <Tab tab="Semua" />
+            {categories.map((category, i) => (
+              <Tab key={i} tab={category.name} />
             ))}
           </div>
         </section>
         <section className="my-10 grid grid-cols-6 gap-4 px-[136px]">
-          {(!loading.products ? products : dummiesProducts).map((product, i) => (
-            <ProductCard key={i} data={product} isSekeleton={loading.products} />
-          ))}
+          {!loading.getProducts
+            ? products.map((product) => <ProductCard key={product.id} data={product} />)
+            : dummiesProducts.map((el, i) => <ProductCardSkeleton key={i} />)}
         </section>
       </main>
       <SellButton />
@@ -48,12 +51,18 @@ const Tab = ({ tab }) => {
   const navigate = useNavigate();
   const query = useQuery();
   const category = query.get('category') || 'Semua';
+  const searchQuery = query.get('search');
+
+  function navigateQuerySearch(tab) {
+    if (tab === 'Semua') return navigate('/');
+    navigate(`/?category=${tab}&search=${searchQuery || ''}`);
+  }
 
   return (
     <PrimaryButton
       bgColor={category === tab ? 'bg-primary-04' : 'bg-primary-01'}
       color={category === tab ? 'text-neutral-01' : 'text-neutral-04'}
-      onClick={() => navigate(`${tab !== 'Semua' ? `?category=${tab}` : '/'}`)}
+      onClick={() => navigateQuerySearch(tab)}
       type="button"
     >
       <div className="flex flex-row">
@@ -69,7 +78,7 @@ const SellButton = () => {
 
   return (
     <PrimaryButton
-      className="fixed inset-x-0 bottom-7 mx-auto w-fit"
+      className="fixed inset-x-0 bottom-7 z-10 mx-auto w-fit"
       onClick={() => navigate('/seller/product/add')}
       type="button"
     >
@@ -87,15 +96,6 @@ const SellButton = () => {
   );
 };
 
-const tabs = ['Semua', 'Hobi', 'Kendaraan', 'Elektronik', 'Kesehatan'];
-
-const dummyProduct = {
-  id: 0,
-  name: '',
-  price: 0,
-  Category: { name: '' },
-};
-
 const dummiesProducts = [];
 
-for (let i = 1; i <= 12; i++) dummiesProducts.push(dummyProduct);
+for (let i = 1; i <= 12; i++) dummiesProducts.push(initialProduct);

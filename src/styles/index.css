@@ -3,6 +3,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  overflow-y: overlay;
+}
+
 body {
   margin: 0;
   font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -13,4 +17,20 @@ body {
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+::-webkit-scrollbar {
+  width: 12px; /* width of the entire scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgb(228 228 231);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #7126b5; /* color of the scroll thumb */
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: #4b1979;
 }

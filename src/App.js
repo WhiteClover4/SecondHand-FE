@@ -1,11 +1,18 @@
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { MainAlert } from './components/alerts';
 import { REMOVE_ALERT } from './redux/slice/alert';
+import useAuth from './hooks/dependent/useAuth';
 import RoutesApp from './routes';
 
 function App() {
   const dispatch = useDispatch();
   const { alerts } = useSelector((state) => state.alert);
+  const { checkToken } = useAuth();
+
+  useEffect(() => {
+    checkToken();
+  }, [checkToken]);
 
   return (
     <>

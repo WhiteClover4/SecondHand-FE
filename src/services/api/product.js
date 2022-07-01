@@ -13,3 +13,46 @@ export function getProductsService(search, category) {
       .catch((error) => reject(error));
   });
 }
+
+export function getProductService(productId) {
+  var requestOptions = {
+    method: 'GET',
+    redirect: 'follow',
+  };
+
+  return new Promise((resolve, reject) => {
+    fetch(`${apiStagingURL}/api/product/${productId}`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => resolve(result))
+      .catch((error) => reject(error));
+  });
+}
+
+export function addProductService(token, name, description, price, category, product_pictures) {
+  var myHeaders = new Headers();
+  myHeaders.append('Authorization', `Bearer ${token}`);
+
+  var formdata = new FormData();
+  formdata.append('name', name);
+  formdata.append('description', description);
+  formdata.append('price', price);
+  formdata.append('category', category);
+
+  product_pictures.forEach((picture) => {
+    formdata.append('product_pictures', picture);
+  });
+
+  var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: formdata,
+    redirect: 'follow',
+  };
+
+  return new Promise((resolve, reject) => {
+    fetch(`${apiStagingURL}/api/seller/product/publish${productId}`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => resolve(result))
+      .catch((error) => reject(error));
+  });
+}
