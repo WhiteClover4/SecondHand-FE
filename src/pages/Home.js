@@ -9,6 +9,7 @@ import { ProductCardSkeleton } from '../components/skeletons';
 import useQuery from '../hooks/independent/useQuery';
 import useProduct from '../hooks/dependent/useProduct';
 import categories from '../_content/categories.json';
+import { initialProduct } from '../utils/initial';
 
 export default function Home() {
   const { getProducts, products, loading } = useProduct();
@@ -36,7 +37,7 @@ export default function Home() {
         </section>
         <section className="my-10 grid grid-cols-6 gap-4 px-[136px]">
           {!loading.getProducts
-            ? products.map((product, i) => <ProductCard key={i} data={product} />)
+            ? products.map((product) => <ProductCard key={product.id} data={product} />)
             : dummiesProducts.map((el, i) => <ProductCardSkeleton key={i} />)}
         </section>
       </main>
@@ -94,13 +95,6 @@ const SellButton = () => {
   );
 };
 
-const dummyProduct = {
-  id: 0,
-  name: '',
-  price: 0,
-  Category: { name: '' },
-};
-
 const dummiesProducts = [];
 
-for (let i = 1; i <= 12; i++) dummiesProducts.push(dummyProduct);
+for (let i = 1; i <= 12; i++) dummiesProducts.push(initialProduct);
