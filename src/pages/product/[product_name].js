@@ -44,7 +44,7 @@ export default function ProductDetail() {
           <div className="w-1/3 space-y-6">
             <div className="flex flex-col rounded-2xl px-4 pb-6 pt-4 shadow-high">
               <p className="text-black mb-2 text-title-16 font-medium">{product?.name}</p>
-              <p className="mb-4 text-body-14 text-neutral-03">{product.Category.name}</p>
+              <p className="mb-4 text-body-14 text-neutral-03">{product.Category?.name}</p>
               <div className="text-black mb-6 text-title-16">
                 Rp {product.price.toLocaleString('id-ID')}
               </div>
