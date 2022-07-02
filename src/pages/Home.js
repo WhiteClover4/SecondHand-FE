@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { PrimaryButton } from '../components/buttons';
 import { MainNavbar } from '../components/navbars';
@@ -9,10 +8,11 @@ import { SimpleCarousel } from '../components/carousels';
 import { ProductCardSkeleton } from '../components/skeletons';
 import useQuery from '../hooks/independent/useQuery';
 import useProduct from '../hooks/dependent/useProduct';
+import categories from '../_content/categories.json';
+import { initialProduct } from '../utils/initial';
 
 export default function Home() {
-  const { products } = useSelector((state) => state.product);
-  const { getProducts, loading } = useProduct();
+  const { getProducts, products, loading } = useProduct();
 
   const query = useQuery();
   const category = query.get('category');
@@ -29,15 +29,16 @@ export default function Home() {
         <SimpleCarousel />
         <section className="overflow-hidden px-4 lg:px-[136px]">
           <p className="mb-4 text-title-16 font-bold">Telusuri Kategori</p>
-          <div className="flex flex-row gap-4 overflow-x-auto pb-4 lg:pb-0">
-            {tabs.map((tab, i) => (
-              <Tab key={i} tab={tab} />
+          <div className="flex flex-row gap-4 overflow-x-auto p-2">
+            <Tab tab="Semua" />
+            {categories.map((category, i) => (
+              <Tab key={i} tab={category.name} />
             ))}
           </div>
         </section>
         <section className="my-10 grid grid-cols-2 gap-4 px-4 md:grid-cols-3 lg:grid-cols-6 lg:px-[136px]">
-          {!loading.products
-            ? products.map((product, i) => <ProductCard key={i} data={product} />)
+          {!loading.getProducts
+            ? products.map((product) => <ProductCard key={product.id} data={product} />)
             : dummiesProducts.map((el, i) => <ProductCardSkeleton key={i} />)}
         </section>
       </main>
@@ -95,15 +96,6 @@ const SellButton = () => {
   );
 };
 
-const tabs = ['Semua', 'Hobi', 'Kendaraan', 'Elektronik', 'Kesehatan'];
-
-const dummyProduct = {
-  id: 0,
-  name: '',
-  price: 0,
-  Category: { name: '' },
-};
-
 const dummiesProducts = [];
 
-for (let i = 1; i <= 12; i++) dummiesProducts.push(dummyProduct);
+for (let i = 1; i <= 12; i++) dummiesProducts.push(initialProduct);
