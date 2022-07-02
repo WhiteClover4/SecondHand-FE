@@ -28,7 +28,7 @@ export function getProductService(productId) {
   });
 }
 
-export function addProductService(token, name, description, price, category, product_pictures) {
+export function publishProductService(token, name, description, price, category, product_pictures) {
   var myHeaders = new Headers();
   myHeaders.append('Authorization', `Bearer ${token}`);
 
@@ -50,7 +50,36 @@ export function addProductService(token, name, description, price, category, pro
   };
 
   return new Promise((resolve, reject) => {
-    fetch(`${apiStagingURL}/api/seller/product/publish${productId}`, requestOptions)
+    fetch(`${apiStagingURL}/api/seller/product/publish`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => resolve(result))
+      .catch((error) => reject(error));
+  });
+}
+
+export function draftProductService(token, name, description, price, category, product_pictures) {
+  var myHeaders = new Headers();
+  myHeaders.append('Authorization', `Bearer ${token}`);
+
+  var formdata = new FormData();
+  formdata.append('name', name);
+  formdata.append('description', description);
+  formdata.append('price', price);
+  formdata.append('category', category);
+
+  product_pictures.forEach((picture) => {
+    formdata.append('product_pictures', picture);
+  });
+
+  var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: formdata,
+    redirect: 'follow',
+  };
+
+  return new Promise((resolve, reject) => {
+    fetch(`${apiStagingURL}/api/seller/product/preview`, requestOptions)
       .then((response) => response.json())
       .then((result) => resolve(result))
       .catch((error) => reject(error));

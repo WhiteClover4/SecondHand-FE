@@ -22,7 +22,7 @@ export default function ProductDetail() {
 
   useEffect(() => {
     getProduct(productId);
-  }, [getProduct]);
+  }, [getProduct, productId]);
 
   return (
     <div>

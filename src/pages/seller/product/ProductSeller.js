@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom';
 import { BackButton, PrimaryButton, SecondaryButton } from '../../../components/buttons';
 import { XIcon } from '../../../components/icons';
 import {
@@ -13,13 +12,14 @@ import useProduct from '../../../hooks/dependent/useProduct';
 import categories from '../../../_content/categories.json';
 
 export default function ProductSeller() {
-  const navigate = useNavigate();
   const {
     productInput,
     setProductInputForm,
     addProductInputImage,
     removeProductInputImage,
     loading,
+    publishProduct,
+    draftProduct,
   } = useProduct();
 
   return (
@@ -66,9 +66,7 @@ export default function ProductSeller() {
           <div className="mt-4 flex flex-col space-y-1">
             <p className="text-body-12 font-normal"> Foto Produk </p>
             <div className="grid grid-cols-4 gap-x-6">
-              {productInput.images.length < 4 && (
-                <FileInput2 onChange={(e) => addProductInputImage(e)} />
-              )}
+              {productInput.images.length < 4 && <FileInput2 onChange={addProductInputImage} />}
               {productInput.images.map((image, i) => (
                 <div key={i} className="relative h-24">
                   <RemoveButton remove={() => removeProductInputImage(i)} />
@@ -84,14 +82,16 @@ export default function ProductSeller() {
           <div className="mt-6 flex items-center space-x-4">
             <SecondaryButton
               className="w-full"
-              onClick={() => navigate('/seller/product/add/preview')}
+              isDisable={loading.getProduct || loading.draftProduct}
+              onClick={draftProduct}
               type="button"
             >
               Preview
             </SecondaryButton>
             <PrimaryButton
               className="w-full"
-              isDisable={loading.getProduct || loading.addProduct}
+              isDisable={loading.getProduct || loading.draftProduct}
+              onClick={publishProduct}
               type="submit"
             >
               Terbitkan

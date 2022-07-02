@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { ADD_ALERT } from '../../redux/slice/alert';
 import {
-  addProductService,
+  publishProductService,
   getProductService,
   getProductsService,
+  draftProductService,
 } from '../../services/api/product';
 import { initialProduct, initialProductInput } from '../../utils/initial';
 
@@ -20,6 +21,7 @@ export default function useProduct() {
     getProducts: false,
     getProduct: false,
     addProduct: false,
+    draftProduct: false,
   });
 
   const getProducts = useCallback(
@@ -78,11 +80,12 @@ export default function useProduct() {
     setProductInput({ ...productInput });
   }
 
-  async function addProduct() {
+  async function publishProduct() {
+    setLoading({ ...loading, addProduct: true });
     const { name, price, category, description, images } = productInput;
     const product_pictures = images.map((image) => image.file);
     try {
-      const res = await addProductService(
+      const res = await publishProductService(
         token,
         name,
         description,
@@ -97,11 +100,43 @@ export default function useProduct() {
 
       navigate('/seller/products');
     } catch (error) {
-      console.log('error get product', error);
+      console.log('error add product', error);
 
       dispatch(ADD_ALERT({ status: 'error', message: 'something went wrong' }));
     } finally {
-      setLoading({ ...loading, getProduct: false });
+      setLoading({ ...loading, addProduct: false });
+    }
+  }
+
+  async function draftProduct() {
+    setLoading({ ...loading, draftProduct: true });
+    const { name, price, category, description, images } = productInput;
+    const product_pictures = images.map((image) => image.file);
+    try {
+      const res = await draftProductService(
+        token,
+        name,
+        description,
+        price,
+        category,
+        product_pictures,
+      );
+
+      if (res.status === 'error') return dispatch(ADD_ALERT({ status: 'error', message: res.msg }));
+
+      if (!res.data) return dispatch(ADD_ALERT({ status: 'error', message: res.msg }));
+
+      dispatch(ADD_ALERT({ status: 'success', message: 'success add product' }));
+
+      navigate(
+        `/seller/product/${encodeURIComponent(res.data.name)}/preview?product_id=${res.data.id}`,
+      );
+    } catch (error) {
+      console.log('error add product', error);
+
+      dispatch(ADD_ALERT({ status: 'error', message: 'something went wrong' }));
+    } finally {
+      setLoading({ ...loading, draftProduct: false });
     }
   }
 
@@ -114,7 +149,8 @@ export default function useProduct() {
     setProductInputForm,
     addProductInputImage,
     removeProductInputImage,
-    addProduct,
+    publishProduct,
+    draftProduct,
     loading,
   };
 }
