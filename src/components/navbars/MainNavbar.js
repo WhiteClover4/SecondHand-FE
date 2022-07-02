@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { BellIcon, ListIcon, SignInIcon, UserIcon } from '../icons';
+import { BellIcon, ListIcon, SignInIcon, UserIcon, MenuIcon } from '../icons';
 import { PrimaryButton } from '../buttons';
 import { SearchInput } from '../inputs';
 import useOutsideClick from '../../hooks/independent/useOutsideClick';
@@ -23,11 +23,15 @@ export default function MainNavbar() {
   });
 
   return (
-    <header className="sticky top-0 z-10 mb-8 flex h-[84px] items-center justify-between bg-neutral-01 px-[136px] shadow-high">
-      <div className="flex flex-row items-center space-x-6">
-        <Link className="inline-block h-[34px] w-[100px] bg-primary-05" to="/" />
+    <header className="absolute inset-x-0 top-[38px] z-10 mb-8 flex items-center justify-between bg-transparent px-4 lg:sticky lg:top-0 lg:h-[84px] lg:bg-neutral-01 lg:px-[136px] lg:shadow-high">
+      <div className="flex w-full flex-row items-center space-x-4 lg:space-x-6">
+        <button className="rounded-2xl bg-neutral-01 p-3 lg:hidden">
+          <MenuIcon className="w-6" />
+        </button>
+        <Link className="hidden h-[34px] w-[100px] bg-primary-05 lg:inline-block" to="/" />
         <SearchInput
           onChange={(e) => navigate(`/?category=${category || ''}&search=${e.target.value}`)}
+          placeholder="Cari di sini ..."
           value={searchQuery || ''}
         />
       </div>
@@ -57,7 +61,11 @@ export default function MainNavbar() {
           </ul>
         </nav>
       ) : (
-        <PrimaryButton onClick={() => navigate('/login')} type="button">
+        <PrimaryButton
+          className="hidden lg:inline-block"
+          onClick={() => navigate('/login')}
+          type="button"
+        >
           <div className="flex flex-row">
             <SignInIcon className="mr-2 w-5" />
             <p>Masuk</p>

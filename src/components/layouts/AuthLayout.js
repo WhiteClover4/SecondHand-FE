@@ -1,7 +1,7 @@
 export default function AuthLayout({ children }) {
   return (
-    <div className="absolute top-0 left-0 lg:flex h-screen w-screen overflow-auto">
-      <div className="relative h-full w-1/2 hidden lg:block">
+    <div className="absolute top-0 left-0 h-screen w-screen overflow-auto lg:flex">
+      <div className="relative hidden h-full w-1/2 lg:block">
         <h1 className="absolute top-1/2 left-20 z-10 w-[154px] -translate-y-1/2 transform text-[40px] font-bold leading-9 text-neutral-01">
           Second Hand.
         </h1>
@@ -13,7 +13,7 @@ export default function AuthLayout({ children }) {
         ></div>
         <img alt="backround" className="h-full w-full object-cover" src="/img/img-bg-auth.png" />
       </div>
-      <main className="flex h-full w-full lg:w-1/2 items-center px-[16px] lg:px-[134px]">
+      <main className="flex h-full w-full items-center px-[16px] lg:w-1/2 lg:px-[134px]">
         <div className="flex w-full flex-col items-center">
           <div className="w-full">{children}</div>
         </div>
