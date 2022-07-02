@@ -1,25 +1,23 @@
 import { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { ADD_ALERT } from '../../redux/slice/alert';
 import {
-  addProductService,
   getProductService,
   getProductsService,
+  getSellerProductsService,
 } from '../../services/api/product';
-import { initialProduct, initialProductInput } from '../../utils/initial';
+import { initialProduct } from '../../utils/initial';
 
 export default function useProduct() {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { token } = useSelector((state) => state.auth);
+  const { token, isAuthenticated } = useSelector((state) => state.auth);
+  const [sellerProducts, setsellerProducts] = useState([]);
   const [products, setProducts] = useState([]);
   const [product, setProduct] = useState(initialProduct);
-  const [productInput, setProductInput] = useState(initialProductInput);
   const [loading, setLoading] = useState({
     getProducts: false,
     getProduct: false,
-    addProduct: false,
+    getSellerProducts: false,
   });
 
   const getProducts = useCallback(
@@ -64,57 +62,32 @@ export default function useProduct() {
     [dispatch],
   );
 
-  const setProductInputForm = (e) =>
-    setProductInput({ ...productInput, [e.target.name]: e.target.value });
+  const getSellerProducts = useCallback(async () => {
+    if (!isAuthenticated) return;
 
-  function addProductInputImage(e) {
-    const file = e.target.files[0];
-    const url = URL.createObjectURL(file);
-    setProductInput({ ...productInput, images: [...productInput.images, { file, url }] });
-  }
-
-  function removeProductInputImage(targetIndex) {
-    productInput.images.splice(targetIndex, 1);
-    setProductInput({ ...productInput });
-  }
-
-  async function addProduct() {
-    const { name, price, category, description, images } = productInput;
-    const product_pictures = images.map((image) => image.file);
+    setLoading({ ...loading, getSellerProducts: true });
     try {
-      const res = await addProductService(
-        token,
-        name,
-        description,
-        price,
-        category,
-        product_pictures,
-      );
+      const res = await getSellerProductsService(token);
 
-      if (res.status === 'error') return;
+      if (!res.data) return dispatch(ADD_ALERT({ status: 'error', message: res }));
 
-      dispatch(ADD_ALERT({ status: 'success', message: 'success add product' }));
-
-      navigate('/seller/products');
+      setsellerProducts(res.data);
     } catch (error) {
-      console.log('error get product', error);
+      console.log('error get seller products', error);
 
       dispatch(ADD_ALERT({ status: 'error', message: 'something went wrong' }));
     } finally {
-      setLoading({ ...loading, getProduct: false });
+      setLoading({ ...loading, getSellerProducts: false });
     }
-  }
+  }, [dispatch, isAuthenticated, token]);
 
   return {
     getProducts,
     getProduct,
     products,
     product,
-    productInput,
-    setProductInputForm,
-    addProductInputImage,
-    removeProductInputImage,
-    addProduct,
+    getSellerProducts,
+    sellerProducts,
     loading,
   };
 }

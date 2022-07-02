@@ -1,3 +1,5 @@
+import SpinnerIcon from '../icons/SpinnerIcon';
+
 export default function PrimaryButton({
   className,
   bgColor,
@@ -15,7 +17,14 @@ export default function PrimaryButton({
       }  rounded-2xl border border-transparent px-4 text-body-14 font-medium lg:px-6 ${color} ${className}`}
       disabled={isDisable}
     >
-      {!isDisable ? children : 'Loading ...'}
+      {!isDisable ? (
+        children
+      ) : (
+        <div className="flex items-center justify-center">
+          <SpinnerIcon className="text-white mr-3 h-4 w-4" />
+          Loading...
+        </div>
+      )}
     </button>
   );
 }
