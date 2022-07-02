@@ -42,7 +42,12 @@ export default function Login() {
             placeholder="Masukkan password"
             value={form.password}
           />
-          <PrimaryButton className="mt-6 w-full" isDisable={loading.login} type="submit">
+          <PrimaryButton
+            className="mt-6 w-full"
+            data-testid="login-button"
+            isDisable={loading.login}
+            type="submit"
+          >
             Masuk
           </PrimaryButton>
         </form>
