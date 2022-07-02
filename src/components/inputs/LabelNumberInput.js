@@ -6,7 +6,7 @@ export default function LabelNumberInput({ margin, id, label, ...rest }) {
       </label>
       <input
         {...rest}
-        className="w-full rounded-2xl border border-neutral-02 bg-neutral-01 px-4 py-[16px] text-body-14 placeholder:text-neutral-03"
+        className="w-full rounded-2xl border border-neutral-02 bg-neutral-01 px-4 py-[14px] text-body-14 placeholder:text-neutral-03"
         id={id}
         type="number"
       />
