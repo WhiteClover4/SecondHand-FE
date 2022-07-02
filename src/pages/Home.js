@@ -28,8 +28,10 @@ export default function Home() {
       <main>
         <SimpleCarousel />
         <section className="overflow-hidden px-4 lg:px-[136px]">
-          <p className="mb-4 text-title-16 font-bold">Telusuri Kategori</p>
-          <div className="flex flex-row gap-4 overflow-x-auto p-2">
+          <p className="mb-4 text-body-14 font-medium lg:text-title-16 lg:font-bold">
+            Telusuri Kategori
+          </p>
+          <div className="flex flex-row gap-4 overflow-x-auto p-3">
             <Tab tab="Semua" />
             {categories.map((category, i) => (
               <Tab key={i} tab={category.name} />

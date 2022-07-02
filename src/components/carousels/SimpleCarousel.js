@@ -20,8 +20,10 @@ export default function SimpleCarousel() {
                     <h1 className="w-[180px] text-heading-20 font-bold lg:w-full lg:text-[36px] lg:leading-[54px]">
                       Bulan Ramadhan Banyak diskon!
                     </h1>
-                    <p className="mt-4 text-body-14 text-[#151515]">Diskon Hingga</p>
-                    <p className="text-[32px] font-medium text-[#FA2C5A]">60%</p>
+                    <p className="mt-4 text-body-10 text-[#151515] lg:text-body-14">
+                      Diskon Hingga
+                    </p>
+                    <p className="text-title-18 font-medium text-[#FA2C5A] lg:text-[32px]">60%</p>
                   </div>
                   <div>
                     <div className="relative h-full w-[424px]">
