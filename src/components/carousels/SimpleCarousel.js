@@ -15,7 +15,7 @@ export default function SimpleCarousel() {
               } duration-300 lg:rounded-[20px]`}
             >
               {i === 0 && (
-                <div className="flex h-full w-full space-x-[13px] lg:space-x-0">
+                <div className="flex h-full w-full justify-center space-x-[13px] lg:space-x-0">
                   <div className="ml-4 flex h-full flex-col pt-[118px] lg:ml-[80px] lg:justify-center lg:pt-0">
                     <h1 className="w-[180px] text-heading-20 font-bold lg:w-full lg:text-[36px] lg:leading-[54px]">
                       Bulan Ramadhan Banyak diskon!
