@@ -8,10 +8,10 @@ import {
   LabelTextInput,
 } from '../../../components/inputs';
 import { SimpleNavbar } from '../../../components/navbars';
-import useProduct from '../../../hooks/dependent/useProduct';
+import useProductInput from '../../../hooks/dependent/useProductInput';
 import categories from '../../../_content/categories.json';
 
-export default function ProductSeller() {
+export default function ProductInput() {
   const {
     productInput,
     setProductInputForm,
@@ -20,7 +20,7 @@ export default function ProductSeller() {
     loading,
     publishProduct,
     draftProduct,
-  } = useProduct();
+  } = useProductInput();
 
   return (
     <div className="absolute top-0 h-screen w-full overflow-auto">
@@ -82,7 +82,7 @@ export default function ProductSeller() {
           <div className="mt-6 flex items-center space-x-4">
             <SecondaryButton
               className="w-full"
-              isDisable={loading.getProduct || loading.draftProduct}
+              isDisable={loading.publishProduct || loading.draftProduct}
               onClick={draftProduct}
               type="button"
             >
@@ -90,7 +90,7 @@ export default function ProductSeller() {
             </SecondaryButton>
             <PrimaryButton
               className="w-full"
-              isDisable={loading.getProduct || loading.draftProduct}
+              isDisable={loading.publishProduct || loading.draftProduct}
               onClick={publishProduct}
               type="submit"
             >
