@@ -1,7 +1,7 @@
 [
-  { "name": "Hobi" },
-  { "name": "Kendaraan" },
-  { "name": "Baju" },
-  { "name": "Elektronik" },
-  { "name": "Kesehatan" }
+  { "id": 1, "name": "Hobi" },
+  { "id": 2, "name": "Kendaraan" },
+  { "id": 3, "name": "Baju" },
+  { "id": 4, "name": "Elektronik" },
+  { "id": 5, "name": "Kesehatan" }
 ]

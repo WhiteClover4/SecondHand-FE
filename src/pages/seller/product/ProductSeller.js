@@ -1,4 +1,3 @@
-import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { BackButton, PrimaryButton, SecondaryButton } from '../../../components/buttons';
 import { XIcon } from '../../../components/icons';
@@ -10,20 +9,18 @@ import {
   LabelTextInput,
 } from '../../../components/inputs';
 import { SimpleNavbar } from '../../../components/navbars';
-import {
-  ADD_IMAGE_PRODUCT,
-  REMOVE_IMAGE_PRODUCT,
-  SET_PRODUCT_INPUT,
-} from '../../../redux/slice/product';
+import useProduct from '../../../hooks/dependent/useProduct';
 import categories from '../../../_content/categories.json';
 
 export default function ProductSeller() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const { productInput } = useSelector((state) => state.product);
-
-  const setFormInput = (e) =>
-    dispatch(SET_PRODUCT_INPUT({ ...productInput, [e.target.name]: e.target.value }));
+  const {
+    productInput,
+    setProductInputForm,
+    addProductInputImage,
+    removeProductInputImage,
+    loading,
+  } = useProduct();
 
   return (
     <div className="absolute top-0 h-screen w-full overflow-auto">
@@ -36,7 +33,7 @@ export default function ProductSeller() {
               id="name"
               label="Nama produk"
               name="name"
-              onChange={setFormInput}
+              onChange={setProductInputForm}
               placeholder="Nama Produk"
               value={productInput.name}
             />
@@ -44,7 +41,7 @@ export default function ProductSeller() {
               id="price"
               label="Harga Produk"
               name="price"
-              onChange={setFormInput}
+              onChange={setProductInputForm}
               placeholder="Rp. 0,00"
               value={productInput.price}
             />
@@ -53,7 +50,7 @@ export default function ProductSeller() {
               id="category"
               label="Kategori"
               name="category"
-              onChange={setFormInput}
+              onChange={setProductInputForm}
               value={productInput.category}
               values={categories}
             />
@@ -61,7 +58,7 @@ export default function ProductSeller() {
               id="description"
               label="Deskripsi"
               name="description"
-              onChange={setFormInput}
+              onChange={setProductInputForm}
               placeholder="Contoh: Jalan Ikan Hiu 33"
               value={productInput.description}
             />
@@ -70,19 +67,15 @@ export default function ProductSeller() {
             <p className="text-body-12 font-normal"> Foto Produk </p>
             <div className="grid grid-cols-4 gap-x-6">
               {productInput.images.length < 4 && (
-                <FileInput2
-                  onChange={(e) =>
-                    dispatch(ADD_IMAGE_PRODUCT(URL.createObjectURL(e.target.files[0])))
-                  }
-                />
+                <FileInput2 onChange={(e) => addProductInputImage(e)} />
               )}
               {productInput.images.map((image, i) => (
                 <div key={i} className="relative h-24">
-                  <RemoveButton index={i} />
+                  <RemoveButton remove={() => removeProductInputImage(i)} />
                   <img
-                    alt={image}
+                    alt={image.url}
                     className="h-full w-full overflow-hidden rounded-xl object-contain"
-                    src={image}
+                    src={image.url}
                   />
                 </div>
               ))}
@@ -96,7 +89,11 @@ export default function ProductSeller() {
             >
               Preview
             </SecondaryButton>
-            <PrimaryButton className="w-full" type="submit">
+            <PrimaryButton
+              className="w-full"
+              isDisable={loading.getProduct || loading.addProduct}
+              type="submit"
+            >
               Terbitkan
             </PrimaryButton>
           </div>
@@ -106,14 +103,9 @@ export default function ProductSeller() {
   );
 }
 
-const RemoveButton = ({ index }) => {
-  const dispatch = useDispatch();
+const RemoveButton = ({ remove }) => {
   return (
-    <button
-      className="absolute -top-4 -right-4"
-      onClick={() => dispatch(REMOVE_IMAGE_PRODUCT(index))}
-      type="button"
-    >
+    <button className="absolute -top-4 -right-4" onClick={remove} type="button">
       <XIcon className="h-4 w-4 text-alert-danger" />
     </button>
   );

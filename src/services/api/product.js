@@ -27,3 +27,32 @@ export function getProductService(productId) {
       .catch((error) => reject(error));
   });
 }
+
+export function addProductService(token, name, description, price, category, product_pictures) {
+  var myHeaders = new Headers();
+  myHeaders.append('Authorization', `Bearer ${token}`);
+
+  var formdata = new FormData();
+  formdata.append('name', name);
+  formdata.append('description', description);
+  formdata.append('price', price);
+  formdata.append('category', category);
+
+  product_pictures.forEach((picture) => {
+    formdata.append('product_pictures', picture);
+  });
+
+  var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: formdata,
+    redirect: 'follow',
+  };
+
+  return new Promise((resolve, reject) => {
+    fetch(`${apiStagingURL}/api/seller/product/publish${productId}`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => resolve(result))
+      .catch((error) => reject(error));
+  });
+}
