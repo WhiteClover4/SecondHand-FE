@@ -27,15 +27,15 @@ export default function Home() {
       <MainNavbar />
       <main>
         <SimpleCarousel />
-        <section className="px-[136px]">
+        <section className="overflow-hidden px-4 lg:px-[136px]">
           <p className="mb-4 text-title-16 font-bold">Telusuri Kategori</p>
-          <div className="flex flex-row gap-4">
+          <div className="flex flex-row gap-4 overflow-x-auto pb-4 lg:pb-0">
             {tabs.map((tab, i) => (
               <Tab key={i} tab={tab} />
             ))}
           </div>
         </section>
-        <section className="my-10 grid grid-cols-6 gap-4 px-[136px]">
+        <section className="my-10 grid grid-cols-2 gap-4 px-4 md:grid-cols-3 lg:grid-cols-6 lg:px-[136px]">
           {!loading.products
             ? products.map((product, i) => <ProductCard key={i} data={product} />)
             : dummiesProducts.map((el, i) => <ProductCardSkeleton key={i} />)}
