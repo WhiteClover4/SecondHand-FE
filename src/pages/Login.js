@@ -14,8 +14,8 @@ export default function Login() {
 
   return (
     <AuthenticationRoute>
-      <BackButton className="my-[14px] mx-4 lg:hidden" />
       <AuthLayout>
+        <BackButton className="absolute top-[14px] left-4 lg:hidden" />
         <h1 className="text-heading-24 font-bold">Masuk</h1>
         <form
           onSubmit={(e) => {
