@@ -35,9 +35,9 @@ export default function MainNavbar() {
         <nav>
           <ul className="flex flex-row gap-6">
             <li>
-              <button>
+              <Link to="/seller/products">
                 <ListIcon className="mr-2 w-6" />
-              </button>
+              </Link>
             </li>
             <li>
               <button>

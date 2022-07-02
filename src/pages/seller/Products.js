@@ -1,23 +1,26 @@
+import { useEffect } from 'react';
 import { MainNavbar } from '../../components/navbars';
-// import { ProductCard } from '../../components/cards';
 import { SellerLayout } from '../../components/layouts';
 import { FileInput } from '../../components/inputs';
+import { ProductCard } from '../../components/cards';
+import useProduct from '../../hooks/dependent/useProduct';
 
 export default function Products() {
+  const { getSellerProducts, sellerProducts } = useProduct();
+
+  useEffect(() => {
+    getSellerProducts();
+  }, [getSellerProducts]);
+
   return (
     <>
       <MainNavbar />
       <SellerLayout active={1}>
         <div className="grid grid-cols-3 gap-6">
           <FileInput />
-          {/* <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard /> */}
+          {sellerProducts.map((product) => (
+            <ProductCard key={product.id} data={product} />
+          ))}
         </div>
       </SellerLayout>
     </>

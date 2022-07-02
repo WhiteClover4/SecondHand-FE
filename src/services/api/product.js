@@ -97,7 +97,7 @@ export function getSellerProductsService(token) {
   };
 
   return new Promise((resolve, reject) => {
-    fetch(`${apiStagingURL}/seller`, requestOptions)
+    fetch(`${apiStagingURL}/api/seller`, requestOptions)
       .then((response) => response.json())
       .then((result) => resolve(result))
       .catch((error) => reject(error));

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { ADD_ALERT } from '../../redux/slice/alert';
-import { publishProductService } from '../../services/api/product';
+import { draftProductService, publishProductService } from '../../services/api/product';
 import { initialProductInput } from '../../utils/initial';
 
 export default function useProductInput() {
@@ -42,11 +42,11 @@ export default function useProductInput() {
 
       if (res.status === 'error') return;
 
-      dispatch(ADD_ALERT({ status: 'success', message: 'success add product' }));
+      dispatch(ADD_ALERT({ status: 'success', message: 'success publish product' }));
 
       navigate('/seller/products');
     } catch (error) {
-      console.log('error add product', error);
+      console.log('error publish product', error);
 
       dispatch(ADD_ALERT({ status: 'error', message: 'something went wrong' }));
     } finally {
@@ -72,13 +72,13 @@ export default function useProductInput() {
 
       if (!res.data) return dispatch(ADD_ALERT({ status: 'error', message: res.msg }));
 
-      dispatch(ADD_ALERT({ status: 'success', message: 'success add product' }));
+      dispatch(ADD_ALERT({ status: 'success', message: 'success draft product' }));
 
       navigate(
         `/seller/product/${encodeURIComponent(res.data.name)}/preview?product_id=${res.data.id}`,
       );
     } catch (error) {
-      console.log('error add product', error);
+      console.log('error draft product', error);
 
       dispatch(ADD_ALERT({ status: 'error', message: 'something went wrong' }));
     } finally {
