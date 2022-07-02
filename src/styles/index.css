@@ -34,3 +34,7 @@ code {
 ::-webkit-scrollbar-thumb:hover {
   background-color: #4b1979;
 }
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}

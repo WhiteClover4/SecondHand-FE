@@ -23,9 +23,9 @@ export default function MainNavbar() {
   });
 
   return (
-    <header className="absolute inset-x-0 top-[38px] z-10 mb-8 flex items-center justify-between bg-transparent bg-neutral-01 px-4 lg:sticky lg:top-0 lg:h-[84px] lg:px-[136px] lg:shadow-high">
-      <div className="flex flex-row items-center space-x-6">
-        <button className="rounded-2xl bg-neutral-01 p-3 lg:hidden" isSmall>
+    <header className="absolute inset-x-0 top-[38px] z-10 mb-8 flex items-center justify-between bg-transparent px-4 lg:sticky lg:top-0 lg:h-[84px] lg:bg-neutral-01 lg:px-[136px] lg:shadow-high">
+      <div className="flex w-full flex-row items-center space-x-4 lg:space-x-6">
+        <button className="rounded-2xl bg-neutral-01 p-3 lg:hidden">
           <MenuIcon className="w-6" />
         </button>
         <Link className="hidden h-[34px] w-[100px] bg-primary-05 lg:inline-block" to="/" />
