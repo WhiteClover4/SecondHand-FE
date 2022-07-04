@@ -53,7 +53,7 @@ export default function Register() {
           Daftar
         </PrimaryButton>
       </form>
-      <div className="mt-[202px] flex items-center justify-center space-x-2 lg:mt-10">
+      <div className="mt-[116px] flex items-center justify-center space-x-2 lg:mt-10">
         <p className="text-body-14">Sudah punya akun?</p>
         <Link className="inline-block text-body-14 font-bold text-primary-04" to="/login">
           Masuk di sini
