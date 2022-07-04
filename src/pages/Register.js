@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { PrimaryButton } from '../components/buttons';
+import { BackButton, PrimaryButton } from '../components/buttons';
 import { LabelPasswordInput, LabelTextInput } from '../components/inputs';
 import { AuthLayout } from '../components/layouts';
 import useAuth from '../hooks/dependent/useAuth';
@@ -13,6 +13,7 @@ export default function Register() {
 
   return (
     <AuthLayout>
+      <BackButton className="mb-6 lg:hidden" />
       <h1 className="text-heading-24 font-bold">Daftar</h1>
       <form
         onSubmit={(e) => {
@@ -52,7 +53,7 @@ export default function Register() {
           Daftar
         </PrimaryButton>
       </form>
-      <div className="mt-10 flex items-center justify-center space-x-2">
+      <div className="mt-[202px] flex items-center justify-center space-x-2 lg:mt-10">
         <p className="text-body-14">Sudah punya akun?</p>
         <Link className="inline-block text-body-14 font-bold text-primary-04" to="/login">
           Masuk di sini
