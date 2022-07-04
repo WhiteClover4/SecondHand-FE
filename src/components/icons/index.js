@@ -14,6 +14,7 @@ import BoxIcon from './BoxIcon';
 import ChevronRightIcon from './ChevronRightIcon';
 import DollarSignIcon from './DollarSignIcon';
 import SignInIcon from './SignInIcon';
+import MenuIcon from './MenuIcon';
 
 export {
   HeartIcon,
@@ -32,4 +33,5 @@ export {
   ChevronRightIcon,
   DollarSignIcon,
   SignInIcon,
+  MenuIcon,
 };

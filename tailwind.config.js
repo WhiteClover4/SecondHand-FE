@@ -2,6 +2,9 @@
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
+    backgroundImage: () => ({
+      'gradient-mobile': 'linear-gradient(180deg, #FFE9C9 59.55%, rgba(255, 233, 202, 0) 100%)',
+    }),
     colors: {
       transparent: 'transparent',
       primary: {
@@ -24,6 +27,9 @@ module.exports = {
         '03': '#8A8A8A',
         '04': '#3C3C3C',
         '05': '#151515',
+      },
+      gradient: {
+        mobile: 'linear-gradient(180deg, #FFE9C9 59.55%, rgba(255, 233, 202, 0) 100%)',
       },
       alert: {
         danger: '#FA2C5A',
