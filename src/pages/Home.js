@@ -68,11 +68,11 @@ const Tab = ({ tab }) => {
   const navigate = useNavigate();
   const query = useQuery();
   const category = query.get('category') || 'Semua';
-  const searchQuery = query.get('search');
+  const search = query.get('search');
 
   function navigateQuerySearch(tab) {
     if (tab === 'Semua') return navigate('/');
-    navigate(`/?category=${tab}&search=${searchQuery || ''}`);
+    navigate(`/?category=${tab}&search=${search || ''}`);
   }
 
   return (
