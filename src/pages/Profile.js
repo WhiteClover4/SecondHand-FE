@@ -10,13 +10,19 @@ import { SimpleNavbar } from '../components/navbars';
 export default function SellerProduct() {
   return (
     <div className="absolute top-0 h-screen w-full overflow-auto">
-      <SimpleNavbar title="Lengkapi Info Akun" />
+      <div className="hidden lg:block">
+        <SimpleNavbar title="Lengkapi Info Akun" />
+      </div>
+      <div className="h-13 flex w-[360px] items-center lg:hidden">
+        <BackButton className=" mt-4 ml-4" />
+        <p className="mx-auto flex justify-center mt-4 text-body-14 font-medium"> Lengkapi Info Akun </p>
+      </div>
       <div className="relative mx-auto mt-10 w-[568px]" onSubmit={(e) => e.preventDefault()}>
-        <BackButton className="absolute -left-[76px] top-0" />
-        <div className="flex w-full justify-center">
+        <BackButton className="absolute -left-[76px] top-0 hidden lg:block" />
+        <div className="m-auto mt-10 flex w-1/2 lg:justify-center">
           <FileInput3 />
         </div>
-        <form className="mt-6">
+        <form className="mt-6 w-[348px] px-[16px] lg:w-full">
           <div className="space-y-4">
             <LabelTextInput autoFocus label="Nama*" placeholder="Nama" />
             <LabelOptionInput label="Kota*" />
