@@ -5,12 +5,13 @@ export const initialProduct = {
   price: 0,
   status: '',
   category_id: 0,
-  isPublished: '',
-  Category: {
-    id: 0,
+  category: '',
+  seller: {
+    city: '',
     name: '',
+    profile_picture: '',
   },
-  Transactions: {},
+  product_images: [],
 };
 
 export const initialProductInput = {
