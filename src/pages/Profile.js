@@ -22,7 +22,7 @@ export default function SellerProduct() {
   return (
     <AuthenticatedRoute>
       <div className="absolute top-0 h-screen w-full overflow-auto">
-        <div className="h-13 flex w-[360px] items-center lg:hidden">
+        <div className="h-13 flex w-full items-center lg:hidden">
           <BackButton className=" mt-4 ml-4" />
           <p className="mx-auto mt-4 flex justify-center text-body-14 font-medium">
             {' '}
@@ -32,13 +32,13 @@ export default function SellerProduct() {
         <div className="hidden lg:block">
           <SimpleNavbar title="Lengkapi Info Akun" />
         </div>
-        <div className="relative mx-auto mt-10 w-[568px]">
+        <div className="relative mx-auto mt-10 w-full">
           <BackButton className="absolute -left-[76px] top-0 hidden lg:block" />
-          <div className="m-auto mt-10 flex w-1/2 lg:justify-center">
+          <div className="mt-10 flex justify-center lg:w-full lg:justify-center">
             <FileInput3 onChange={setFileInput} preview={userData.profile_picture} />
           </div>
           <form
-            className="mt-6 w-[348px] px-[16px] lg:w-full"
+            className="mx-auto mt-6 w-[360px] px-[16px] lg:w-full lg:px-[436px]"
             onSubmit={(e) => {
               e.preventDefault();
               updateProfile();
