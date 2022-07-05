@@ -103,3 +103,21 @@ export function getSellerProductsService(token) {
       .catch((error) => reject(error));
   });
 }
+
+export function getSellerProductService(token, productId) {
+  const myHeaders = new Headers();
+  myHeaders.append('Authorization', `Bearer ${token}`);
+
+  const requestOptions = {
+    method: 'GET',
+    headers: myHeaders,
+    redirect: 'follow',
+  };
+
+  return new Promise((resolve, reject) => {
+    fetch(`${apiStagingURL}/api/seller/product/${productId}`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => resolve(result))
+      .catch((error) => reject(error));
+  });
+}

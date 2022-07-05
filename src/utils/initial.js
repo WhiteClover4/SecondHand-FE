@@ -4,7 +4,6 @@ export const initialProduct = {
   description: '',
   price: 0,
   status: '',
-  category_id: 0,
   category: '',
   seller: {
     city: '',
