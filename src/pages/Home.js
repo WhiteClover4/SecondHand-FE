@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PrimaryButton } from '../components/buttons';
