@@ -21,7 +21,7 @@ describe('Login', () => {
     render(<LoginComp />);
   });
 
-  function mockFetchAPI(email, password, isServerDown) {
+  function mockFetchLoginAPI(email, password, isServerDown) {
     if (isServerDown) return fetch.mockReject(() => Promise.reject('505'));
 
     let mockResponse = {};
@@ -44,7 +44,7 @@ describe('Login', () => {
     const loginButton = screen.getByTestId('login-button');
 
     act(() => {
-      mockFetchAPI(undefined, undefined, true);
+      mockFetchLoginAPI(undefined, undefined, true);
 
       userEvent.click(loginButton);
     });
@@ -66,7 +66,7 @@ describe('Login', () => {
       userEvent.type(emailInput, emailType);
       userEvent.type(passwordInput, passwordType);
 
-      mockFetchAPI(emailType, passwordType);
+      mockFetchLoginAPI(emailType, passwordType);
 
       userEvent.click(loginButton);
     });
@@ -88,7 +88,7 @@ describe('Login', () => {
       userEvent.type(emailInput, emailType);
       userEvent.type(passwordInput, passwordType);
 
-      mockFetchAPI(emailType, passwordType);
+      mockFetchLoginAPI(emailType, passwordType);
 
       userEvent.click(loginButton);
     });
