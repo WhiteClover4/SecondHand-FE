@@ -1,4 +1,5 @@
 import LabelTextInput from './LabelTextInput';
+import LabelNumberInput from './LabelNumberInput';
 import LabelPasswordInput from './LabelPasswordInput';
 import LabelTextareaInput from './LabelTextareaInput';
 import LabelOptionInput from './LabelOptionInput';
@@ -9,6 +10,7 @@ import FileInput3 from './FileInput3';
 
 export {
   LabelTextInput,
+  LabelNumberInput,
   LabelPasswordInput,
   LabelTextareaInput,
   LabelOptionInput,
