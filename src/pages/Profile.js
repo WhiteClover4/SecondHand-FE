@@ -32,64 +32,64 @@ export default function SellerProduct() {
         <div className="hidden lg:block">
           <SimpleNavbar title="Lengkapi Info Akun" />
         </div>
-        <div className="relative mx-auto mt-10 w-[568px]" onSubmit={(e) => e.preventDefault()}>
+        <div className="relative mx-auto mt-10 w-[568px] hidden lg:block">
           <BackButton className="absolute -left-[76px] top-0" />
-          <div className="mt-10 flex justify-center lg:justify-center">
-            <FileInput3 onChange={setFileInput} preview={userData.profile_picture} />
-          </div>
-          <form
-            className="mx-auto mt-6 h-[360px] w-[360px] px-[16px] lg:w-full"
-            onSubmit={(e) => {
-              e.preventDefault();
-              updateProfile();
-            }}
-          >
-            <div className="space-y-4">
-              <LabelTextInput
-                autoFocus
-                id="name"
-                label="Nama*"
-                name="name"
-                onChange={setUserDataInput}
-                placeholder="Nama"
-                value={userData.name || ''}
-              />
-              <LabelOptionInput
-                id="city"
-                label="Kota*"
-                name="city"
-                onChange={setUserDataInput}
-                value={userData.city || ''}
-                values={cities}
-              />
-              <LabelTextareaInput
-                id="address"
-                label="Alamat*"
-                name="address"
-                onChange={setUserDataInput}
-                placeholder="Contoh: Jalan Ikan Hiu 33"
-                value={userData.address || ''}
-              />
-              <LabelTextInput
-                id="phone_number"
-                label="No Handphone*"
-                name="phone_number"
-                onChange={setUserDataInput}
-                placeholder="contoh: +628123456789"
-                value={userData.phone_number || ''}
-              />
-            </div>
-            <div className="mt-6 flex items-center space-x-4">
-              <PrimaryButton
-                className="w-full"
-                isDisable={loading.updateProfile || loading.getProfile}
-                type="submit"
-              >
-                Simpan
-              </PrimaryButton>
-            </div>
-          </form>
         </div>
+        <div className="mt-10 flex justify-center lg:w-full lg:justify-center">
+          <FileInput3 onChange={setFileInput} preview={userData.profile_picture} />
+        </div>
+        <form
+          className="mx-auto w-[328px] px-[16px] lg:w-full lg:px-[436px]"
+          onSubmit={(e) => {
+            e.preventDefault();
+            updateProfile();
+          }}
+        >
+          <div className="space-y-4">
+            <LabelTextInput
+              autoFocus
+              id="name"
+              label="Nama*"
+              name="name"
+              onChange={setUserDataInput}
+              placeholder="Nama"
+              value={userData.name || ''}
+            />
+            <LabelOptionInput
+              id="city"
+              label="Kota*"
+              name="city"
+              onChange={setUserDataInput}
+              value={userData.city || ''}
+              values={cities}
+            />
+            <LabelTextareaInput
+              id="address"
+              label="Alamat*"
+              name="address"
+              onChange={setUserDataInput}
+              placeholder="Contoh: Jalan Ikan Hiu 33"
+              value={userData.address || ''}
+            />
+            <LabelTextInput
+              id="phone_number"
+              label="No Handphone*"
+              name="phone_number"
+              onChange={setUserDataInput}
+              placeholder="contoh: +628123456789"
+              value={userData.phone_number || ''}
+            />
+          </div>
+          <div className="mt-6 flex items-center space-x-4">
+            <PrimaryButton
+              className="w-full"
+              isDisable={loading.updateProfile || loading.getProfile}
+              type="submit"
+            >
+              Simpan
+            </PrimaryButton>
+          </div>
+        </form>
       </div>
     </AuthenticatedRoute>
   );
