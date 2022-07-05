@@ -32,13 +32,13 @@ export default function SellerProduct() {
         <div className="hidden lg:block">
           <SimpleNavbar title="Lengkapi Info Akun" />
         </div>
-        <div className="relative mx-auto mt-10 w-full">
-          <BackButton className="absolute -left-[76px] top-0 hidden lg:block" />
-          <div className="mt-10 flex justify-center lg:w-full lg:justify-center">
+        <div className="relative mx-auto mt-10 w-[568px]" onSubmit={(e) => e.preventDefault()}>
+          <BackButton className="absolute -left-[76px] top-0" />
+          <div className="mt-10 flex justify-center lg:justify-center">
             <FileInput3 onChange={setFileInput} preview={userData.profile_picture} />
           </div>
           <form
-            className="mx-auto mt-6 w-[360px] px-[16px] lg:w-full lg:px-[436px]"
+            className="mx-auto mt-6 h-[360px] w-[360px] px-[16px] lg:w-full"
             onSubmit={(e) => {
               e.preventDefault();
               updateProfile();
