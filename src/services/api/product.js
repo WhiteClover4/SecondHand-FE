@@ -121,3 +121,29 @@ export function getSellerProductService(token, productId) {
       .catch((error) => reject(error));
   });
 }
+
+export function updateProductService(token, productId, name, description, price, category) {
+  var myHeaders = new Headers();
+  myHeaders.append('Authorization', `Bearer ${token}`);
+  myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
+
+  var urlencoded = new URLSearchParams();
+  urlencoded.append('name', name);
+  urlencoded.append('description', description);
+  urlencoded.append('price', price);
+  urlencoded.append('category', category);
+
+  var requestOptions = {
+    method: 'PUT',
+    headers: myHeaders,
+    body: urlencoded,
+    redirect: 'follow',
+  };
+
+  return new Promise((resolve, reject) => {
+    fetch(`${apiStagingURL}/api/seller/product/${productId}`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => resolve(result))
+      .catch((error) => reject(error));
+  });
+}

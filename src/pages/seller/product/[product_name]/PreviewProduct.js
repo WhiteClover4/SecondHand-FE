@@ -14,7 +14,7 @@ export default function PreviewProduct() {
   const productId = query.get('product_id');
 
   function navigateToProductInput() {
-    navigate(`/seller/product/${sellerProduct.name}?id_product=${sellerProduct.id}`);
+    navigate(`/seller/product/${sellerProduct.name}?product_id=${sellerProduct.id}`);
   }
 
   useEffect(() => {

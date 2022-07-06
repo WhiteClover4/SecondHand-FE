@@ -66,14 +66,16 @@ export default function ProductInput() {
           <div className="mt-4 flex flex-col space-y-1">
             <p className="text-body-12 font-normal"> Foto Produk </p>
             <div className="grid grid-cols-4 gap-x-6">
-              {productInput.images.length < 4 && <FileInput2 onChange={addProductInputImage} />}
-              {productInput.images.map((image, i) => (
+              {productInput.product_images.length < 4 && (
+                <FileInput2 onChange={addProductInputImage} />
+              )}
+              {productInput.product_images.map((image, i) => (
                 <div key={i} className="relative h-24">
                   <RemoveButton remove={() => removeProductInputImage(i)} />
                   <img
-                    alt={image.url}
+                    alt={image.product_pictures}
                     className="h-full w-full overflow-hidden rounded-xl object-contain"
-                    src={image.url}
+                    src={image.product_pictures}
                   />
                 </div>
               ))}
@@ -82,7 +84,7 @@ export default function ProductInput() {
           <div className="mt-6 flex items-center space-x-4">
             <SecondaryButton
               className="w-full"
-              isDisable={loading.publishProduct || loading.draftProduct}
+              isDisable={loading.publishProduct || loading.draftProduct || loading.updateProduct}
               onClick={draftProduct}
               type="button"
             >
@@ -90,11 +92,11 @@ export default function ProductInput() {
             </SecondaryButton>
             <PrimaryButton
               className="w-full"
-              isDisable={loading.publishProduct || loading.draftProduct}
+              isDisable={loading.publishProduct || loading.draftProduct || loading.updateProduct}
               onClick={publishProduct}
               type="submit"
             >
-              Terbitkan
+              {!productInput.id ? 'Terbitkan' : 'Perbarui'}
             </PrimaryButton>
           </div>
         </form>

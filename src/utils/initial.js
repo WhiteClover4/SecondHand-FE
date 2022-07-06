@@ -14,11 +14,12 @@ export const initialProduct = {
 };
 
 export const initialProductInput = {
+  id: '',
   name: '',
   price: '',
   category: '',
   description: '',
-  images: [],
+  product_images: [],
 };
 
 export const initialUserData = {
