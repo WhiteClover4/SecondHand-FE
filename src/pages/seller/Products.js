@@ -5,10 +5,12 @@ import { SellerLayout } from '../../components/layouts';
 import { FileInput } from '../../components/inputs';
 import { ProductCard } from '../../components/cards';
 import useSellerProduct from '../../hooks/dependent/useSellerProduct';
+import { initialProduct } from '../../utils/initial';
+import ProductCardSkeleton from '../../components/skeletons/ProductCardSkeleton';
 
 export default function Products() {
   const navigate = useNavigate();
-  const { getSellerProducts, sellerProducts } = useSellerProduct();
+  const { getSellerProducts, sellerProducts, loading } = useSellerProduct();
 
   function navigateToPreview(name, id) {
     const encodedName = encodeURIComponent(name);
@@ -24,16 +26,26 @@ export default function Products() {
       <MainNavbar />
       <SellerLayout active={1}>
         <div className="grid grid-cols-3 gap-6">
-          <FileInput />
-          {sellerProducts.map((product) => (
-            <ProductCard
-              key={product.id}
-              data={product}
-              navigate={() => navigateToPreview(product.name, product.id)}
-            />
-          ))}
+          {!loading.getSellerProducts ? (
+            <>
+              <FileInput />
+              {sellerProducts.map((product) => (
+                <ProductCard
+                  key={product.id}
+                  data={product}
+                  navigate={() => navigateToPreview(product.name, product.id)}
+                />
+              ))}
+            </>
+          ) : (
+            dummiesProducts.map((el, i) => <ProductCardSkeleton key={i} />)
+          )}
         </div>
       </SellerLayout>
     </>
   );
 }
+
+const dummiesProducts = [];
+
+for (let i = 1; i <= 6; i++) dummiesProducts.push(initialProduct);
