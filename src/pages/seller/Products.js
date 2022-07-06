@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { MainNavbar } from '../../components/navbars';
+import { SimpleNavbar } from '../../components/navbars';
 import { SellerLayout } from '../../components/layouts';
 import { FileInput } from '../../components/inputs';
 import { ProductCard } from '../../components/cards';
@@ -14,9 +14,9 @@ export default function Products() {
 
   return (
     <>
-      <MainNavbar />
+      <SimpleNavbar />
       <SellerLayout active={1}>
-        <div className="grid grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 gap-6 lg:grid-cols-3">
           <FileInput />
           {sellerProducts.map((product) => (
             <ProductCard key={product.id} data={product} />
