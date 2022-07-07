@@ -148,7 +148,7 @@ export function updateProductService(token, productId, name, description, price,
   });
 }
 
-export async function addProductimageService(token, product_pictures, productId) {
+export function addProductimageService(token, product_pictures, productId) {
   var myHeaders = new Headers();
   myHeaders.append('Authorization', `Bearer ${token}`);
 
@@ -172,7 +172,7 @@ export async function addProductimageService(token, product_pictures, productId)
   });
 }
 
-export async function deleteProductImageService(imageId) {
+export function deleteProductImageService(imageId) {
   var formdata = new FormData();
 
   var requestOptions = {
@@ -183,6 +183,27 @@ export async function deleteProductImageService(imageId) {
 
   return new Promise((resolve, reject) => {
     fetch(`${apiStagingURL}/api/productImage/${imageId}`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => resolve(result))
+      .catch((error) => reject(error));
+  });
+}
+
+export function updateStatusToPublishedService(token, productId) {
+  var myHeaders = new Headers();
+  myHeaders.append('Authorization', `Bearer ${token}`);
+
+  var formdata = new FormData();
+
+  var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: formdata,
+    redirect: 'follow',
+  };
+
+  return new Promise((resolve, reject) => {
+    fetch(`${apiStagingURL}/api/seller/product/publish/${productId}`, requestOptions)
       .then((response) => response.json())
       .then((result) => resolve(result))
       .catch((error) => reject(error));

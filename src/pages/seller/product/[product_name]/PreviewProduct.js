@@ -9,7 +9,7 @@ import { ProductDetailSkeleton } from '../../../../components/skeletons';
 
 export default function PreviewProduct() {
   const navigate = useNavigate();
-  const { getSellerProduct, sellerProduct, loading } = useSellerProduct();
+  const { getSellerProduct, sellerProduct, updateStatusToPublished, loading } = useSellerProduct();
   const query = useQuery();
   const productId = query.get('product_id');
 
@@ -51,7 +51,14 @@ export default function PreviewProduct() {
               <div className="text-black mb-6 text-title-16">
                 Rp {sellerProduct.price.toLocaleString('id-ID')}
               </div>
-              <PrimaryButton className="mb-[14px]">Terbitkan</PrimaryButton>
+              <PrimaryButton
+                className="mb-[14px]"
+                isDisable={loading.updateStatusProduct}
+                onClick={() => updateStatusToPublished(productId)}
+                type="button"
+              >
+                Terbitkan
+              </PrimaryButton>
               <SecondaryButton onClick={navigateToProductInput} type="button">
                 Edit
               </SecondaryButton>

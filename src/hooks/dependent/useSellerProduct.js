@@ -1,7 +1,11 @@
 import { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ADD_ALERT } from '../../redux/slice/alert';
-import { getSellerProductService, getSellerProductsService } from '../../services/api/product';
+import {
+  getSellerProductService,
+  getSellerProductsService,
+  updateStatusToPublishedService,
+} from '../../services/api/product';
 import { initialProduct } from '../../utils/initial';
 
 export default function useSellerProduct() {
@@ -9,7 +13,11 @@ export default function useSellerProduct() {
   const { token, isAuthenticated } = useSelector((state) => state.auth);
   const [sellerProducts, setSellerProducts] = useState([]);
   const [sellerProduct, setSellerProduct] = useState(initialProduct);
-  const [loading, setLoading] = useState({ getSellerProducts: false, getSellerProduct: false });
+  const [loading, setLoading] = useState({
+    getSellerProducts: false,
+    getSellerProduct: false,
+    updateStatusProduct: false,
+  });
 
   const getSellerProducts = useCallback(async () => {
     if (!isAuthenticated) return;
@@ -51,5 +59,31 @@ export default function useSellerProduct() {
     },
     [dispatch, token, isAuthenticated],
   );
-  return { sellerProducts, sellerProduct, getSellerProducts, getSellerProduct, loading };
+
+  async function updateStatusToPublished(productId) {
+    if (!isAuthenticated) return;
+
+    setLoading({ ...loading, updateStatusProduct: true });
+    try {
+      const res = await updateStatusToPublishedService(token, productId);
+
+      if (!res.data) return dispatch(ADD_ALERT({ status: 'error', message: res }));
+
+      dispatch(ADD_ALERT({ status: res.status, message: res.msg }));
+    } catch (error) {
+      console.log('error update status product', error);
+
+      dispatch(ADD_ALERT({ status: 'error', message: 'something went wrong' }));
+    } finally {
+      setLoading({ ...loading, updateStatusProduct: false });
+    }
+  }
+  return {
+    sellerProducts,
+    sellerProduct,
+    getSellerProducts,
+    getSellerProduct,
+    updateStatusToPublished,
+    loading,
+  };
 }
