@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { ADD_ALERT } from '../../redux/slice/alert';
 import {
+  addProductimageService,
+  deleteProductImageService,
   draftProductService,
   publishProductService,
   updateProductService,
@@ -24,6 +26,8 @@ export default function useProductInput() {
 
   const { getSellerProduct, sellerProduct } = useSellerProduct();
 
+  const [deletelistImage, setDeletelistImage] = useState([]);
+
   const query = useQuery();
   const productId = query.get('product_id');
 
@@ -40,7 +44,12 @@ export default function useProductInput() {
   }
 
   function removeProductInputImage(targetIndex) {
+    const imageId = productInput.product_images[targetIndex].id;
+
+    if (imageId) addToDeletelistImage(imageId);
+
     productInput.product_images.splice(targetIndex, 1);
+
     setProductInput({ ...productInput });
   }
 
@@ -116,15 +125,45 @@ export default function useProductInput() {
 
   async function updateProduct() {
     setLoading({ ...loading, updateProduct: true });
-    const { name, price, category, description } = productInput;
+    const { name, price, category, description, product_images } = productInput;
+
     try {
-      const res = await updateProductService(token, productId, name, description, price, category);
+      const resUpdateProduct = await updateProductService(
+        token,
+        productId,
+        name,
+        description,
+        price,
+        category,
+      );
 
-      if (res.status === 'error') return dispatch(ADD_ALERT({ status: 'error', message: res.msg }));
+      if (resUpdateProduct.status === 'error')
+        return dispatch(ADD_ALERT({ status: 'error', message: resUpdateProduct.msg }));
 
-      if (!res.data) return dispatch(ADD_ALERT({ status: 'error', message: res.msg }));
+      if (!resUpdateProduct.data)
+        return dispatch(ADD_ALERT({ status: 'error', message: resUpdateProduct.msg }));
 
-      dispatch(ADD_ALERT({ status: res.status, message: res.msg }));
+      if (deletelistImage.length) {
+        const fetchArr = deletelistImage.map((imageId) => deleteProductImageService(imageId));
+
+        const resDeleted = await Promise.all(fetchArr);
+
+        resDeleted.forEach((res) => {
+          if (res.msg) dispatch(ADD_ALERT({ status: 'success', message: res.msg }));
+        });
+      }
+
+      if (product_images.length) {
+        const productImageWithFile = product_images
+          .filter((image) => image.file)
+          .map((image) => image.file);
+
+        const resAddImage = await addProductimageService(token, productImageWithFile, productId);
+
+        if (resAddImage.msg) dispatch(ADD_ALERT({ status: 'success', message: resAddImage.msg }));
+      }
+
+      dispatch(ADD_ALERT({ status: resUpdateProduct.status, message: resUpdateProduct.msg }));
     } catch (error) {
       console.log('error update product', error);
 
@@ -132,6 +171,10 @@ export default function useProductInput() {
     } finally {
       setLoading({ ...loading, updateProduct: false });
     }
+  }
+
+  function addToDeletelistImage(imageId) {
+    setDeletelistImage([...deletelistImage, imageId]);
   }
 
   useEffect(() => {
@@ -153,6 +196,5 @@ export default function useProductInput() {
     removeProductInputImage,
     publishProduct,
     draftProduct,
-    updateProduct,
   };
 }
