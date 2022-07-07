@@ -56,7 +56,7 @@ export default function ProductDetail() {
                 Saya tertarik dan ingin nego
               </PrimaryButton>
             </div>
-            <ProfileCard />
+            <ProfileCard data={product.seller} />
           </div>
         </div>
       ) : (

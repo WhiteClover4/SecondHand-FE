@@ -29,8 +29,15 @@ export default function PreviewProduct() {
       ) : (
         <div className="flex flex-row justify-center gap-8 px-[236px] ">
           <div className="w-2/3 space-y-6 ">
-            <div className="relative overflow-hidden">
-              <img className="w-full" src="/img/img.png" />
+            <div className="relative h-[436px] overflow-hidden rounded-2xl">
+              <img
+                className="h-full w-full object-contain"
+                src={
+                  !sellerProduct.product_images.length
+                    ? '/img/no-product-image.png'
+                    : sellerProduct.product_images[0].product_pictures
+                }
+              />
             </div>
             <div className="space-y-4 rounded-2xl px-4 pb-[27px] pt-4 shadow-low">
               <p className="text-black text-body-14 font-medium">{sellerProduct.category}</p>
@@ -49,7 +56,7 @@ export default function PreviewProduct() {
                 Edit
               </SecondaryButton>
             </div>
-            <ProfileCard2 />
+            <ProfileCard2 data={sellerProduct.seller} />
           </div>
         </div>
       )}
