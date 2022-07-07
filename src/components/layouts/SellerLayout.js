@@ -1,12 +1,21 @@
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import useProfile from '../../hooks/dependent/useProfile';
 import { ProfileCard2 } from '../cards';
 import { BoxIcon, ChevronRightIcon, DollarSignIcon, HeartIcon } from '../icons';
+import { ProfileCardSkeleton } from '../skeletons';
 
 export default function SellerLayout({ active, children }) {
+  const { getProfile, userData, loading } = useProfile();
+
+  useEffect(() => {
+    getProfile();
+  }, [getProfile]);
+
   return (
     <div className="space-y-6 px-[236px]">
       <p className="text-black text-heading-20 font-bold">Daftar Jual Saya</p>
-      <ProfileCard2 />
+      {!loading.getProfile ? <ProfileCard2 data={userData} /> : <ProfileCardSkeleton />}
       <div className="flex flex-row gap-8">
         <div className="flex h-fit w-fit flex-col gap-6 rounded-2xl bg-[#FFFFFF] p-6 shadow-high">
           <p className="text-title-16 font-medium">Kategori</p>

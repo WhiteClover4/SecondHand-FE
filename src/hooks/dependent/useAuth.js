@@ -1,15 +1,17 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useCallback, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { localStorageTokenKey } from '../../constants/environment';
 import { ADD_ALERT, SET_ALERT } from '../../redux/slice/alert';
 import { CHANGE_AUTH, SET_TOKEN } from '../../redux/slice/auth';
 import { loginService, registerService } from '../../services/api/auth';
 
 export default function useAuth() {
+  const { pathname } = useLocation();
   const navigate = useNavigate();
-  const [loading, setLoading] = useState({ register: false, login: false });
-
   const dispatch = useDispatch();
+  const { isAuthenticated } = useSelector((state) => state.auth);
+  const [loading, setLoading] = useState({ register: false, login: false });
 
   async function register(name, email, password) {
     setLoading({ ...loading, register: true });
@@ -29,7 +31,7 @@ export default function useAuth() {
     } catch (error) {
       console.log('register error', error);
 
-      dispatch(ADD_ALERT({ status: 'error', message: 'internal server error' }));
+      dispatch(ADD_ALERT({ status: 'error', message: 'something went wrong' }));
     } finally {
       setLoading({ ...loading, register: false });
     }
@@ -47,15 +49,25 @@ export default function useAuth() {
         return;
       }
 
+      if (res.status === 'Failed')
+        return dispatch(ADD_ALERT({ status: 'error', message: res.msg }));
+
       dispatch(SET_ALERT([{ status: 'success', message: res.msg }]));
 
       dispatch(SET_TOKEN(res.token));
 
       dispatch(CHANGE_AUTH(true));
+
+      const saveToken = {
+        value: res.token,
+        expiry: new Date().getTime() + 3600000, // 1 hour in milliseconds
+      };
+
+      localStorage.setItem(localStorageTokenKey, JSON.stringify(saveToken));
     } catch (error) {
       console.log('login error', error);
 
-      dispatch(ADD_ALERT({ status: 'error', message: 'internal server error' }));
+      dispatch(ADD_ALERT({ status: 'error', message: 'something went wrong' }));
     } finally {
       setLoading({ ...loading, login: false });
     }
@@ -64,8 +76,28 @@ export default function useAuth() {
   function logout() {
     dispatch(SET_TOKEN(''));
     dispatch(CHANGE_AUTH(false));
-    localStorage.removeItem('token');
+    localStorage.removeItem(localStorageTokenKey);
   }
 
-  return { loading, register, login, logout };
+  const checkToken = useCallback(() => {
+    const tokenStr = localStorage.getItem(localStorageTokenKey);
+
+    if (!tokenStr) return;
+
+    const getToken = JSON.parse(tokenStr);
+
+    if (new Date().getTime() > getToken.expiry) {
+      dispatch(SET_TOKEN(''));
+      dispatch(CHANGE_AUTH(false));
+      localStorage.removeItem(localStorageTokenKey);
+      return;
+    }
+
+    if (isAuthenticated) return;
+
+    dispatch(SET_TOKEN(getToken.value));
+    dispatch(CHANGE_AUTH(true));
+  }, [dispatch, isAuthenticated, pathname]);
+
+  return { loading, register, login, logout, checkToken };
 }

@@ -1,9 +1,10 @@
 import { MainNavbar } from '../../components/navbars';
 import { SellerLayout } from '../../components/layouts';
+import AuthenticatedRoute from '../../routes/AuthenticatedRoute';
 
 export default function Interested() {
   return (
-    <>
+    <AuthenticatedRoute>
       <MainNavbar />
       <SellerLayout active={2}>
         <div className="flex flex-col items-center">
@@ -13,6 +14,6 @@ export default function Interested() {
           </p>
         </div>
       </SellerLayout>
-    </>
+    </AuthenticatedRoute>
   );
 }

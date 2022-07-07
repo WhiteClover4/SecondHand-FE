@@ -11,7 +11,7 @@ export default function LabelPasswordInput({ margin, id, label, ...rest }) {
       <div className="relative">
         <input
           {...rest}
-          className="w-full rounded-2xl border border-neutral-02 bg-neutral-01 px-4 py-[16px] pr-16 text-body-14 placeholder:text-neutral-03"
+          className="w-full rounded-2xl border border-neutral-02 bg-neutral-01 px-4 py-[14px] pr-16 text-body-14 placeholder:text-neutral-03"
           id={id}
           type={isPasswordShown ? 'text' : 'password'}
         />
