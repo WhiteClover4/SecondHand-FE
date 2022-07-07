@@ -52,14 +52,16 @@ export default function PreviewProduct() {
               <div className="text-black mb-6 text-title-16">
                 Rp {sellerProduct.price.toLocaleString('id-ID')}
               </div>
-              <PrimaryButton
-                className="mb-[14px]"
-                isDisable={loading.updateStatusProduct}
-                onClick={() => updateStatusToPublished(productId)}
-                type="button"
-              >
-                Terbitkan
-              </PrimaryButton>
+              {!sellerProduct.isPublished && (
+                <PrimaryButton
+                  className="mb-[14px]"
+                  isDisable={loading.updateStatusProduct}
+                  onClick={() => updateStatusToPublished(productId)}
+                  type="button"
+                >
+                  Terbitkan
+                </PrimaryButton>
+              )}
               <SecondaryButton onClick={navigateToProductInput} type="button">
                 Edit
               </SecondaryButton>
