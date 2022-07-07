@@ -12,11 +12,20 @@ export default function ProductSeller() {
   const navigate = useNavigate();
   return (
     <div className="absolute top-0 h-screen w-full overflow-auto">
-      <SimpleNavbar />
-      <div className="relative mx-auto mt-10 w-[568px]" onSubmit={(e) => e.preventDefault()}>
-        <BackButton className="absolute -left-[76px] top-0" />
+      <div className="h-13 flex w-full items-center lg:hidden">
+        <BackButton className=" mt-[14px] ml-4" />
+        <p className="mx-auto mt-4 flex justify-center text-body-14 font-medium">
+          {' '}
+          Lengkapi Detail Produk{' '}
+        </p>
+      </div>
+      <div className="hidden lg:block">
+        <SimpleNavbar />
+      </div>
+      <div className="relative mx-auto mt-10 w-full lg:w-[568px] px-4" onSubmit={(e) => e.preventDefault()}>
+        <BackButton className="absolute -left-[76px] top-0 hidden lg:block" />{' '}
         <form>
-          <div className="space-y-4">
+          <div className="space-y-4 w-full lg:w-full">
             <LabelTextInput label="Nama produk" placeholder="Nama Produk" />
             <LabelTextInput label="Harga Produk" placeholder="Rp. 0,00" />
             <LabelOptionInput label="Kategori" />
