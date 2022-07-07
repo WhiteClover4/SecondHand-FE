@@ -20,6 +20,7 @@ export default function ProductInput() {
     loading,
     publishProduct,
     draftProduct,
+    updateProduct,
   } = useProductInput();
 
   return (
@@ -93,7 +94,7 @@ export default function ProductInput() {
             <PrimaryButton
               className="w-full"
               isDisable={loading.publishProduct || loading.draftProduct || loading.updateProduct}
-              onClick={publishProduct}
+              onClick={() => (productInput.id ? updateProduct() : publishProduct())}
               type="submit"
             >
               {!productInput.id ? 'Terbitkan' : 'Perbarui'}

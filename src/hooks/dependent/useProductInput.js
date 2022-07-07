@@ -54,8 +54,6 @@ export default function useProductInput() {
   }
 
   async function publishProduct() {
-    if (productInput.id) return updateProduct();
-
     setLoading({ ...loading, publishProduct: true });
 
     const { name, price, category, description, product_images } = productInput;
@@ -196,5 +194,6 @@ export default function useProductInput() {
     removeProductInputImage,
     publishProduct,
     draftProduct,
+    updateProduct,
   };
 }
