@@ -6,6 +6,7 @@ import { ProfileCard2 } from '../../../../components/cards';
 import useQuery from '../../../../hooks/independent/useQuery';
 import useSellerProduct from '../../../../hooks/dependent/useSellerProduct';
 import { ProductDetailSkeleton } from '../../../../components/skeletons';
+import AuthenticatedRoute from '../../../../routes/AuthenticatedRoute';
 
 export default function PreviewProduct() {
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ export default function PreviewProduct() {
   }, [getSellerProduct, productId]);
 
   return (
-    <div>
+    <AuthenticatedRoute>
       <MainNavbar />
       {loading.getSellerProduct ? (
         <ProductDetailSkeleton />
@@ -67,6 +68,6 @@ export default function PreviewProduct() {
           </div>
         </div>
       )}
-    </div>
+    </AuthenticatedRoute>
   );
 }

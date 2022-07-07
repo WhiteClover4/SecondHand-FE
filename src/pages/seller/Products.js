@@ -7,6 +7,7 @@ import { ProductCard } from '../../components/cards';
 import useSellerProduct from '../../hooks/dependent/useSellerProduct';
 import { initialProduct } from '../../utils/initial';
 import ProductCardSkeleton from '../../components/skeletons/ProductCardSkeleton';
+import AuthenticatedRoute from '../../routes/AuthenticatedRoute';
 
 export default function Products() {
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ export default function Products() {
   }, [getSellerProducts]);
 
   return (
-    <>
+    <AuthenticatedRoute>
       <MainNavbar />
       <SellerLayout active={1}>
         <div className="grid grid-cols-3 gap-6">
@@ -42,7 +43,7 @@ export default function Products() {
           )}
         </div>
       </SellerLayout>
-    </>
+    </AuthenticatedRoute>
   );
 }
 
