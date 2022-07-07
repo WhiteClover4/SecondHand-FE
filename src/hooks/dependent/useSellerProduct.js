@@ -4,6 +4,7 @@ import { ADD_ALERT } from '../../redux/slice/alert';
 import {
   getSellerProductService,
   getSellerProductsService,
+  getWishlistProductService,
   updateStatusToPublishedService,
 } from '../../services/api/product';
 import { initialProduct } from '../../utils/initial';
@@ -13,10 +14,12 @@ export default function useSellerProduct() {
   const { token, isAuthenticated } = useSelector((state) => state.auth);
   const [sellerProducts, setSellerProducts] = useState([]);
   const [sellerProduct, setSellerProduct] = useState(initialProduct);
+  const [wishlistProduct, setWishlistProduct] = useState([]);
   const [loading, setLoading] = useState({
     getSellerProducts: false,
     getSellerProduct: false,
     updateStatusProduct: false,
+    getWishlistProduct: false,
   });
 
   const getSellerProducts = useCallback(async () => {
@@ -78,12 +81,34 @@ export default function useSellerProduct() {
       setLoading({ ...loading, updateStatusProduct: false });
     }
   }
+
+  const getWishlistProduct = useCallback(async () => {
+    if (!isAuthenticated) return;
+
+    setLoading({ ...loading, getWishlistProduct: true });
+    try {
+      const res = await getWishlistProductService(token);
+
+      if (typeof res === 'string') return dispatch(ADD_ALERT({ status: 'error', message: res }));
+
+      setWishlistProduct(res.data);
+    } catch (error) {
+      console.log('error get wishlit product', error);
+
+      dispatch(ADD_ALERT({ status: 'error', message: 'something went wrong' }));
+    } finally {
+      setLoading({ ...loading, getWishlistProduct: false });
+    }
+  }, [dispatch, token]);
+
   return {
     sellerProducts,
     sellerProduct,
     getSellerProducts,
     getSellerProduct,
     updateStatusToPublished,
+    getWishlistProduct,
+    wishlistProduct,
     loading,
   };
 }
