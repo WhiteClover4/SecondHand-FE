@@ -73,13 +73,11 @@ const Category = ({ active, category }) => {
   );
 };
 
-const isDesktop = window.matchMedia('(min-width: 1024px)');
-
 const categories = [
   {
     no: 1,
     link: '/seller/products',
-    name: isDesktop.matches ? 'Semua Produk' : 'Product',
+    name: 'Produk',
     icon: BoxIcon,
   },
   { no: 2, link: '/seller/interested', name: 'Diminati', icon: HeartIcon },
