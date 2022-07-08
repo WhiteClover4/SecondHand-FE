@@ -1,8 +1,17 @@
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import useProfile from '../../hooks/dependent/useProfile';
 import { ProfileCard2 } from '../cards';
 import { BoxIcon, ChevronRightIcon, DollarSignIcon, HeartIcon, MenuIcon } from '../icons';
+import { ProfileCardSkeleton } from '../skeletons';
 
 export default function SellerLayout({ active, children }) {
+  const { getProfile, userData, loading } = useProfile();
+
+  useEffect(() => {
+    getProfile();
+  }, [getProfile]);
+
   return (
     <div className="px-4 lg:space-y-6 lg:px-[236px]">
       <div className="mb-2 flex items-center gap-4">
@@ -11,7 +20,7 @@ export default function SellerLayout({ active, children }) {
         </div>
         <p className="text-black text-heading-20 font-bold">Daftar Jual Saya</p>
       </div>
-      <ProfileCard2 />
+      {!loading.getProfile ? <ProfileCard2 data={userData} /> : <ProfileCardSkeleton />}
       <div className="mt-6 flex flex-col lg:flex-row lg:gap-8">
         <div className="mb-6 flex h-fit w-fit flex-col gap-4 lg:mb-0 lg:gap-6 lg:rounded-2xl lg:bg-[#FFFFFF] lg:p-6 lg:shadow-high">
           <p className="hidden text-title-16 font-medium lg:block">Kategori</p>

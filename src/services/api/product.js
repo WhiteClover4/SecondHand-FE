@@ -103,3 +103,109 @@ export function getSellerProductsService(token) {
       .catch((error) => reject(error));
   });
 }
+
+export function getSellerProductService(token, productId) {
+  const myHeaders = new Headers();
+  myHeaders.append('Authorization', `Bearer ${token}`);
+
+  const requestOptions = {
+    method: 'GET',
+    headers: myHeaders,
+    redirect: 'follow',
+  };
+
+  return new Promise((resolve, reject) => {
+    fetch(`${apiStagingURL}/api/seller/product/${productId}`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => resolve(result))
+      .catch((error) => reject(error));
+  });
+}
+
+export function updateProductService(token, productId, name, description, price, category) {
+  var myHeaders = new Headers();
+  myHeaders.append('Authorization', `Bearer ${token}`);
+  myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
+
+  var urlencoded = new URLSearchParams();
+  urlencoded.append('name', name);
+  urlencoded.append('description', description);
+  urlencoded.append('price', price);
+  urlencoded.append('category', category);
+
+  var requestOptions = {
+    method: 'PUT',
+    headers: myHeaders,
+    body: urlencoded,
+    redirect: 'follow',
+  };
+
+  return new Promise((resolve, reject) => {
+    fetch(`${apiStagingURL}/api/seller/product/${productId}`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => resolve(result))
+      .catch((error) => reject(error));
+  });
+}
+
+export function addProductimageService(token, product_pictures, productId) {
+  var myHeaders = new Headers();
+  myHeaders.append('Authorization', `Bearer ${token}`);
+
+  var formdata = new FormData();
+  product_pictures.forEach((file) => {
+    formdata.append('product_pictures', file);
+  });
+
+  var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: formdata,
+    redirect: 'follow',
+  };
+
+  return new Promise((resolve, reject) => {
+    fetch(`${apiStagingURL}/api/seller/product/image/${productId}`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => resolve(result))
+      .catch((error) => reject(error));
+  });
+}
+
+export function deleteProductImageService(imageId) {
+  var formdata = new FormData();
+
+  var requestOptions = {
+    method: 'DELETE',
+    body: formdata,
+    redirect: 'follow',
+  };
+
+  return new Promise((resolve, reject) => {
+    fetch(`${apiStagingURL}/api/productImage/${imageId}`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => resolve(result))
+      .catch((error) => reject(error));
+  });
+}
+
+export function updateStatusToPublishedService(token, productId) {
+  var myHeaders = new Headers();
+  myHeaders.append('Authorization', `Bearer ${token}`);
+
+  var formdata = new FormData();
+
+  var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: formdata,
+    redirect: 'follow',
+  };
+
+  return new Promise((resolve, reject) => {
+    fetch(`${apiStagingURL}/api/seller/product/publish/${productId}`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => resolve(result))
+      .catch((error) => reject(error));
+  });
+}

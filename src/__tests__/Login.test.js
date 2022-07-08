@@ -15,28 +15,93 @@ const LoginComp = () => (
   </BrowserRouter>
 );
 
-describe('Login', () => {
+describe('Login page render alert properly', () => {
   beforeEach(() => {
     fetch.resetMocks();
     render(<LoginComp />);
   });
 
-  it('success', async () => {
-    const emailInput = screen.getByText('Email');
-    const passwordInput = screen.getByText('Password');
-    const loginButton = screen.getByTestId('login-button');
-
+  it('should render alert message "something went wrong"', async () => {
     act(() => {
-      userEvent.type(emailInput, 'correct@mail.com');
-      userEvent.type(passwordInput, '12345678');
+      mockFetchLoginAPI(undefined, undefined, true);
+      userEvent.click(screen.getByTestId('login-button'));
+    });
 
-      fetch.mockResponseOnce(JSON.stringify({ token: '123', msg: 'Login success' }));
+    await waitFor(() => expect(screen.getByText('something went wrong')).toBeInTheDocument());
+  });
 
-      userEvent.click(loginButton);
+  it('should render double alert message "email can`t be null" and "password can`t be null"', async () => {
+    act(() => {
+      mockFetchLoginAPI('', '');
+      userEvent.click(screen.getByTestId('login-button'));
     });
 
     await waitFor(() => {
-      expect(screen.getByText('Login success')).toBeInTheDocument();
+      expect(screen.getByText('email can`t be null')).toBeInTheDocument();
+      expect(screen.getByText('password can`t be null')).toBeInTheDocument();
     });
   });
+
+  it('should render alert message "email can`t be null"', async () => {
+    act(() => {
+      mockFetchLoginAPI('', '12345678');
+      userEvent.click(screen.getByTestId('login-button'));
+    });
+
+    await waitFor(() => expect(screen.getByText('email can`t be null')).toBeInTheDocument());
+  });
+
+  it('should render alert message "password can`t be null"', async () => {
+    act(() => {
+      mockFetchLoginAPI('correct@mail.com', '');
+      userEvent.click(screen.getByTestId('login-button'));
+    });
+
+    await waitFor(() => expect(screen.getByText('password can`t be null')).toBeInTheDocument());
+  });
+
+  it('should render alert message "Wrong email or password"', async () => {
+    act(() => {
+      mockFetchLoginAPI('wrong@mail.com', '12345678');
+      userEvent.click(screen.getByTestId('login-button'));
+    });
+
+    await waitFor(() => expect(screen.getByText('Wrong email or password')).toBeInTheDocument());
+  });
+
+  it('should render alert message "Login success"', async () => {
+    act(() => {
+      mockFetchLoginAPI('correct@mail.com', '12345678');
+      userEvent.click(screen.getByTestId('login-button'));
+    });
+
+    await waitFor(() => expect(screen.getByText('Login success')).toBeInTheDocument());
+  });
 });
+
+function mockFetchLoginAPI(email, password, isServerDown) {
+  if (isServerDown) return fetch.mockReject(() => Promise.reject('505'));
+
+  let mockResponse = {};
+  const correctEmail = 'correct@mail.com';
+  const correctPassword = '12345678';
+
+  if (!email && !password) {
+    mockResponse = {
+      errors: [{ msg: 'email can`t be null' }, { msg: 'password can`t be null' }],
+    };
+  } else if (!email) {
+    mockResponse = { errors: [{ msg: 'email can`t be null' }] };
+  } else if (!password) {
+    mockResponse = { errors: [{ msg: 'password can`t be null' }] };
+  } else if (email !== correctEmail) {
+    mockResponse = { status: 'Failed', msg: 'Wrong email or password' };
+  } else if (password !== correctPassword) {
+    mockResponse = { status: 'Failed', msg: 'Wrong email or password' };
+    return;
+  } else if (email === correctEmail && password === correctPassword) {
+    mockResponse = { token: '123', msg: 'Login success' };
+  }
+
+  fetch.mockResponseOnce(JSON.stringify(mockResponse));
+}

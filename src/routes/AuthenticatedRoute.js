@@ -8,7 +8,7 @@ export default function AuthenticatedRoute({ children }) {
   const { isAuthenticated } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    const visit = encodeURIComponent(location.pathname);
+    const visit = encodeURIComponent(location.pathname + location.search);
     if (!isAuthenticated)
       return navigate(`/login?continue=${visit}`, {
         replace: true,

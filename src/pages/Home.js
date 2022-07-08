@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PrimaryButton } from '../components/buttons';
@@ -12,11 +13,17 @@ import categories from '../_content/categories.json';
 import { initialProduct } from '../utils/initial';
 
 export default function Home() {
+  const navigate = useNavigate();
   const { getProducts, products, loading } = useProduct();
 
   const query = useQuery();
   const category = query.get('category');
   const search = query.get('search');
+
+  function navigateToDetail(name, id) {
+    const encodedName = encodeURIComponent(name);
+    navigate(`/product/${encodedName}?product_id=${id}`);
+  }
 
   useEffect(() => {
     getProducts(search, category);
@@ -41,7 +48,13 @@ export default function Home() {
           </section>
           <section className="my-8 grid grid-cols-2 gap-4 px-4 md:grid-cols-3 lg:my-10 lg:grid-cols-6 lg:px-[136px]">
             {!loading.getProducts
-              ? products.map((product) => <ProductCard key={product.id} data={product} />)
+              ? products.map((product) => (
+                  <ProductCard
+                    key={product.id}
+                    data={product}
+                    navigate={() => navigateToDetail(product.name, product.id)}
+                  />
+                ))
               : dummiesProducts.map((el, i) => <ProductCardSkeleton key={i} />)}
           </section>
         </main>
@@ -55,11 +68,11 @@ const Tab = ({ tab }) => {
   const navigate = useNavigate();
   const query = useQuery();
   const category = query.get('category') || 'Semua';
-  const searchQuery = query.get('search');
+  const search = query.get('search');
 
   function navigateQuerySearch(tab) {
     if (tab === 'Semua') return navigate('/');
-    navigate(`/?category=${tab}&search=${searchQuery || ''}`);
+    navigate(`/?category=${tab}&search=${search || ''}`);
   }
 
   return (

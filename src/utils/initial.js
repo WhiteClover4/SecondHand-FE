@@ -4,21 +4,22 @@ export const initialProduct = {
   description: '',
   price: 0,
   status: '',
-  category_id: 0,
-  isPublished: '',
-  Category: {
-    id: 0,
+  category: '',
+  seller: {
+    city: '',
     name: '',
+    profile_picture: '',
   },
-  Transactions: {},
+  product_images: [],
 };
 
 export const initialProductInput = {
+  id: '',
   name: '',
   price: '',
   category: '',
   description: '',
-  images: [],
+  product_images: [],
 };
 
 export const initialUserData = {

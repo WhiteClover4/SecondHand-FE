@@ -9,6 +9,7 @@ import {
 } from '../../../components/inputs';
 import { SimpleNavbar } from '../../../components/navbars';
 import useProductInput from '../../../hooks/dependent/useProductInput';
+import AuthenticatedRoute from '../../../routes/AuthenticatedRoute';
 import categories from '../../../_content/categories.json';
 
 export default function ProductInput() {
@@ -20,86 +21,91 @@ export default function ProductInput() {
     loading,
     publishProduct,
     draftProduct,
+    updateProduct,
   } = useProductInput();
 
   return (
-    <div className="absolute top-0 h-screen w-full overflow-auto">
-      <SimpleNavbar />
-      <div className="relative mx-auto mt-10 w-[568px]">
-        <BackButton className="absolute -left-[76px] top-0" />
-        <form onSubmit={(e) => e.preventDefault()}>
-          <div className="space-y-4">
-            <LabelTextInput
-              id="name"
-              label="Nama produk"
-              name="name"
-              onChange={setProductInputForm}
-              placeholder="Nama Produk"
-              value={productInput.name}
-            />
-            <LabelNumberInput
-              id="price"
-              label="Harga Produk"
-              name="price"
-              onChange={setProductInputForm}
-              placeholder="Rp. 0,00"
-              value={productInput.price}
-            />
-            <LabelOptionInput
-              defaultValue="Pilih Kategori"
-              id="category"
-              label="Kategori"
-              name="category"
-              onChange={setProductInputForm}
-              value={productInput.category}
-              values={categories}
-            />
-            <LabelTextareaInput
-              id="description"
-              label="Deskripsi"
-              name="description"
-              onChange={setProductInputForm}
-              placeholder="Contoh: Jalan Ikan Hiu 33"
-              value={productInput.description}
-            />
-          </div>
-          <div className="mt-4 flex flex-col space-y-1">
-            <p className="text-body-12 font-normal"> Foto Produk </p>
-            <div className="grid grid-cols-4 gap-x-6">
-              {productInput.images.length < 4 && <FileInput2 onChange={addProductInputImage} />}
-              {productInput.images.map((image, i) => (
-                <div key={i} className="relative h-24">
-                  <RemoveButton remove={() => removeProductInputImage(i)} />
-                  <img
-                    alt={image.url}
-                    className="h-full w-full overflow-hidden rounded-xl object-contain"
-                    src={image.url}
-                  />
-                </div>
-              ))}
+    <AuthenticatedRoute>
+      <div className="absolute top-0 h-screen w-full overflow-auto">
+        <SimpleNavbar />
+        <div className="relative mx-auto mt-10 w-[568px]">
+          <BackButton className="absolute -left-[76px] top-0" />
+          <form onSubmit={(e) => e.preventDefault()}>
+            <div className="space-y-4">
+              <LabelTextInput
+                id="name"
+                label="Nama produk"
+                name="name"
+                onChange={setProductInputForm}
+                placeholder="Nama Produk"
+                value={productInput.name}
+              />
+              <LabelNumberInput
+                id="price"
+                label="Harga Produk"
+                name="price"
+                onChange={setProductInputForm}
+                placeholder="Rp. 0,00"
+                value={productInput.price}
+              />
+              <LabelOptionInput
+                defaultValue="Pilih Kategori"
+                id="category"
+                label="Kategori"
+                name="category"
+                onChange={setProductInputForm}
+                value={productInput.category}
+                values={categories}
+              />
+              <LabelTextareaInput
+                id="description"
+                label="Deskripsi"
+                name="description"
+                onChange={setProductInputForm}
+                placeholder="Contoh: Jalan Ikan Hiu 33"
+                value={productInput.description}
+              />
             </div>
-          </div>
-          <div className="mt-6 flex items-center space-x-4">
-            <SecondaryButton
-              className="w-full"
-              isDisable={loading.publishProduct || loading.draftProduct}
-              onClick={draftProduct}
-              type="button"
-            >
-              Preview
-            </SecondaryButton>
-            <PrimaryButton
-              className="w-full"
-              isDisable={loading.publishProduct || loading.draftProduct}
-              onClick={publishProduct}
-              type="submit"
-            >
-              Terbitkan
-            </PrimaryButton>
-          </div>
-        </form>
+            <div className="mt-4 flex flex-col space-y-1">
+              <p className="text-body-12 font-normal"> Foto Produk </p>
+              <div className="grid grid-cols-4 gap-x-6">
+                {productInput.product_images.length < 4 && (
+                  <FileInput2 onChange={addProductInputImage} />
+                )}
+                {productInput.product_images.map((image, i) => (
+                  <div key={i} className="relative h-24">
+                    <RemoveButton remove={() => removeProductInputImage(i)} />
+                    <img
+                      alt={image.product_pictures}
+                      className="h-full w-full overflow-hidden rounded-xl object-contain"
+                      src={image.product_pictures}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="mt-6 flex items-center space-x-4">
+              <SecondaryButton
+                className="w-full"
+                isDisable={loading.publishProduct || loading.draftProduct || loading.updateProduct}
+                onClick={draftProduct}
+                type="button"
+              >
+                Preview
+              </SecondaryButton>
+              <PrimaryButton
+                className="w-full"
+                isDisable={loading.publishProduct || loading.draftProduct || loading.updateProduct}
+                onClick={() => (productInput.id ? updateProduct() : publishProduct())}
+                type="submit"
+              >
+                {!productInput.id ? 'Terbitkan' : 'Perbarui'}
+              </PrimaryButton>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
+    </AuthenticatedRoute>
   );
 }
 
