@@ -39,7 +39,7 @@ export default function SellerProduct() {
           <FileInput3 onChange={setFileInput} preview={userData.profile_picture} />
         </div>
         <form
-          className="mx-auto w-[328px] px-[16px] lg:w-full lg:px-[436px]"
+          className=" relative mx-auto w-full px-[16px] lg:w-[568px] "
           onSubmit={(e) => {
             e.preventDefault();
             updateProfile();
