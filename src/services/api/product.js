@@ -209,3 +209,44 @@ export function updateStatusToPublishedService(token, productId) {
       .catch((error) => reject(error));
   });
 }
+
+export function bidProductService(token, productId, bidPrice) {
+  var myHeaders = new Headers();
+  myHeaders.append('Authorization', `Bearer ${token}`);
+  myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
+
+  var urlencoded = new URLSearchParams();
+  urlencoded.append('offer_price', bidPrice);
+
+  var requestOptions = {
+    method: 'PUT',
+    headers: myHeaders,
+    body: urlencoded,
+    redirect: 'follow',
+  };
+
+  return new Promise((resolve, reject) => {
+    fetch(`${apiStagingURL}/api/transaction/${productId}`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => resolve(result))
+      .catch((error) => reject(error));
+  });
+}
+
+export function getWishlistProductService(token) {
+  var myHeaders = new Headers();
+  myHeaders.append('Authorization', `Bearer ${token}`);
+
+  var requestOptions = {
+    method: 'GET',
+    headers: myHeaders,
+    redirect: 'follow',
+  };
+
+  return new Promise((resolve, reject) => {
+    fetch(`${apiStagingURL}/api/transaction/wishlist`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => resolve(result))
+      .catch((error) => reject(error));
+  });
+}
