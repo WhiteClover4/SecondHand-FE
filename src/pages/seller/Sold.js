@@ -8,7 +8,7 @@ export default function Sold() {
     <AuthenticatedRoute>
       <SimpleNavbar />
       <SellerLayout active={3}>
-        <div className="grid grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 gap-6 lg:grid-cols-3">
           {/* <ProductCard />
           <ProductCard />
           <ProductCard />

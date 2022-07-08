@@ -26,7 +26,7 @@ export default function Products() {
     <AuthenticatedRoute>
       <SimpleNavbar />
       <SellerLayout active={1}>
-        <div className="grid grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 gap-6 lg:grid-cols-3">
           {!loading.getSellerProducts ? (
             <>
               <FileInput />
