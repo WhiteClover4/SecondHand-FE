@@ -15,12 +15,17 @@ export default function MainNavbar() {
 
   const query = useQuery();
   const category = query.get('category');
-  const searchQuery = query.get('search');
+  const search = query.get('search');
 
   const dropdownRef = useRef();
   useOutsideClick(dropdownRef, () => {
     if (isDropdownShown) setDropdownShown(false);
   });
+
+  function navigateQuerySearch(e) {
+    const value = encodeURIComponent(e.target.value);
+    navigate(`/?category=${category || ''}&search=${value}`);
+  }
 
   return (
     <header className="absolute inset-x-0 top-[38px] z-10 mb-8 flex items-center justify-between bg-transparent px-4 lg:sticky lg:top-0 lg:h-[84px] lg:bg-neutral-01 lg:px-[136px] lg:shadow-high">
@@ -30,9 +35,9 @@ export default function MainNavbar() {
         </button>
         <Link className="hidden h-[34px] w-[100px] bg-primary-05 lg:inline-block" to="/" />
         <SearchInput
-          onChange={(e) => navigate(`/?category=${category || ''}&search=${e.target.value}`)}
+          onChange={navigateQuerySearch}
           placeholder="Cari di sini ..."
-          value={searchQuery || ''}
+          value={search || ''}
         />
       </div>
       {isAuthenticated ? (

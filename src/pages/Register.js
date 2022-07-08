@@ -51,7 +51,12 @@ export default function Register() {
             placeholder="Masukkan password"
             value={form.password}
           />
-          <PrimaryButton className="mt-6 w-full" isDisable={loading.register} type="submit">
+          <PrimaryButton
+            className="mt-6 w-full"
+            data-testid="register-button"
+            isDisable={loading.register}
+            type="submit"
+          >
             Daftar
           </PrimaryButton>
         </form>
