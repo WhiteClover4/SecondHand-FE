@@ -38,3 +38,7 @@ code {
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
+li {
+  list-style: none;
+}
