@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { BellIcon, ListIcon, SignInIcon, UserIcon, MenuIcon } from '../icons';
@@ -7,19 +7,26 @@ import { SearchInput } from '../inputs';
 import useOutsideClick from '../../hooks/independent/useOutsideClick';
 import useAuth from '../../hooks/dependent/useAuth';
 import useQuery from '../../hooks/independent/useQuery';
+import { NotifCard } from '../cards';
+import useNotification from '../../hooks/dependent/useNotification';
 
 export default function MainNavbar() {
   const navigate = useNavigate();
   const { isAuthenticated } = useSelector((state) => state.auth);
   const [isDropdownShown, setDropdownShown] = useState(false);
+  const [isNotificationShown, setNotificationShown] = useState(false);
 
   const query = useQuery();
   const category = query.get('category');
   const search = query.get('search');
 
   const dropdownRef = useRef();
+  const notificationRef = useRef();
   useOutsideClick(dropdownRef, () => {
     if (isDropdownShown) setDropdownShown(false);
+  });
+  useOutsideClick(notificationRef, () => {
+    if (isNotificationShown) setNotificationShown(false);
   });
 
   function navigateQuerySearch(e) {
@@ -48,10 +55,15 @@ export default function MainNavbar() {
                 <ListIcon className="mr-2 w-6" />
               </Link>
             </li>
-            <li>
-              <button>
+            <li className="relative">
+              <button
+                onClick={() => setNotificationShown(!isNotificationShown)}
+                ref={notificationRef}
+                type="button"
+              >
                 <BellIcon className="mr-2 w-6" />
               </button>
+              {isNotificationShown && <Notification />}
             </li>
             <li className="relative">
               <button
@@ -99,6 +111,22 @@ const Dropdown = () => {
       >
         Logout
       </button>
+    </div>
+  );
+};
+
+const Notification = () => {
+  const { getNotification, notification } = useNotification();
+  useEffect(() => {
+    getNotification();
+  }, [getNotification]);
+  return (
+    <div className="absolute top-10 left-1/2 flex w-[376px] -translate-x-1/2 flex-col space-y-4 overflow-hidden rounded-2xl bg-neutral-01 shadow-high">
+      <div className="h-[500px] w-full overflow-auto px-6">
+        {notification.map((notif) => (
+          <NotifCard key={notif.id} data={notif} />
+        ))}
+      </div>
     </div>
   );
 };
