@@ -11,16 +11,10 @@ import useQuery from '../../hooks/independent/useQuery';
 export default function MainNavbar() {
   const navigate = useNavigate();
   const { isAuthenticated } = useSelector((state) => state.auth);
-  const [isDropdownShown, setDropdownShown] = useState(false);
 
   const query = useQuery();
   const category = query.get('category');
   const search = query.get('search');
-
-  const dropdownRef = useRef();
-  useOutsideClick(dropdownRef, () => {
-    if (isDropdownShown) setDropdownShown(false);
-  });
 
   function navigateQuerySearch(e) {
     const value = encodeURIComponent(e.target.value);
@@ -41,30 +35,7 @@ export default function MainNavbar() {
         />
       </div>
       {isAuthenticated ? (
-        <nav>
-          <ul className="flex flex-row gap-6">
-            <li>
-              <Link to="/seller/products">
-                <ListIcon className="mr-2 w-6" />
-              </Link>
-            </li>
-            <li>
-              <button>
-                <BellIcon className="mr-2 w-6" />
-              </button>
-            </li>
-            <li className="relative">
-              <button
-                onClick={() => setDropdownShown(!isDropdownShown)}
-                ref={dropdownRef}
-                type="button"
-              >
-                <UserIcon className="mr-2 w-6" />
-              </button>
-              {isDropdownShown && <Dropdown />}
-            </li>
-          </ul>
-        </nav>
+        <AuthenticatedNav />
       ) : (
         <PrimaryButton
           className="hidden lg:inline-block"
@@ -81,9 +52,44 @@ export default function MainNavbar() {
   );
 }
 
-const Dropdown = () => {
-  const { logout } = useAuth();
+const AuthenticatedNav = () => {
+  const [isProfileDropdownShown, setProfileDropdownShown] = useState(false);
 
+  const profileDropdownRef = useRef();
+  useOutsideClick(profileDropdownRef, () => {
+    if (isProfileDropdownShown) setProfileDropdownShown(false);
+  });
+
+  return (
+    <nav className="hidden lg:block">
+      <ul className="flex flex-row gap-6">
+        <li>
+          <Link to="/seller/products">
+            <ListIcon className="mr-2 w-6" />
+          </Link>
+        </li>
+        <li>
+          <button>
+            <BellIcon className="mr-2 w-6" />
+          </button>
+        </li>
+        <li className="relative">
+          <button
+            onClick={() => setProfileDropdownShown(!isProfileDropdownShown)}
+            ref={profileDropdownRef}
+            type="button"
+          >
+            <UserIcon className="mr-2 w-6" />
+          </button>
+          {isProfileDropdownShown && <ProfileDropdown />}
+        </li>
+      </ul>
+    </nav>
+  );
+};
+
+const ProfileDropdown = () => {
+  const { logout } = useAuth();
   return (
     <div className="absolute top-10 left-1/2 flex w-40 -translate-x-1/2 flex-col rounded-md bg-neutral-01 shadow-low">
       <Link
