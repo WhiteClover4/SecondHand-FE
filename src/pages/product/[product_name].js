@@ -19,7 +19,7 @@ export default function ProductDetail() {
   const productId = query.get('product_id');
 
   function checkout() {
-    if (!isAuthenticated) navigate('/login');
+    if (!isAuthenticated) return navigate('/login');
     setShowBidModal(true);
   }
 

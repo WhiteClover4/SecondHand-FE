@@ -67,9 +67,17 @@ export default function useProduct() {
     try {
       const res = await bidProductService(token, productId, bidPrice);
 
-      if (!res.status) return dispatch(ADD_ALERT({ status: 'error', message: res }));
+      if (typeof res === 'string') return dispatch(ADD_ALERT({ status: 'error', message: res }));
 
-      if (res.status === 'Error') return dispatch(ADD_ALERT({ status: 'error', message: res.msg }));
+      if (res.errors) {
+        res.errors.forEach((error) => {
+          dispatch(ADD_ALERT({ status: 'error', message: error.msg }));
+        });
+        return;
+      }
+
+      if (res.status === 'Error')
+        return dispatch(ADD_ALERT({ status: 'warning', message: res.msg }));
 
       dispatch(ADD_ALERT({ status: res.status, message: res.msg }));
 
@@ -81,7 +89,6 @@ export default function useProduct() {
     } finally {
       setLoading({ ...loading, bidProduct: false });
     }
-    ƒ;
   }
 
   return { getProducts, getProduct, products, product, bidProduct, loading };
