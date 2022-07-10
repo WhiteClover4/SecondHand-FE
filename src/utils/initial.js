@@ -31,3 +31,14 @@ export const initialUserData = {
   profile_picture: '',
   file: null,
 };
+
+export const initialTransaction = {
+  id: 0,
+  buyer_name: '',
+  buyer_city: '',
+  buyer_profile_picture: '',
+  product_name: '',
+  product_price: 0,
+  product_offer: 0,
+  date: '',
+};

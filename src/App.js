@@ -4,6 +4,7 @@ import { MainAlert } from './components/alerts';
 import { REMOVE_ALERT } from './redux/slice/alert';
 import useAuth from './hooks/dependent/useAuth';
 import RoutesApp from './routes';
+import MobileSideNavbar from './components/navbars/MobileSideNavbar';
 
 function App() {
   const { checkToken } = useAuth();
@@ -14,6 +15,7 @@ function App() {
 
   return (
     <>
+      <MobileSideNavbar />
       <ShowALert />
       <RoutesApp />
     </>
