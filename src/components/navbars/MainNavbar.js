@@ -97,7 +97,11 @@ const AuthenticatedNav = () => {
         </li>
         <li className="relative">
           <button onClick={() => setProfileDropdownShown(!isProfileDropdownShown)} type="button">
-            <UserIcon className="mr-2 w-6" />
+            <UserIcon
+              className={`${
+                isProfileDropdownShown ? 'text-primary-04' : 'text-neutral-05'
+              } mr-2 w-6`}
+            />
           </button>
           {isProfileDropdownShown && <ProfileDropdown />}
         </li>
