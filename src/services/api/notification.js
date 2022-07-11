@@ -23,6 +23,7 @@ export function readNotificationService(token, notifId) {
   myHeaders.append('Authorization', `Bearer ${token}`);
 
   var requestOptions = {
+    headers: myHeaders,
     method: 'PUT',
     redirect: 'follow',
   };

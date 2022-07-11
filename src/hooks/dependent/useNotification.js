@@ -5,11 +5,12 @@ import { getNotificationService, readNotificationService } from '../../services/
 
 export default function useNotification() {
   const dispatch = useDispatch();
-  const { token } = useSelector((state) => state.auth);
+  const { token, isAuthenticated } = useSelector((state) => state.auth);
   const [notification, setNotification] = useState([]);
   const [loading, setLoading] = useState({ getNotification: false, readNotification: false });
 
   const getNotification = useCallback(async () => {
+    if (!isAuthenticated) return;
     setLoading({ ...loading, notification: true });
     try {
       const res = await getNotificationService(token);
@@ -23,7 +24,7 @@ export default function useNotification() {
     } finally {
       setLoading({ ...loading, notification: false });
     }
-  }, [dispatch, token]);
+  }, [dispatch, token, isAuthenticated]);
 
   async function readNotification(notifId) {
     setLoading({ ...loading, readNotification: true });

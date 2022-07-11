@@ -1,10 +1,9 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { BellIcon, ListIcon, SignInIcon, UserIcon, MenuIcon } from '../icons';
 import { PrimaryButton } from '../buttons';
 import { SearchInput } from '../inputs';
-import useOutsideClick from '../../hooks/independent/useOutsideClick';
 import useAuth from '../../hooks/dependent/useAuth';
 import useQuery from '../../hooks/independent/useQuery';
 import { NotifCard } from '../cards';
@@ -19,15 +18,6 @@ export default function MainNavbar() {
   const query = useQuery();
   const category = query.get('category');
   const search = query.get('search');
-
-  const dropdownRef = useRef();
-  const notificationRef = useRef();
-  useOutsideClick(dropdownRef, () => {
-    if (isDropdownShown) setDropdownShown(false);
-  });
-  useOutsideClick(notificationRef, () => {
-    if (isNotificationShown) setNotificationShown(false);
-  });
 
   function navigateQuerySearch(e) {
     const value = encodeURIComponent(e.target.value);
@@ -56,21 +46,13 @@ export default function MainNavbar() {
               </Link>
             </li>
             <li className="relative">
-              <button
-                onClick={() => setNotificationShown(!isNotificationShown)}
-                ref={notificationRef}
-                type="button"
-              >
+              <button onClick={() => setNotificationShown(!isNotificationShown)} type="button">
                 <BellIcon className="mr-2 w-6" />
               </button>
               {isNotificationShown && <Notification />}
             </li>
             <li className="relative">
-              <button
-                onClick={() => setDropdownShown(!isDropdownShown)}
-                ref={dropdownRef}
-                type="button"
-              >
+              <button onClick={() => setDropdownShown(!isDropdownShown)} type="button">
                 <UserIcon className="mr-2 w-6" />
               </button>
               {isDropdownShown && <Dropdown />}
@@ -116,7 +98,7 @@ const Dropdown = () => {
 };
 
 const Notification = () => {
-  const { getNotification, notification } = useNotification();
+  const { getNotification, notification, readNotification } = useNotification();
   useEffect(() => {
     getNotification();
   }, [getNotification]);
@@ -124,7 +106,11 @@ const Notification = () => {
     <div className="absolute top-10 left-1/2 flex w-[376px] -translate-x-1/2 flex-col space-y-4 overflow-hidden rounded-2xl bg-neutral-01 shadow-high">
       <div className="h-[500px] w-full overflow-auto px-6">
         {notification.map((notif) => (
-          <NotifCard key={notif.id} data={notif} />
+          <NotifCard
+            key={notif.id}
+            data={notif}
+            readNotification={() => readNotification(notif.id)}
+          />
         ))}
       </div>
     </div>
