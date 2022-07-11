@@ -22,10 +22,13 @@ export default function ProductSeller() {
       <div className="hidden lg:block">
         <SimpleNavbar />
       </div>
-      <div className="relative mx-auto mt-10 w-full lg:w-[568px] px-4" onSubmit={(e) => e.preventDefault()}>
+      <div
+        className="relative mx-auto mt-10 w-full px-4 lg:w-[568px]"
+        onSubmit={(e) => e.preventDefault()}
+      >
         <BackButton className="absolute -left-[76px] top-0 hidden lg:block" />{' '}
         <form>
-          <div className="space-y-4 w-full lg:w-full">
+          <div className="w-full space-y-4 lg:w-full">
             <LabelTextInput label="Nama produk" placeholder="Nama Produk" />
             <LabelTextInput label="Harga Produk" placeholder="Rp. 0,00" />
             <LabelOptionInput label="Kategori" />
