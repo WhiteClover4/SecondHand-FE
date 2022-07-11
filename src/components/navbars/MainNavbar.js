@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { BellIcon, ListIcon, SignInIcon, UserIcon, MenuIcon } from '../icons';
 import { PrimaryButton } from '../buttons';
 import { SearchInput } from '../inputs';
@@ -60,6 +60,7 @@ export default function MainNavbar() {
 }
 
 const AuthenticatedNav = () => {
+  const { pathname } = useLocation();
   const [isProfileDropdownShown, setProfileDropdownShown] = useState(false);
   const [isNotificationShown, setNotificationShown] = useState(false);
 
@@ -74,12 +75,21 @@ const AuthenticatedNav = () => {
       <ul className="flex flex-row gap-6">
         <li>
           <Link to="/seller/products">
-            <ListIcon className="mr-2 w-6" />
+            <ListIcon
+              className={`${
+                pathname.includes('seller/products') ? 'text-primary-04' : 'text-neutral-05'
+              } mr-2 w-6`}
+            />
           </Link>
         </li>
         <li className="relative">
+          {notification.some((notif) => !notif.is_read) && (
+            <div className="absolute top-0 right-3 h-2 w-2 rounded-full border border-neutral-01 bg-alert-danger p-px"></div>
+          )}
           <button onClick={() => setNotificationShown(!isNotificationShown)} type="button">
-            <BellIcon className="mr-2 w-6" />
+            <BellIcon
+              className={`${isNotificationShown ? 'text-primary-04' : 'text-neutral-05'} mr-2 w-6`}
+            />
           </button>
           {isNotificationShown && (
             <Notification notification={notification} readNotification={readNotification} />
