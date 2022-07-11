@@ -35,7 +35,7 @@ export default function useProfile() {
     } finally {
       setLoading({ ...loading, getProfile: false });
     }
-  }, [dispatch]);
+  }, [dispatch, token, isAuthenticated]);
 
   async function updateProfile() {
     if (!isAuthenticated) return;

@@ -4,7 +4,7 @@ export default function LabelOptionInput({ id, label, defaultValue, value, value
       <label className="text-body-12" htmlFor={id}>
         {label}
       </label>
-      <div className="w-full rounded-2xl border border-neutral-02 bg-neutral-01 px-4 py-[16px] text-body-14 placeholder:text-neutral-03">
+      <div className="w-full rounded-2xl border border-neutral-02 bg-neutral-01 px-4 py-[14px] text-body-14 placeholder:text-neutral-03">
         <select
           {...rest}
           className={`${value === 'default' && 'text-neutral-03'} w-full focus:outline-none`}

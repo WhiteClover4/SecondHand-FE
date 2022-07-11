@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PrimaryButton } from '../components/buttons';
@@ -12,11 +13,17 @@ import categories from '../_content/categories.json';
 import { initialProduct } from '../utils/initial';
 
 export default function Home() {
+  const navigate = useNavigate();
   const { getProducts, products, loading } = useProduct();
 
   const query = useQuery();
   const category = query.get('category');
   const search = query.get('search');
+
+  function navigateToDetail(name, id) {
+    const encodedName = encodeURIComponent(name);
+    navigate(`/product/${encodedName}?product_id=${id}`);
+  }
 
   useEffect(() => {
     getProducts(search, category);
@@ -25,23 +32,33 @@ export default function Home() {
   return (
     <>
       <MainNavbar />
-      <main>
+      <div>
         <SimpleCarousel />
-        <section className="px-[136px]">
-          <p className="mb-4 text-title-16 font-bold">Telusuri Kategori</p>
-          <div className="flex flex-row gap-4">
-            <Tab tab="Semua" />
-            {categories.map((category, i) => (
-              <Tab key={i} tab={category.name} />
-            ))}
-          </div>
-        </section>
-        <section className="my-10 grid grid-cols-6 gap-4 px-[136px]">
-          {!loading.getProducts
-            ? products.map((product) => <ProductCard key={product.id} data={product} />)
-            : dummiesProducts.map((el, i) => <ProductCardSkeleton key={i} />)}
-        </section>
-      </main>
+        <main className="relative bottom-[114px] z-10 lg:static">
+          <section className="overflow-hidden pl-4 lg:px-[136px]">
+            <p className="mb-4 text-body-14 font-medium lg:text-title-16 lg:font-bold">
+              Telusuri Kategori
+            </p>
+            <div className="hide-scrollbar flex flex-row gap-4 overflow-x-auto">
+              <Tab tab="Semua" />
+              {categories.map((category, i) => (
+                <Tab key={i} tab={category.name} />
+              ))}
+            </div>
+          </section>
+          <section className="my-8 grid grid-cols-2 gap-4 px-4 md:grid-cols-3 lg:my-10 lg:grid-cols-6 lg:px-[136px]">
+            {!loading.getProducts
+              ? products.map((product) => (
+                  <ProductCard
+                    key={product.id}
+                    data={product}
+                    navigate={() => navigateToDetail(product.name, product.id)}
+                  />
+                ))
+              : dummiesProducts.map((el, i) => <ProductCardSkeleton key={i} />)}
+          </section>
+        </main>
+      </div>
       <SellButton />
     </>
   );
@@ -51,11 +68,11 @@ const Tab = ({ tab }) => {
   const navigate = useNavigate();
   const query = useQuery();
   const category = query.get('category') || 'Semua';
-  const searchQuery = query.get('search');
+  const search = query.get('search');
 
   function navigateQuerySearch(tab) {
     if (tab === 'Semua') return navigate('/');
-    navigate(`/?category=${tab}&search=${searchQuery || ''}`);
+    navigate(`/?category=${tab}&search=${search || ''}`);
   }
 
   return (

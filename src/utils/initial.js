@@ -4,21 +4,22 @@ export const initialProduct = {
   description: '',
   price: 0,
   status: '',
-  category_id: 0,
-  isPublished: '',
-  Category: {
-    id: 0,
+  category: '',
+  seller: {
+    city: '',
     name: '',
+    profile_picture: '',
   },
-  Transactions: {},
+  product_images: [],
 };
 
 export const initialProductInput = {
+  id: '',
   name: '',
   price: '',
   category: '',
   description: '',
-  images: [],
+  product_images: [],
 };
 
 export const initialUserData = {
@@ -29,4 +30,15 @@ export const initialUserData = {
   phone_number: '',
   profile_picture: '',
   file: null,
+};
+
+export const initialTransaction = {
+  id: 0,
+  buyer_name: '',
+  buyer_city: '',
+  buyer_profile_picture: '',
+  product_name: '',
+  product_price: 0,
+  product_offer: 0,
+  date: '',
 };
