@@ -32,7 +32,7 @@ export default function SellerProduct() {
         <div className="hidden lg:block">
           <SimpleNavbar title="Lengkapi Info Akun" />
         </div>
-        <div className="relative mx-auto mt-10 w-[568px] hidden lg:block">
+        <div className="relative mx-auto mt-10 hidden w-[568px] lg:block">
           <BackButton className="absolute -left-[76px] top-0" />
         </div>
         <div className="mt-10 flex justify-center lg:w-full lg:justify-center">
