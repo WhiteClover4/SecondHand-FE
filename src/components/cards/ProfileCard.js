@@ -5,8 +5,8 @@ export default function ProfileCard({ data }) {
         <div className="h-12 w-12">
           <img
             alt="profilcard"
-            className="h-full w-full rounded-xl object-cover"
-            src={data.profile_picture}
+            className="h-full w-full overflow-hidden rounded-xl object-cover"
+            src={data.profile_picture || '/img/a5cff95160773ed4b391783e4d440b26.jpeg'}
           />
         </div>
       </div>

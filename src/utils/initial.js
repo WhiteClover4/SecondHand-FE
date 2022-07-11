@@ -36,9 +36,12 @@ export const initialTransaction = {
   id: 0,
   buyer_name: '',
   buyer_city: '',
+  buyer_phone_number: '',
   buyer_profile_picture: '',
   product_name: '',
   product_price: 0,
+  product_pictures: '',
   product_offer: 0,
   date: '',
+  status: 'OFFERED',
 };
