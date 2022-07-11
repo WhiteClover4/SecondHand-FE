@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { BellIcon, ListIcon, SignInIcon, UserIcon, MenuIcon } from '../icons';
 import { PrimaryButton } from '../buttons';
@@ -8,12 +8,12 @@ import useAuth from '../../hooks/dependent/useAuth';
 import useQuery from '../../hooks/independent/useQuery';
 import { NotifCard } from '../cards';
 import useNotification from '../../hooks/dependent/useNotification';
+import { OPEN_NAVBAR } from '../../redux/slice/sideNavbar';
 
 export default function MainNavbar() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isAuthenticated } = useSelector((state) => state.auth);
-  const [isDropdownShown, setDropdownShown] = useState(false);
-  const [isNotificationShown, setNotificationShown] = useState(false);
 
   const query = useQuery();
   const category = query.get('category');
@@ -27,7 +27,11 @@ export default function MainNavbar() {
   return (
     <header className="absolute inset-x-0 top-[38px] z-10 mb-8 flex items-center justify-between bg-transparent px-4 lg:sticky lg:top-0 lg:h-[84px] lg:bg-neutral-01 lg:px-[136px] lg:shadow-high">
       <div className="flex w-full flex-row items-center space-x-4 lg:space-x-6">
-        <button className="rounded-2xl bg-neutral-01 p-3 lg:hidden">
+        <button
+          className="rounded-2xl bg-neutral-01 p-3 lg:hidden"
+          onClick={() => dispatch(OPEN_NAVBAR())}
+          type="button"
+        >
           <MenuIcon className="w-6" />
         </button>
         <Link className="hidden h-[34px] w-[100px] bg-primary-05 lg:inline-block" to="/" />
@@ -38,27 +42,7 @@ export default function MainNavbar() {
         />
       </div>
       {isAuthenticated ? (
-        <nav>
-          <ul className="flex flex-row gap-6">
-            <li>
-              <Link to="/seller/products">
-                <ListIcon className="mr-2 w-6" />
-              </Link>
-            </li>
-            <li className="relative">
-              <button onClick={() => setNotificationShown(!isNotificationShown)} type="button">
-                <BellIcon className="mr-2 w-6" />
-              </button>
-              {isNotificationShown && <Notification />}
-            </li>
-            <li className="relative">
-              <button onClick={() => setDropdownShown(!isDropdownShown)} type="button">
-                <UserIcon className="mr-2 w-6" />
-              </button>
-              {isDropdownShown && <Dropdown />}
-            </li>
-          </ul>
-        </nav>
+        <AuthenticatedNav />
       ) : (
         <PrimaryButton
           className="hidden lg:inline-block"
@@ -75,9 +59,45 @@ export default function MainNavbar() {
   );
 }
 
-const Dropdown = () => {
-  const { logout } = useAuth();
+const AuthenticatedNav = () => {
+  const [isProfileDropdownShown, setProfileDropdownShown] = useState(false);
+  const [isNotificationShown, setNotificationShown] = useState(false);
 
+  const { getNotification, notification, readNotification } = useNotification();
+
+  useEffect(() => {
+    getNotification();
+  }, [getNotification]);
+
+  return (
+    <nav className="hidden lg:block">
+      <ul className="flex flex-row gap-6">
+        <li>
+          <Link to="/seller/products">
+            <ListIcon className="mr-2 w-6" />
+          </Link>
+        </li>
+        <li className="relative">
+          <button onClick={() => setNotificationShown(!isNotificationShown)} type="button">
+            <BellIcon className="mr-2 w-6" />
+          </button>
+          {isNotificationShown && (
+            <Notification notification={notification} readNotification={readNotification} />
+          )}
+        </li>
+        <li className="relative">
+          <button onClick={() => setProfileDropdownShown(!isProfileDropdownShown)} type="button">
+            <UserIcon className="mr-2 w-6" />
+          </button>
+          {isProfileDropdownShown && <ProfileDropdown />}
+        </li>
+      </ul>
+    </nav>
+  );
+};
+
+const ProfileDropdown = () => {
+  const { logout } = useAuth();
   return (
     <div className="absolute top-10 left-1/2 flex w-40 -translate-x-1/2 flex-col rounded-md bg-neutral-01 shadow-low">
       <Link
@@ -97,11 +117,7 @@ const Dropdown = () => {
   );
 };
 
-const Notification = () => {
-  const { getNotification, notification, readNotification } = useNotification();
-  useEffect(() => {
-    getNotification();
-  }, [getNotification]);
+const Notification = ({ notification, readNotification }) => {
   return (
     <div className="absolute top-10 left-1/2 flex w-[376px] -translate-x-1/2 flex-col space-y-4 overflow-hidden rounded-2xl bg-neutral-01 shadow-high">
       <div className="h-[500px] w-full overflow-auto px-6">
