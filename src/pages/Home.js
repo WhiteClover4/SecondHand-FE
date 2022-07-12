@@ -79,6 +79,7 @@ const Tab = ({ tab }) => {
     <PrimaryButton
       bgColor={category === tab ? 'bg-primary-04' : 'bg-primary-01'}
       color={category === tab ? 'text-neutral-01' : 'text-neutral-04'}
+      data-testid={'tab-' + tab}
       onClick={() => navigateQuerySearch(tab)}
       type="button"
     >

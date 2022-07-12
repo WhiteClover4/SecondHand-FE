@@ -1,3 +1,4 @@
+/* eslint-disable no-import-assign */
 import { act, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Provider } from 'react-redux';
@@ -5,6 +6,9 @@ import { BrowserRouter } from 'react-router-dom';
 import { ShowALert } from '../App';
 import Login from '../pages/Login';
 import { store } from '../redux/store';
+import * as authAPI from '../services/api/auth';
+
+jest.mock('../services/api/auth');
 
 const LoginComp = () => (
   <BrowserRouter>
@@ -17,7 +21,7 @@ const LoginComp = () => (
 
 describe('Login page render alert properly', () => {
   beforeEach(() => {
-    fetch.resetMocks();
+    jest.resetAllMocks();
     render(<LoginComp />);
   });
 
@@ -80,7 +84,7 @@ describe('Login page render alert properly', () => {
 });
 
 function mockFetchLoginAPI(email, password, isServerDown) {
-  if (isServerDown) return fetch.mockReject(() => Promise.reject('505'));
+  if (isServerDown) return (authAPI.loginService = jest.fn().mockRejectedValue('505'));
 
   let mockResponse = {};
   const correctEmail = 'correct@mail.com';
@@ -103,5 +107,5 @@ function mockFetchLoginAPI(email, password, isServerDown) {
     mockResponse = { token: '123', msg: 'Login success' };
   }
 
-  fetch.mockResponseOnce(JSON.stringify(mockResponse));
+  authAPI.loginService = jest.fn().mockResolvedValue(mockResponse);
 }
