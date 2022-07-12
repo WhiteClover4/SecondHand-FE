@@ -22,10 +22,13 @@ const ProfileComp = () => (
 
 describe('Profile', () => {
   beforeEach(() => {
-    jest.resetAllMocks();
     store.dispatch(SET_TOKEN('123'));
     store.dispatch(CHANGE_AUTH(true));
     render(<ProfileComp />);
+  });
+
+  afterEach(() => {
+    jest.resetAllMocks();
   });
 
   it('should able to type', () => {

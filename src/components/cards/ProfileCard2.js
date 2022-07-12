@@ -8,7 +8,7 @@ export default function ProfileCard2({ data }) {
       <img
         alt="profilcard"
         className="h-12 w-12 rounded-xl object-cover"
-        src={data.profile_picture}
+        src={data.profile_picture || '/img/a5cff95160773ed4b391783e4d440b26.jpeg'}
       />
       <div className="ml-4 grow space-y-1">
         <p className="text-body-14 font-medium">{data.name}</p>
