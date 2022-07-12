@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Navigation } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import { MainNavbar } from '../../../../components/navbars';
 import { PrimaryButton, SecondaryButton } from '../../../../components/buttons';
 import { ProfileCard2 } from '../../../../components/cards';
@@ -30,16 +32,22 @@ export default function PreviewProduct() {
       ) : (
         <div className="flex flex-row justify-center gap-8 px-[236px] ">
           <div className="w-2/3 space-y-6 ">
-            <div className="relative h-[436px] overflow-hidden rounded-2xl">
-              <img
-                className="h-full w-full object-contain"
-                src={
-                  !sellerProduct.product_images.length
-                    ? '/img/no-product-image.png'
-                    : sellerProduct.product_images[0].product_pictures
-                }
-              />
-            </div>
+            <Swiper
+              className="relative h-[436px] overflow-hidden rounded-2xl"
+              modules={[Navigation]}
+              navigation={true}
+              spaceBetween={30}
+            >
+              {sellerProduct.product_images.map((image, i) => (
+                <SwiperSlide key={i}>
+                  <img
+                    alt="product-image"
+                    className="h-full w-full object-contain"
+                    src={image.product_pictures}
+                  />
+                </SwiperSlide>
+              ))}
+            </Swiper>
             <div className="space-y-4 rounded-2xl px-4 pb-[27px] pt-4 shadow-low">
               <p className="text-black text-body-14 font-medium">{sellerProduct.category}</p>
               <p className="text-body-14 text-neutral-03 ">{sellerProduct.description}</p>
