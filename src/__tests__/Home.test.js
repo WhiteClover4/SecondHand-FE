@@ -20,9 +20,12 @@ const HomeComp = () => (
 
 describe('Home', () => {
   beforeEach(() => {
-    jest.resetAllMocks();
     productAPI.getProductsService = jest.fn().mockResolvedValue(mockResponse);
     render(<HomeComp />);
+  });
+
+  afterEach(() => {
+    jest.resetAllMocks();
   });
 
   it('home page content rendered properly', async () => {
