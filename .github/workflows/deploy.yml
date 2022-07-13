@@ -1,14 +1,16 @@
 name: Deploy
 
+# we use gitlab to deploy
+
 on:
   push:
     branches:
-    - 'staging'
-    - 'main'
+    - '!staging'
+    - '!main'
   pull_request:
     branches:
-    - 'staging'
-    - 'main'
+    - '!staging'
+    - '!main'
 
 jobs:
   development:
