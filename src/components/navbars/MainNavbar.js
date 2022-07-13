@@ -1,12 +1,13 @@
-import { useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { BellIcon, ListIcon, SignInIcon, UserIcon, MenuIcon } from '../icons';
 import { PrimaryButton } from '../buttons';
 import { SearchInput } from '../inputs';
-import useOutsideClick from '../../hooks/independent/useOutsideClick';
 import useAuth from '../../hooks/dependent/useAuth';
 import useQuery from '../../hooks/independent/useQuery';
+import { NotifCard } from '../cards';
+import useNotification from '../../hooks/dependent/useNotification';
 import { OPEN_NAVBAR } from '../../redux/slice/sideNavbar';
 
 export default function MainNavbar() {
@@ -59,33 +60,48 @@ export default function MainNavbar() {
 }
 
 const AuthenticatedNav = () => {
+  const { pathname } = useLocation();
   const [isProfileDropdownShown, setProfileDropdownShown] = useState(false);
+  const [isNotificationShown, setNotificationShown] = useState(false);
 
-  const profileDropdownRef = useRef();
-  useOutsideClick(profileDropdownRef, () => {
-    if (isProfileDropdownShown) setProfileDropdownShown(false);
-  });
+  const { getNotification, notification, readNotification } = useNotification();
+
+  useEffect(() => {
+    getNotification();
+  }, [getNotification]);
 
   return (
     <nav className="hidden lg:block">
       <ul className="flex flex-row gap-6">
         <li>
           <Link to="/seller/products">
-            <ListIcon className="mr-2 w-6" />
+            <ListIcon
+              className={`${
+                pathname.includes('seller/products') ? 'text-primary-04' : 'text-neutral-05'
+              } mr-2 w-6`}
+            />
           </Link>
         </li>
-        <li>
-          <button>
-            <BellIcon className="mr-2 w-6" />
+        <li className="relative">
+          {notification.some((notif) => !notif.is_read) && (
+            <div className="absolute top-0 right-3 h-2 w-2 rounded-full border border-neutral-01 bg-alert-danger p-px"></div>
+          )}
+          <button onClick={() => setNotificationShown(!isNotificationShown)} type="button">
+            <BellIcon
+              className={`${isNotificationShown ? 'text-primary-04' : 'text-neutral-05'} mr-2 w-6`}
+            />
           </button>
+          {isNotificationShown && (
+            <Notification notification={notification} readNotification={readNotification} />
+          )}
         </li>
         <li className="relative">
-          <button
-            onClick={() => setProfileDropdownShown(!isProfileDropdownShown)}
-            ref={profileDropdownRef}
-            type="button"
-          >
-            <UserIcon className="mr-2 w-6" />
+          <button onClick={() => setProfileDropdownShown(!isProfileDropdownShown)} type="button">
+            <UserIcon
+              className={`${
+                isProfileDropdownShown ? 'text-primary-04' : 'text-neutral-05'
+              } mr-2 w-6`}
+            />
           </button>
           {isProfileDropdownShown && <ProfileDropdown />}
         </li>
@@ -111,6 +127,22 @@ const ProfileDropdown = () => {
       >
         Logout
       </button>
+    </div>
+  );
+};
+
+const Notification = ({ notification, readNotification }) => {
+  return (
+    <div className="absolute top-10 left-1/2 flex w-[376px] -translate-x-1/2 flex-col space-y-4 overflow-hidden rounded-2xl bg-neutral-01 shadow-high">
+      <div className="h-[500px] w-full overflow-auto px-6">
+        {notification.map((notif) => (
+          <NotifCard
+            key={notif.id}
+            data={notif}
+            readNotification={() => readNotification(notif.id)}
+          />
+        ))}
+      </div>
     </div>
   );
 };

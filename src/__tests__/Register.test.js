@@ -1,3 +1,4 @@
+/* eslint-disable no-import-assign */
 import { act, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Provider } from 'react-redux';
@@ -5,6 +6,9 @@ import { BrowserRouter } from 'react-router-dom';
 import { ShowALert } from '../App';
 import Register from '../pages/Register';
 import { store } from '../redux/store';
+import * as authAPI from '../services/api/auth';
+
+jest.mock('../services/api/auth');
 
 const RegisterComp = () => (
   <BrowserRouter>
@@ -17,7 +21,7 @@ const RegisterComp = () => (
 
 describe('Register page render alert properly', () => {
   beforeEach(() => {
-    fetch.resetMocks();
+    jest.resetAllMocks();
     render(<RegisterComp />);
   });
 
@@ -60,14 +64,14 @@ describe('Register page render alert properly', () => {
 });
 
 function mockFetchRegisterAPI(name, email, password, isServerDown) {
-  if (isServerDown) return fetch.mockReject(() => Promise.reject('505'));
+  if (isServerDown) return (authAPI.registerService = jest.fn().mockRejectedValue('505'));
 
   let mockResponse = {};
 
   if (!email && !password && !name) mockResponse = { errors: nullErrors };
   else if (email && password && name) mockResponse = registerSuccess;
 
-  fetch.mockResponseOnce(JSON.stringify(mockResponse));
+  authAPI.registerService = jest.fn().mockResolvedValue(mockResponse);
 }
 
 const nullErrors = [

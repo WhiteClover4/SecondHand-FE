@@ -3,7 +3,7 @@ import { PrimaryButton } from '../buttons';
 import { useState } from 'react';
 
 export default function StatusModal({ setModal, loading, updateTransactionStatus }) {
-  const [status, setStatus] = useState('true');
+  const [status, setStatus] = useState('');
 
   const onOptionChange = (e) => {
     setStatus(e.target.value);
@@ -60,7 +60,8 @@ export default function StatusModal({ setModal, loading, updateTransactionStatus
         </p>
         <PrimaryButton
           className="text-center"
-          isDisable={loading}
+          disableText="Kirim"
+          isDisable={loading || !status}
           onClick={() => updateTransactionStatus(status)}
         >
           Kirim

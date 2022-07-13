@@ -7,10 +7,16 @@ export default function BidModal({ setShow, data, loading, bidProduct }) {
   const [bid, setBid] = useState('');
 
   return (
-    <div className="fixed top-0 left-0 z-20 flex h-screen w-screen items-center justify-center bg-[#000]/60">
-      <div className="w-[360px] rounded-2xl bg-neutral-01 px-8 pt-4 pb-6 shadow-high">
+    <div
+      className="fixed top-0 left-0 z-20 flex h-screen w-screen items-center justify-center bg-[#000]/60"
+      onClick={() => setShow(false)}
+    >
+      <div
+        className="w-[360px] rounded-2xl bg-neutral-01 px-8 pt-4 pb-6 shadow-high"
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className="flex justify-end">
-          <button onClick={() => setShow(false)} type="button">
+          <button data-testid="close-modal" onClick={() => setShow(false)} type="button">
             <XIcon className="h-6 w-6 text-neutral-05" />
           </button>
         </div>
@@ -23,7 +29,7 @@ export default function BidModal({ setShow, data, loading, bidProduct }) {
           <div>
             <img
               alt="product-image"
-              className="h-12 w-12 rounded-xl bg-primary-04"
+              className="h-12 w-12 rounded-xl"
               src={
                 !data.product_images.length
                   ? '/img/no-product-image.png'

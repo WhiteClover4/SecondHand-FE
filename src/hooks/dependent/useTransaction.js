@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ADD_ALERT } from '../../redux/slice/alert';
 import {
   acceptTransactionService,
+  getAllHistoryService,
   getTransactionService,
   rejectTransactionService,
   updateTransactionStatusService,
@@ -13,11 +14,13 @@ export default function useTransaction() {
   const dispatch = useDispatch();
   const { token, isAuthenticated } = useSelector((state) => state.auth);
   const [transaction, setTransaction] = useState(initialTransaction);
+  const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState({
     getTransaction: false,
     acceptTransaction: false,
     rejectTransaction: false,
     updateTransactionStatus: false,
+    getAllHistory: false,
   });
 
   const getTransaction = useCallback(
@@ -30,7 +33,7 @@ export default function useTransaction() {
 
         if (typeof res === 'string') return dispatch(ADD_ALERT({ status: 'error', message: res }));
 
-        if (!res.status === 'error')
+        if (res.status === 'error')
           return dispatch(ADD_ALERT({ status: res.status, message: res.msg }));
 
         setTransaction(res.data);
@@ -54,6 +57,8 @@ export default function useTransaction() {
 
       dispatch(ADD_ALERT({ status: res.status, message: res.msg }));
 
+      await getTransaction(transactionId);
+
       openModal();
     } catch (error) {
       console.log('error accept transaction', error);
@@ -72,6 +77,8 @@ export default function useTransaction() {
       if (typeof res === 'string') return dispatch(ADD_ALERT({ status: 'error', message: res }));
 
       dispatch(ADD_ALERT({ status: res.status, message: res.msg }));
+
+      await getTransaction(transactionId);
     } catch (error) {
       console.log('error reject transaction', error);
 
@@ -98,12 +105,36 @@ export default function useTransaction() {
     }
   }
 
+  const getAllHistory = useCallback(async () => {
+    if (!isAuthenticated) return;
+
+    setLoading({ ...loading, getAllHistory: true });
+    try {
+      const res = await getAllHistoryService(token);
+
+      if (typeof res === 'string') return dispatch(ADD_ALERT({ status: 'error', message: res }));
+
+      if (res.status === 'error')
+        return dispatch(ADD_ALERT({ status: res.status, message: res.msg }));
+
+      setHistory(res.data);
+    } catch (error) {
+      console.log('error get transaction', error);
+
+      dispatch(ADD_ALERT({ status: 'error', message: 'something went wrong' }));
+    } finally {
+      setLoading({ ...loading, getAllHistory: false });
+    }
+  }, [dispatch, token, isAuthenticated]);
+
   return {
     transaction,
     getTransaction,
     acceptTransaction,
     rejectTransaction,
     updateTransactionStatus,
+    getAllHistory,
+    history,
     loading,
   };
 }

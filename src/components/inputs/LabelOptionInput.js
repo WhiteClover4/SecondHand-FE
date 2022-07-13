@@ -8,7 +8,8 @@ export default function LabelOptionInput({ id, label, defaultValue, value, value
         <select
           {...rest}
           className={`${value === 'default' && 'text-neutral-03'} w-full focus:outline-none`}
-          id="id"
+          data-testid={id}
+          id={id}
           value={value || 'default'}
         >
           <option className="text-neutral-100 " disabled value="default">
