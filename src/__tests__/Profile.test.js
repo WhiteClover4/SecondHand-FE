@@ -49,11 +49,7 @@ describe('Profile', () => {
   });
 
   it('should rendered alert "Data updated successfully"', async () => {
-    let submitBtn;
-
-    await waitFor(() => {
-      submitBtn = screen.getByText(/simpan/i);
-    });
+    let submitBtn = await screen.findByText(/simpan/i);
 
     expect(submitBtn).toBeInTheDocument();
 

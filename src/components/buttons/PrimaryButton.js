@@ -6,6 +6,7 @@ export default function PrimaryButton({
   color,
   isSmall,
   isDisable,
+  disableText,
   children,
   ...rest
 }) {
@@ -19,11 +20,13 @@ export default function PrimaryButton({
     >
       {!isDisable ? (
         children
-      ) : (
+      ) : !disableText ? (
         <div className="flex items-center justify-center">
           <SpinnerIcon className="text-white mr-3 h-4 w-4" />
           Loading...
         </div>
+      ) : (
+        disableText
       )}
     </button>
   );
