@@ -1,0 +1,25 @@
+stages:
+  - build
+  - deploy
+
+build job:
+  stage: build
+  image: node:lts
+  script:
+    - yarn install
+    - yarn build
+  artifacts:
+    paths:
+      - build/
+
+deploy production:
+  stage: deploy
+  image: node:lts
+  only:
+    - main
+  environment:
+    name: production
+    url: https://secondhand-binar.vercel.app/
+  script:
+    - yarn global add vercel
+    - DEPLOYMENT_URL=$(VERCEL_ORG_ID=$VERCEL_ORG_ID VERCEL_PROJECT_ID=$VERCEL_PROJECT_ID vercel --confirm -t $VERCEL_TOKEN --prod)
