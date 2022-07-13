@@ -35,7 +35,7 @@ jobs:
     name: Production Deployment
     environment:
       name: Production
-      url: https://secondhand-binar.netlify.app
+      url: https://secondhand-binar.vercel.app/
     runs-on: ubuntu-latest
     if: github.event.ref == 'refs/heads/main'
 
