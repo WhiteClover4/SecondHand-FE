@@ -1,6 +1,6 @@
 name: Deploy
 
-# we use gitlab to deploy
+# we use gitlab ci to deploy
 
 on:
   push:
