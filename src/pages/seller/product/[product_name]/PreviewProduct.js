@@ -38,15 +38,25 @@ export default function PreviewProduct() {
               navigation={true}
               spaceBetween={30}
             >
-              {sellerProduct.product_images.map((image, i) => (
+              {sellerProduct.product_images.length ? (
+                sellerProduct.product_images.map((image, i) => (
+                  <SwiperSlide key={i}>
+                    <img
+                      alt="product-image"
+                      className="h-full w-full object-contain"
+                      src={image.product_pictures}
+                    />
+                  </SwiperSlide>
+                ))
+              ) : (
                 <SwiperSlide key={i}>
                   <img
                     alt="product-image"
                     className="h-full w-full object-contain"
-                    src={image.product_pictures}
+                    src="/img/no-product-image.png"
                   />
                 </SwiperSlide>
-              ))}
+              )}
             </Swiper>
             <div className="space-y-4 rounded-2xl px-4 pb-[27px] pt-4 shadow-low">
               <p className="text-black text-body-14 font-medium">{sellerProduct.category}</p>
