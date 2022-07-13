@@ -1,16 +1,42 @@
 stages:
   - build
+  - test
   - deploy
 
-build job:
+image: node:lts
+
+cache:
+  paths:
+    - node_modules
+
+build:
   stage: build
-  image: node:lts
   script:
     - yarn install
     - yarn build
   artifacts:
     paths:
       - build/
+
+test:
+  stage: test
+  script:
+    - yarn install
+    - yarn test
+
+deploy pre production:
+  stage: deploy
+  image: ruby
+  script:
+    - apt-get update -qy
+    - apt-get install -y ruby-dev
+    - gem install dpl
+    - dpl --provider=heroku --app=$HEROKU_REPOSITORY --api-key=$HEROKU_ID
+  environment:
+    name: staging
+    url: https://secondhand-binar-staging.herokuapp.com/
+  only:
+    - staging
 
 deploy production:
   stage: deploy
