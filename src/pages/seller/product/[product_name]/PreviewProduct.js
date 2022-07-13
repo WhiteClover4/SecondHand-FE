@@ -49,7 +49,7 @@ export default function PreviewProduct() {
                   </SwiperSlide>
                 ))
               ) : (
-                <SwiperSlide key={i}>
+                <SwiperSlide>
                   <img
                     alt="product-image"
                     className="h-full w-full object-contain"
