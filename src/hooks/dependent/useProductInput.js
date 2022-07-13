@@ -70,7 +70,7 @@ export default function useProductInput() {
 
       if (res.status === 'error') return;
 
-      dispatch(ADD_ALERT({ status: 'success', message: 'success publish product' }));
+      dispatch(ADD_ALERT({ status: 'success', message: res.msg }));
 
       navigate('/seller/products');
     } catch (error) {
