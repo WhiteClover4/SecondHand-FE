@@ -134,7 +134,7 @@ const ProfileDropdown = () => {
 const Notification = ({ notification, readNotification }) => {
   return (
     <div className="absolute top-10 left-1/2 flex w-[376px] -translate-x-1/2 flex-col space-y-4 overflow-hidden rounded-2xl bg-neutral-01 shadow-high">
-      <div className="h-[500px] w-full overflow-auto px-6">
+      <div className="max-h-[500px] w-full overflow-auto px-6">
         {notification.map((notif) => (
           <NotifCard
             key={notif.id}
