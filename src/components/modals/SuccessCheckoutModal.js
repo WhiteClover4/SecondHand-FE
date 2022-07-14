@@ -29,8 +29,8 @@ export default function SuccessCheckoutModal({ data, setModal }) {
           <div className="flex flex-row items-center">
             <img
               alt="img-profile"
-              className="mr-4 h-12 w-12 rounded-xl object-cover"
-              src={data.buyer_profile_picture}
+              className="mr-4 h-12 w-12 overflow-hidden rounded-xl object-cover"
+              src={data.buyer_profile_picture || '/img/a5cff95160773ed4b391783e4d440b26.jpeg'}
             />
             <div className="flex grow flex-col gap-y-1">
               <p className="text-body-14 font-medium">{data.buyer_name}</p>

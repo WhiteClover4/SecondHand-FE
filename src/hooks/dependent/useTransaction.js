@@ -59,9 +59,9 @@ export default function useTransaction() {
 
       dispatch(ADD_ALERT({ status: res.status, message: res.msg }));
 
-      await getTransaction(transactionId);
-
       openModal();
+
+      await getTransaction(transactionId);
     } catch (error) {
       console.log('error accept transaction', error);
 

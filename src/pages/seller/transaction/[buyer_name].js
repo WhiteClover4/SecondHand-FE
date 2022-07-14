@@ -54,7 +54,7 @@ export default function Transaction() {
             <p className="my-6 text-body-14 font-medium"> Daftar Produkmu yang Ditawar </p>
             <div className="flex flex-col space-y-6">
               <BidCard
-                accept={() => acceptTransaction(transactionId, () => setModal(true))}
+                accept={() => acceptTransaction(transactionId, () => setModal('success'))}
                 data={transaction}
                 loading={loading.acceptTransaction || loading.rejectTransaction}
                 openStatusModal={() => setModal('status')}
