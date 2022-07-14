@@ -14,9 +14,14 @@ export default function useNotification() {
     setLoading({ ...loading, notification: true });
     try {
       const res = await getNotificationService(token);
+
       if (typeof res === 'string') return dispatch(ADD_ALERT({ status: 'error', message: res }));
 
+      if (res.status === 'error') return dispatch(ADD_ALERT({ status: 'error', message: res.msg }));
+
       setNotification(res.data);
+
+      await getNotification();
     } catch (error) {
       console.log('error get products', error);
 

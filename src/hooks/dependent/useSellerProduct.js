@@ -8,8 +8,10 @@ import {
   updateStatusToPublishedService,
 } from '../../services/api/product';
 import { initialProduct } from '../../utils/initial';
+import useNotification from './useNotification';
 
 export default function useSellerProduct() {
+  const { getNotification } = useNotification();
   const dispatch = useDispatch();
   const { token, isAuthenticated } = useSelector((state) => state.auth);
   const [sellerProducts, setSellerProducts] = useState([]);
@@ -77,6 +79,8 @@ export default function useSellerProduct() {
       console.log('error update status product', error);
 
       dispatch(ADD_ALERT({ status: 'error', message: 'something went wrong' }));
+
+      await getNotification();
     } finally {
       setLoading({ ...loading, updateStatusProduct: false });
     }

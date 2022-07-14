@@ -11,9 +11,11 @@ import {
 } from '../../services/api/product';
 import { initialProductInput } from '../../utils/initial';
 import useQuery from '../independent/useQuery';
+import useNotification from './useNotification';
 import useSellerProduct from './useSellerProduct';
 
 export default function useProductInput() {
+  const { getNotification } = useNotification();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.auth);
@@ -73,6 +75,8 @@ export default function useProductInput() {
       dispatch(ADD_ALERT({ status: 'success', message: res.msg }));
 
       navigate('/seller/products');
+
+      await getNotification();
     } catch (error) {
       console.log('error publish product', error);
 
