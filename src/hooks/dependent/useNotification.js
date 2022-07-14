@@ -35,6 +35,8 @@ export default function useNotification() {
       const res = await readNotificationService(token, notifId);
 
       if (res.status === 'error') return dispatch(ADD_ALERT({ status: 'error', message: res.msg }));
+
+      await getNotification();
     } catch (error) {
       console.log('error get products', error);
 

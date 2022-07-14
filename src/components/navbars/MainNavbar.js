@@ -132,15 +132,21 @@ const ProfileDropdown = () => {
 };
 
 const Notification = ({ notification, readNotification }) => {
+  const navigate = useNavigate();
+
+  const handleClick = (data) => {
+    if (!data.is_read) readNotification(data.id);
+    if (data.role === 'buyer') return;
+    data.product_offer_price
+      ? navigate(`/seller/transaction/${data.product_name}?transaction_id=${data.transaction_id}`)
+      : navigate(`/seller/product/${data.product_name}/preview?product_id=${data.product_id}`);
+  };
+
   return (
     <div className="absolute top-10 left-1/2 flex w-[376px] -translate-x-1/2 flex-col space-y-4 overflow-hidden rounded-2xl bg-neutral-01 shadow-high">
       <div className="max-h-[300px] w-full overflow-auto px-6">
         {notification.map((notif) => (
-          <NotifCard
-            key={notif.id}
-            data={notif}
-            readNotification={() => readNotification(notif.id)}
-          />
+          <NotifCard key={notif.id} data={notif} handleClick={() => handleClick(notif)} />
         ))}
       </div>
     </div>
