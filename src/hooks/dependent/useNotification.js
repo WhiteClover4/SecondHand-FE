@@ -20,8 +20,6 @@ export default function useNotification() {
       if (res.status === 'error') return dispatch(ADD_ALERT({ status: 'error', message: res.msg }));
 
       setNotification(res.data);
-
-      await getNotification();
     } catch (error) {
       console.log('error get products', error);
 
