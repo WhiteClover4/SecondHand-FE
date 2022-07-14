@@ -7,6 +7,7 @@ import useSellerProduct from '../../hooks/dependent/useSellerProduct';
 import { ProductCard } from '../../components/cards';
 import { ProductCardSkeleton } from '../../components/skeletons';
 import { useNavigate } from 'react-router-dom';
+import { initialProduct } from '../../utils/initial';
 
 export default function Interested() {
   const navigate = useNavigate();
@@ -25,7 +26,14 @@ export default function Interested() {
     <AuthenticatedRoute>
       <MainNavbar />
       <SellerLayout active={2}>
-        {wishlistProduct.length ? (
+        {!loading.getWishlistProduct && !wishlistProduct.length ? (
+          <div className="flex flex-col items-center">
+            <img className="mb-6" src="/img/img-not-interested.png" />
+            <p className="w-[296px] text-center text-body-14 text-neutral-05">
+              Belum ada produkmu yang diminati nih, sabar ya rejeki nggak kemana kok
+            </p>
+          </div>
+        ) : (
           <div className="grid grid-cols-3 gap-6">
             {!loading.getWishlistProduct
               ? wishlistProduct.map((product) => (
@@ -37,15 +45,12 @@ export default function Interested() {
                 ))
               : dummiesProducts.map((el, i) => <ProductCardSkeleton key={i} />)}
           </div>
-        ) : (
-          <div className="flex flex-col items-center">
-            <img className="mb-6" src="/img/img-not-interested.png" />
-            <p className="w-[296px] text-center text-body-14 text-neutral-05">
-              Belum ada produkmu yang diminati nih, sabar ya rejeki nggak kemana kok
-            </p>
-          </div>
         )}
       </SellerLayout>
     </AuthenticatedRoute>
   );
 }
+
+const dummiesProducts = [];
+
+for (let i = 1; i <= 6; i++) dummiesProducts.push(initialProduct);
