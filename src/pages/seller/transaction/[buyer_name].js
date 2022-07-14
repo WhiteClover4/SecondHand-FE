@@ -16,6 +16,8 @@ export default function Transaction() {
     acceptTransaction,
     rejectTransaction,
     updateTransactionStatus,
+    getTransactionStatus,
+    transactionStatus,
   } = useTransaction();
 
   const query = useQuery();
@@ -29,7 +31,8 @@ export default function Transaction() {
 
   useEffect(() => {
     getTransaction(transactionId);
-  }, [getTransaction, transactionId]);
+    getTransactionStatus(transactionId);
+  }, [getTransaction, getTransactionStatus, transactionId]);
 
   return (
     <AuthenticatedRoute>
@@ -38,6 +41,7 @@ export default function Transaction() {
         <StatusModal
           loading={loading.updateTransactionStatus}
           setModal={setModal}
+          transactionStatus={transactionStatus}
           updateTransactionStatus={(status) => updateTransactionStatus(transactionId, status)}
         />
       )}

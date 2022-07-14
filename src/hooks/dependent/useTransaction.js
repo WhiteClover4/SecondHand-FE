@@ -5,6 +5,7 @@ import {
   acceptTransactionService,
   getAllHistoryService,
   getTransactionService,
+  getTransactionStatusService,
   rejectTransactionService,
   updateTransactionStatusService,
 } from '../../services/api/transaction';
@@ -15,6 +16,7 @@ export default function useTransaction() {
   const { token, isAuthenticated } = useSelector((state) => state.auth);
   const [transaction, setTransaction] = useState(initialTransaction);
   const [history, setHistory] = useState([]);
+  const [transactionStatus, setTransactionStatus] = useState(null);
   const [loading, setLoading] = useState({
     getTransaction: false,
     acceptTransaction: false,
@@ -88,6 +90,28 @@ export default function useTransaction() {
     }
   }
 
+  const getTransactionStatus = useCallback(
+    async (transactionId) => {
+      if (!isAuthenticated) return;
+
+      try {
+        const res = await getTransactionStatusService(token, transactionId);
+
+        if (typeof res === 'string') return dispatch(ADD_ALERT({ status: 'error', message: res }));
+
+        if (res.status === 'error')
+          return dispatch(ADD_ALERT({ status: res.status, message: res.msg }));
+
+        setTransactionStatus(res.data.isCompleted);
+      } catch (error) {
+        console.log('error get transaction', error);
+
+        dispatch(ADD_ALERT({ status: 'error', message: 'something went wrong' }));
+      }
+    },
+    [dispatch],
+  );
+
   async function updateTransactionStatus(transactionId, status) {
     setLoading({ ...loading, updateTransactionStatus: true });
     try {
@@ -96,6 +120,8 @@ export default function useTransaction() {
       if (typeof res === 'string') return dispatch(ADD_ALERT({ status: 'error', message: res }));
 
       dispatch(ADD_ALERT({ status: res.status, message: res.msg }));
+
+      await getTransactionStatus(transactionId);
     } catch (error) {
       console.log('error update transaction status', error);
 
@@ -132,6 +158,8 @@ export default function useTransaction() {
     getTransaction,
     acceptTransaction,
     rejectTransaction,
+    transactionStatus,
+    getTransactionStatus,
     updateTransactionStatus,
     getAllHistory,
     history,

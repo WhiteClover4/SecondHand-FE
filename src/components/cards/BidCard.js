@@ -9,7 +9,7 @@ export default function BidCard({ data, accept, reject, loading, openStatusModal
         <img
           alt="img-notification"
           className="mr-4 h-12 w-12 rounded-xl object-cover"
-          src={data.product_pictures}
+          src={data.product_pictures || '/img/a5cff95160773ed4b391783e4d440b26.jpeg'}
         />
         <div className="flex w-full flex-col gap-1">
           <div className="flex items-center justify-between text-body-10 ">

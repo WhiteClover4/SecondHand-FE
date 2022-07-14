@@ -2,8 +2,13 @@ import { XIcon } from '../icons';
 import { PrimaryButton } from '../buttons';
 import { useState } from 'react';
 
-export default function StatusModal({ setModal, loading, updateTransactionStatus }) {
-  const [status, setStatus] = useState('');
+export default function StatusModal({
+  setModal,
+  loading,
+  updateTransactionStatus,
+  transactionStatus,
+}) {
+  const [status, setStatus] = useState(transactionStatus);
 
   const onOptionChange = (e) => {
     setStatus(e.target.value);
