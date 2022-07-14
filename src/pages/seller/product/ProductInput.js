@@ -27,16 +27,7 @@ export default function ProductInput() {
   return (
     <AuthenticatedRoute>
       <div className="absolute top-0 h-screen w-full overflow-auto">
-        <div className="h-13 flex w-full items-center lg:hidden">
-          <BackButton className=" mt-[14px] ml-4" />
-          <p className="mx-auto mt-4 flex justify-center text-body-14 font-medium">
-            {' '}
-            Lengkapi Detail Produk{' '}
-          </p>
-        </div>
-        <div className="hidden lg:block">
-          <SimpleNavbar />
-        </div>
+        <SimpleNavbar title="Lengkapi Detail Produk" />
         <div
           className="relative mx-auto mt-10 w-full px-4 lg:w-[568px]"
           onSubmit={(e) => e.preventDefault()}
@@ -80,20 +71,22 @@ export default function ProductInput() {
             </div>
             <div className="mt-4 flex flex-col space-y-1">
               <p className="text-body-12 font-normal"> Foto Produk </p>
-              <div className="grid grid-cols-4 gap-x-6">
-                {productInput.product_images.length < 4 && (
-                  <FileInput2 onChange={addProductInputImage} />
-                )}
-                {productInput.product_images.map((image, i) => (
-                  <div key={i} className="relative h-24">
-                    <RemoveButton remove={() => removeProductInputImage(i)} />
-                    <img
-                      alt={image.product_pictures}
-                      className="h-full w-full overflow-hidden rounded-xl object-contain"
-                      src={image.product_pictures}
-                    />
-                  </div>
-                ))}
+              <div className="hide-scrollbar w-full overflow-x-auto">
+                <div className="flex w-max items-center space-x-6 pt-3 lg:pt-0">
+                  {productInput.product_images.length < 4 && (
+                    <FileInput2 onChange={addProductInputImage} />
+                  )}
+                  {productInput.product_images.map((image, i) => (
+                    <div key={i} className="relative h-24">
+                      <RemoveButton remove={() => removeProductInputImage(i)} />
+                      <img
+                        alt={image.product_pictures}
+                        className="h-full w-full overflow-hidden rounded-xl object-contain"
+                        src={image.product_pictures}
+                      />
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
             <div className="mt-6 flex items-center space-x-4">
