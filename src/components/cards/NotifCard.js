@@ -10,7 +10,7 @@ export default function NotifCard({ data, handleClick }) {
       <img
         alt="img-notification"
         className="mr-4 h-12 w-12 rounded-xl object-cover"
-        src="/img/img-notification.png"
+        src={data.product_image || '/img/no-product-image.png'}
       />
       <div className="flex w-full flex-col gap-1">
         <div className="flex items-center justify-between text-body-10 ">

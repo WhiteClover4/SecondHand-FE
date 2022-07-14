@@ -1,12 +1,12 @@
 /* eslint-disable indent */
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { MainNavbar } from '../../components/navbars';
 import { SellerLayout } from '../../components/layouts';
 import AuthenticatedRoute from '../../routes/AuthenticatedRoute';
-import { useEffect } from 'react';
 import useSellerProduct from '../../hooks/dependent/useSellerProduct';
 import { ProductCard } from '../../components/cards';
 import { ProductCardSkeleton } from '../../components/skeletons';
-import { useNavigate } from 'react-router-dom';
 import { initialProduct } from '../../utils/initial';
 
 export default function Interested() {
