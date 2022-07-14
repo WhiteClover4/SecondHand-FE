@@ -31,7 +31,9 @@ export default function useSellerProduct() {
     try {
       const res = await getSellerProductsService(token);
 
-      if (!res.data) return dispatch(ADD_ALERT({ status: 'error', message: res }));
+      if (typeof res === 'string') return dispatch(ADD_ALERT({ status: 'error', message: res }));
+
+      if (res.status === 'error') return dispatch(ADD_ALERT({ status: 'error', message: res.msg }));
 
       setSellerProducts(res.data);
     } catch (error) {
@@ -51,7 +53,10 @@ export default function useSellerProduct() {
       try {
         const res = await getSellerProductService(token, productId);
 
-        if (!res.data) return dispatch(ADD_ALERT({ status: 'error', message: res }));
+        if (typeof res === 'string') return dispatch(ADD_ALERT({ status: 'error', message: res }));
+
+        if (res.status === 'error')
+          return dispatch(ADD_ALERT({ status: 'error', message: res.msg }));
 
         setSellerProduct(res.data);
       } catch (error) {
@@ -72,7 +77,9 @@ export default function useSellerProduct() {
     try {
       const res = await updateStatusToPublishedService(token, productId);
 
-      if (!res.data) return dispatch(ADD_ALERT({ status: 'error', message: res }));
+      if (typeof res === 'string') return dispatch(ADD_ALERT({ status: 'error', message: res }));
+
+      if (res.status === 'error') return dispatch(ADD_ALERT({ status: 'error', message: res.msg }));
 
       dispatch(ADD_ALERT({ status: res.status, message: res.msg }));
     } catch (error) {
@@ -94,6 +101,8 @@ export default function useSellerProduct() {
       const res = await getWishlistProductService(token);
 
       if (typeof res === 'string') return dispatch(ADD_ALERT({ status: 'error', message: res }));
+
+      if (res.status === 'error') return dispatch(ADD_ALERT({ status: 'error', message: res.msg }));
 
       setWishlistProduct(res.data);
     } catch (error) {
