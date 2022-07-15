@@ -47,7 +47,7 @@ export default function Transaction() {
       )}
       <div className="absolute top-0 h-screen w-full overflow-auto">
         <SimpleNavbar title="Info Penawar" />
-        <div className="relative mx-auto w-[568px]">
+        <div className="relative mx-auto w-full px-4 lg:w-[568px] lg:px-0">
           <BackButton className="absolute -left-[76px] top-0" />
           <div className="mt-10">
             <ProfileCard data={buyerProfile} />

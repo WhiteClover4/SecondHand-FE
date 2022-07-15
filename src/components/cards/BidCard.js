@@ -26,9 +26,9 @@ export default function BidCard({ data, accept, reject, loading, openStatusModal
         </div>
       </div>
       {data.status !== 'REJECTED' ? (
-        <div className="mt-6 flex w-full items-center justify-end space-x-4">
+        <div className="mt-6 flex w-full items-center space-x-4 lg:justify-end">
           <SecondaryButton
-            className="w-[158px]"
+            className="w-full lg:w-[158px]"
             isDisable={loading}
             isSmall
             onClick={data.status === 'OFFERED' ? reject : openStatusModal}
@@ -37,7 +37,7 @@ export default function BidCard({ data, accept, reject, loading, openStatusModal
             {data.status === 'OFFERED' ? 'Tolak' : 'Status'}
           </SecondaryButton>
           <PrimaryButton
-            className="w-[158px]"
+            className="w-full lg:w-[158px]"
             isDisable={loading}
             isSmall
             onClick={data.status === 'OFFERED' ? accept : null}
@@ -47,7 +47,7 @@ export default function BidCard({ data, accept, reject, loading, openStatusModal
               'Terima'
             ) : (
               <a
-                className="flex items-center space-x-1"
+                className="flex items-center justify-center space-x-1"
                 href={textToCustomer(data.buyer_phone_number)}
                 rel="noreferrer"
                 target="_blank"

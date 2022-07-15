@@ -43,5 +43,5 @@ export const initialTransaction = {
   product_pictures: '',
   product_offer: 0,
   date: '',
-  status: 'OFFERED',
+  status: 'REJECTED',
 };
