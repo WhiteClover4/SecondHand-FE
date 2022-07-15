@@ -33,7 +33,7 @@ export default function useProfile() {
 
       setUserData({ ...res.data, file: null });
     } catch (error) {
-      cerrorHandler(error);
+      errorHandler(error);
     } finally {
       setLoading({ ...loading, getProfile: false });
     }

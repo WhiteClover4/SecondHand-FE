@@ -64,7 +64,8 @@ describe('Register page render alert properly', () => {
 });
 
 function mockFetchRegisterAPI(name, email, password, isServerDown) {
-  if (isServerDown) return (authAPI.registerService = jest.fn().mockRejectedValue('505'));
+  if (isServerDown)
+    return (authAPI.registerService = jest.fn().mockRejectedValue('something went wrong'));
 
   let mockResponse = {};
 
