@@ -137,9 +137,12 @@ const Notification = ({ notification, readNotification }) => {
   const handleClick = (data) => {
     if (!data.is_read) readNotification(data.id);
     if (data.role === 'buyer') return;
+
+    const encodedProductName = encodeURIComponent(data.product_name);
+
     data.product_offer_price
-      ? navigate(`/seller/transaction/${data.product_name}?transaction_id=${data.transaction_id}`)
-      : navigate(`/seller/product/${data.product_name}/preview?product_id=${data.product_id}`);
+      ? navigate(`/seller/transaction/${encodedProductName}?transaction_id=${data.transaction_id}`)
+      : navigate(`/seller/product/${encodedProductName}/preview?product_id=${data.product_id}`);
   };
 
   return (
