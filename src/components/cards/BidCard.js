@@ -48,7 +48,11 @@ export default function BidCard({ data, accept, reject, loading, openStatusModal
             ) : (
               <a
                 className="flex items-center justify-center space-x-1"
-                href={textToCustomer(data.buyer_phone_number)}
+                href={textToCustomer(
+                  data.buyer_phone_number,
+                  data.product_name,
+                  data.product_offer,
+                )}
                 rel="noreferrer"
                 target="_blank"
               >

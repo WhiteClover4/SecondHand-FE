@@ -1,3 +1,4 @@
+import { textToCustomer } from '../../constants/textToCustomer';
 import { PrimaryButton } from '../buttons';
 import { XIcon, WhatsappIcon } from '../icons';
 
@@ -55,10 +56,15 @@ export default function SuccessCheckoutModal({ data, setModal }) {
           </div>
         </div>
         <PrimaryButton>
-          <div className="flex flex-row items-center">
+          <a
+            className="flex flex-row items-center"
+            href={textToCustomer(data.buyer_phone_number, data.product_name, data.product_offer)}
+            rel="noreferrer"
+            target="_blank"
+          >
             <p className="mr-1 grow  text-center">Hubungi via Whatsapp</p>
             <WhatsappIcon />
-          </div>
+          </a>
         </PrimaryButton>
       </div>
     </div>
