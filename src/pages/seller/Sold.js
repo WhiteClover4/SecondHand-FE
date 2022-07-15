@@ -13,9 +13,9 @@ export default function Sold() {
   const navigate = useNavigate();
   const { getAllHistory, loading, history } = useTransaction();
 
-  function navigateToPreview(name, id) {
+  function navigateToPreview(name, transaction_id) {
     const encodedName = encodeURIComponent(name);
-    navigate(`/seller/product/${encodedName}/preview?product_id=${id}`);
+    navigate(`/seller/transaction/${encodedName}?transaction_id=${transaction_id}`);
   }
 
   useEffect(() => {
@@ -31,7 +31,7 @@ export default function Sold() {
                 <ProductCard
                   key={product.id}
                   data={product}
-                  navigate={() => navigateToPreview(product.name, product.id)}
+                  navigate={() => navigateToPreview(product.name, product.transaction_id)}
                 />
               ))
             : dummiesProducts.map((el, i) => <ProductCardSkeleton key={i} />)}
