@@ -32,7 +32,7 @@ export default function ProductInput() {
           className="relative mx-auto mt-10 w-full px-4 lg:w-[568px]"
           onSubmit={(e) => e.preventDefault()}
         >
-          <BackButton className="absolute -left-[76px] top-0 hidden lg:block" />{' '}
+          <BackButton className="absolute -left-[76px] top-0 hidden lg:block" />
           <form onSubmit={(e) => e.preventDefault()}>
             <div className="space-y-4">
               <LabelTextInput
@@ -71,13 +71,13 @@ export default function ProductInput() {
             </div>
             <div className="mt-4 flex flex-col space-y-1">
               <p className="text-body-12 font-normal"> Foto Produk </p>
-              <div className="hide-scrollbar w-full overflow-x-auto">
-                <div className="flex w-max items-center space-x-6 pt-3 lg:pt-0">
+              <div className="hide-scrollbar w-full overflow-x-auto lg:overflow-visible">
+                <div className="flex w-max grid-cols-4 space-x-6 lg:grid lg:w-full">
                   {productInput.product_images.length < 4 && (
                     <FileInput2 onChange={addProductInputImage} />
                   )}
                   {productInput.product_images.map((image, i) => (
-                    <div key={i} className="relative h-24">
+                    <div key={i} className="relative h-24 w-24 lg:w-full">
                       <RemoveButton remove={() => removeProductInputImage(i)} />
                       <img
                         alt={image.product_pictures}
@@ -116,7 +116,7 @@ export default function ProductInput() {
 
 const RemoveButton = ({ remove }) => {
   return (
-    <button className="absolute -top-4 -right-4" onClick={remove} type="button">
+    <button className="absolute -right-4 lg:-top-4" onClick={remove} type="button">
       <XIcon className="h-4 w-4 text-alert-danger" />
     </button>
   );
