@@ -8,6 +8,7 @@ import {
   updateStatusToPublishedService,
 } from '../../services/api/product';
 import { initialProduct } from '../../utils/initial';
+import useError from './useError';
 import useNotification from './useNotification';
 
 export default function useSellerProduct() {
@@ -23,6 +24,7 @@ export default function useSellerProduct() {
     updateStatusProduct: false,
     getWishlistProduct: false,
   });
+  const errorHandler = useError();
 
   const getSellerProducts = useCallback(async () => {
     if (!isAuthenticated) return;
@@ -31,15 +33,13 @@ export default function useSellerProduct() {
     try {
       const res = await getSellerProductsService(token);
 
-      if (typeof res === 'string') return dispatch(ADD_ALERT({ status: 'error', message: res }));
+      const isError = errorHandler(res);
 
-      if (res.status === 'error') return dispatch(ADD_ALERT({ status: 'error', message: res.msg }));
+      if (isError) return;
 
       setSellerProducts(res.data);
     } catch (error) {
-      console.log('error get seller products', error);
-
-      dispatch(ADD_ALERT({ status: 'error', message: 'something went wrong' }));
+      errorHandler(error);
     } finally {
       setLoading({ ...loading, getSellerProducts: false });
     }
@@ -53,16 +53,13 @@ export default function useSellerProduct() {
       try {
         const res = await getSellerProductService(token, productId);
 
-        if (typeof res === 'string') return dispatch(ADD_ALERT({ status: 'error', message: res }));
+        const isError = errorHandler(res);
 
-        if (res.status === 'error')
-          return dispatch(ADD_ALERT({ status: 'error', message: res.msg }));
+        if (isError) return;
 
         setSellerProduct(res.data);
       } catch (error) {
-        console.log('error get seller product', error);
-
-        dispatch(ADD_ALERT({ status: 'error', message: 'something went wrong' }));
+        errorHandler(error);
       } finally {
         setLoading({ ...loading, getSellerProduct: false });
       }
@@ -77,15 +74,13 @@ export default function useSellerProduct() {
     try {
       const res = await updateStatusToPublishedService(token, productId);
 
-      if (typeof res === 'string') return dispatch(ADD_ALERT({ status: 'error', message: res }));
+      const isError = errorHandler(res);
 
-      if (res.status === 'error') return dispatch(ADD_ALERT({ status: 'error', message: res.msg }));
+      if (isError) return;
 
       dispatch(ADD_ALERT({ status: res.status, message: res.msg }));
     } catch (error) {
-      console.log('error update status product', error);
-
-      dispatch(ADD_ALERT({ status: 'error', message: 'something went wrong' }));
+      errorHandler(error);
 
       await getNotification();
     } finally {
@@ -100,15 +95,13 @@ export default function useSellerProduct() {
     try {
       const res = await getWishlistProductService(token);
 
-      if (typeof res === 'string') return dispatch(ADD_ALERT({ status: 'error', message: res }));
+      const isError = errorHandler(res);
 
-      if (res.status === 'error') return dispatch(ADD_ALERT({ status: 'error', message: res.msg }));
+      if (isError) return;
 
       setWishlistProduct(res.data);
     } catch (error) {
-      console.log('error get wishlit product', error);
-
-      dispatch(ADD_ALERT({ status: 'error', message: 'something went wrong' }));
+      errorHandler(error);
     } finally {
       setLoading({ ...loading, getWishlistProduct: false });
     }

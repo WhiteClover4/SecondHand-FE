@@ -1,4 +1,6 @@
 /* eslint-disable indent */
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { MainNavbar } from '../../components/navbars';
 import { ProductCard } from '../../components/cards';
 import { SellerLayout } from '../../components/layouts';
@@ -6,8 +8,6 @@ import AuthenticatedRoute from '../../routes/AuthenticatedRoute';
 import useTransaction from '../../hooks/dependent/useTransaction';
 import { ProductCardSkeleton } from '../../components/skeletons';
 import { initialProduct } from '../../utils/initial';
-import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
 
 export default function Sold() {
   const navigate = useNavigate();

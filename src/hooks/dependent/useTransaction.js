@@ -10,6 +10,7 @@ import {
   updateTransactionStatusService,
 } from '../../services/api/transaction';
 import { initialTransaction } from '../../utils/initial';
+import useError from './useError';
 
 export default function useTransaction() {
   const dispatch = useDispatch();
@@ -24,6 +25,7 @@ export default function useTransaction() {
     updateTransactionStatus: false,
     getAllHistory: false,
   });
+  const errorHandler = useError();
 
   const getTransaction = useCallback(
     async (transactionId) => {
@@ -33,16 +35,13 @@ export default function useTransaction() {
       try {
         const res = await getTransactionService(token, transactionId);
 
-        if (typeof res === 'string') return dispatch(ADD_ALERT({ status: 'error', message: res }));
+        const isError = errorHandler(res);
 
-        if (res.status === 'error')
-          return dispatch(ADD_ALERT({ status: res.status, message: res.msg }));
+        if (isError) return;
 
         setTransaction(res.data);
       } catch (error) {
-        console.log('error get transaction', error);
-
-        dispatch(ADD_ALERT({ status: 'error', message: 'something went wrong' }));
+        errorHandler(error);
       } finally {
         setLoading({ ...loading, getTransaction: false });
       }
@@ -55,7 +54,9 @@ export default function useTransaction() {
     try {
       const res = await acceptTransactionService(token, transactionId);
 
-      if (typeof res === 'string') return dispatch(ADD_ALERT({ status: 'error', message: res }));
+      const isError = errorHandler(res);
+
+      if (isError) return;
 
       dispatch(ADD_ALERT({ status: res.status, message: res.msg }));
 
@@ -63,9 +64,7 @@ export default function useTransaction() {
 
       await getTransaction(transactionId);
     } catch (error) {
-      console.log('error accept transaction', error);
-
-      dispatch(ADD_ALERT({ status: 'error', message: 'something went wrong' }));
+      errorHandler(error);
     } finally {
       setLoading({ ...loading, acceptTransaction: false });
     }
@@ -76,15 +75,15 @@ export default function useTransaction() {
     try {
       const res = await rejectTransactionService(token, transactionId);
 
-      if (typeof res === 'string') return dispatch(ADD_ALERT({ status: 'error', message: res }));
+      const isError = errorHandler(res);
+
+      if (isError) return;
 
       dispatch(ADD_ALERT({ status: res.status, message: res.msg }));
 
       await getTransaction(transactionId);
     } catch (error) {
-      console.log('error reject transaction', error);
-
-      dispatch(ADD_ALERT({ status: 'error', message: 'something went wrong' }));
+      errorHandler(error);
     } finally {
       setLoading({ ...loading, rejectTransaction: false });
     }
@@ -97,16 +96,13 @@ export default function useTransaction() {
       try {
         const res = await getTransactionStatusService(token, transactionId);
 
-        if (typeof res === 'string') return dispatch(ADD_ALERT({ status: 'error', message: res }));
+        const isError = errorHandler(res);
 
-        if (res.status === 'error')
-          return dispatch(ADD_ALERT({ status: res.status, message: res.msg }));
+        if (isError) return;
 
         setTransactionStatus(res.data.isCompleted);
       } catch (error) {
-        console.log('error get transaction', error);
-
-        dispatch(ADD_ALERT({ status: 'error', message: 'something went wrong' }));
+        errorHandler(error);
       }
     },
     [dispatch],
@@ -117,15 +113,15 @@ export default function useTransaction() {
     try {
       const res = await updateTransactionStatusService(token, transactionId, status);
 
-      if (typeof res === 'string') return dispatch(ADD_ALERT({ status: 'error', message: res }));
+      const isError = errorHandler(res);
+
+      if (isError) return;
 
       dispatch(ADD_ALERT({ status: res.status, message: res.msg }));
 
       await getTransactionStatus(transactionId);
     } catch (error) {
-      console.log('error update transaction status', error);
-
-      dispatch(ADD_ALERT({ status: 'error', message: 'something went wrong' }));
+      errorHandler(error);
     } finally {
       setLoading({ ...loading, updateTransactionStatus: false });
     }
@@ -138,16 +134,13 @@ export default function useTransaction() {
     try {
       const res = await getAllHistoryService(token);
 
-      if (typeof res === 'string') return dispatch(ADD_ALERT({ status: 'error', message: res }));
+      const isError = errorHandler(res);
 
-      if (res.status === 'error')
-        return dispatch(ADD_ALERT({ status: res.status, message: res.msg }));
+      if (isError) return;
 
       setHistory(res.data);
     } catch (error) {
-      console.log('error get transaction', error);
-
-      dispatch(ADD_ALERT({ status: 'error', message: 'something went wrong' }));
+      errorHandler(error);
     } finally {
       setLoading({ ...loading, getAllHistory: false });
     }

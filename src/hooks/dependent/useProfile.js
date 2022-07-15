@@ -3,12 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ADD_ALERT } from '../../redux/slice/alert';
 import { getProfileService, updateProfileService } from '../../services/api/profile';
 import { initialUserData } from '../../utils/initial';
+import useError from './useError';
 
 export default function useProfile() {
   const dispatch = useDispatch();
   const { token, isAuthenticated } = useSelector((state) => state.auth);
   const [userData, setUserData] = useState(initialUserData);
   const [loading, setLoading] = useState({ getProfile: false, updateProfile: false });
+  const errorHandler = useError();
 
   const setUserDataInput = (e) => setUserData({ ...userData, [e.target.name]: e.target.value });
 
@@ -25,13 +27,13 @@ export default function useProfile() {
     try {
       const res = await getProfileService(token);
 
-      if (!res.data) return ADD_ALERT({ status: 'error', message: res });
+      const isError = errorHandler(res);
+
+      if (isError) return;
 
       setUserData({ ...res.data, file: null });
     } catch (error) {
-      console.log('get profile error', error);
-
-      dispatch(ADD_ALERT({ status: 'error', message: 'something went wrong' }));
+      cerrorHandler(error);
     } finally {
       setLoading({ ...loading, getProfile: false });
     }
@@ -47,16 +49,15 @@ export default function useProfile() {
 
       const res = await updateProfileService(token, name, city, address, phone_number, file);
 
-      if (res.status !== 'Success')
-        return dispatch(ADD_ALERT({ status: 'error', message: res.msg }));
+      const isError = errorHandler(res);
+
+      if (isError) return;
 
       dispatch(ADD_ALERT({ status: 'success', message: res.msg }));
 
       await getProfile();
     } catch (error) {
-      console.log('update profile error', error);
-
-      dispatch(ADD_ALERT({ status: 'error', message: 'something went wrong' }));
+      errorHandler(error);
     } finally {
       setLoading({ ...loading, updateProfile: false });
     }
