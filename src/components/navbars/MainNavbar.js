@@ -15,6 +15,9 @@ export default function MainNavbar() {
   const navigate = useNavigate();
   const { isAuthenticated } = useSelector((state) => state.auth);
 
+  const { pathname } = useLocation();
+  const isHomepage = pathname === '/';
+
   const query = useQuery();
   const category = query.get('category');
   const search = query.get('search');
@@ -25,7 +28,11 @@ export default function MainNavbar() {
   }
 
   return (
-    <header className="absolute inset-x-0 top-[38px] z-10 mb-8 flex items-center justify-between bg-transparent px-4 lg:sticky lg:top-0 lg:h-[84px] lg:bg-neutral-01 lg:px-[136px] lg:shadow-high">
+    <header
+      className={`${
+        !isHomepage && 'hidden lg:flex'
+      } absolute inset-x-0 top-[38px] z-10 mb-8 flex items-center justify-between bg-transparent px-4 lg:sticky lg:top-0 lg:h-[84px] lg:bg-neutral-01 lg:px-[136px] lg:shadow-high`}
+    >
       <div className="flex w-full flex-row items-center space-x-4 lg:space-x-6">
         <button
           className="rounded-2xl bg-neutral-01 p-3 lg:hidden"
