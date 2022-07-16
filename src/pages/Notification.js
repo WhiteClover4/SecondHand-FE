@@ -10,9 +10,11 @@ export default function Notification() {
 
   const handleClick = (data) => {
     if (!data.is_read) readNotification(data.id);
-    if (data.role === 'buyer') return;
 
     const encodedProductName = encodeURIComponent(data.product_name);
+
+    if (data.role === 'buyer')
+      return navigate(`/product/${encodedProductName}?product_id=${data.product_id}`);
 
     data.product_offer_price
       ? navigate(`/seller/transaction/${encodedProductName}?transaction_id=${data.transaction_id}`)
