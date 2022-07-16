@@ -70,7 +70,7 @@ export default function ProductDetail() {
                 <SwiperSlide>
                   <img
                     alt="product-image"
-                    className="h-full w-full object-contain"
+                    className="h-full w-full object-cover lg:object-contain"
                     src="/img/no-product-image.png"
                   />
                 </SwiperSlide>
@@ -89,15 +89,15 @@ export default function ProductDetail() {
               <p className="mb-2 text-body-10 text-neutral-03 lg:mb-4 lg:text-body-14">
                 {product.category}
               </p>
-              <div className="text-black mb-6 text-body-14 lg:text-title-16">
+              <p className="text-black mb-6 text-body-14 lg:text-title-16">
                 Rp {product.price.toLocaleString('id-ID')}
-              </div>
+              </p>
               <PrimaryButton className="hidden lg:inline-block" onClick={checkout} type="button">
                 Saya tertarik dan ingin nego
               </PrimaryButton>
             </div>
             <ProfileCard data={product.seller} />
-            <div className="space-y-4 rounded-2xl bg-neutral-01 px-4 pb-[27px] pt-4 shadow-low  lg:hidden">
+            <div className="space-y-4 rounded-2xl bg-neutral-01 px-4 pb-[27px] pt-4 shadow-low lg:hidden">
               <p className="text-black text-body-14 font-medium">Deskripsi</p>
               <p className="text-body-14 text-neutral-03">{product.description}</p>
             </div>
