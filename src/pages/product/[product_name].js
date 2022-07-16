@@ -92,7 +92,11 @@ export default function ProductDetail() {
               <p className="text-black mb-6 text-body-14 lg:text-title-16">
                 Rp {product.price.toLocaleString('id-ID')}
               </p>
-              <PrimaryButton className="hidden lg:inline-block" onClick={checkout} type="button">
+              <PrimaryButton
+                className="fixed inset-x-0 bottom-6 z-20 mx-4 lg:static lg:z-auto lg:mx-0"
+                onClick={checkout}
+                type="button"
+              >
                 Saya tertarik dan ingin nego
               </PrimaryButton>
             </div>
@@ -102,14 +106,6 @@ export default function ProductDetail() {
               <p className="text-body-14 text-neutral-03">{product.description}</p>
             </div>
           </div>
-
-          <PrimaryButton
-            className="fixed inset-x-0 bottom-6 z-20 mx-4 lg:hidden"
-            onClick={checkout}
-            type="button"
-          >
-            Saya tertarik dan ingin nego
-          </PrimaryButton>
         </div>
       ) : (
         <ProductDetailSkeleton />

@@ -82,7 +82,7 @@ export default function PreviewProduct() {
                 Rp {sellerProduct.price.toLocaleString('id-ID')}
               </p>
               <PrimaryButton
-                className="mb-[14px] hidden lg:inline-block"
+                className="fixed inset-x-0 bottom-6 z-20 mx-4 lg:static lg:z-auto lg:mx-0 lg:mb-[14px]"
                 disableText="produk berhasil dipublish"
                 isDisable={loading.updateStatusProduct || sellerProduct.isPublished}
                 onClick={() => updateStatusToPublished(productId)}
@@ -104,15 +104,6 @@ export default function PreviewProduct() {
               <p className="text-body-14 text-neutral-03">{sellerProduct.description}</p>
             </div>
           </div>
-          <PrimaryButton
-            className="fixed inset-x-0 bottom-6 z-20 mx-4 lg:hidden"
-            disableText="produk berhasil dipublish"
-            isDisable={loading.updateStatusProduct || sellerProduct.isPublished}
-            onClick={() => updateStatusToPublished(productId)}
-            type="button"
-          >
-            Terbitkan
-          </PrimaryButton>
         </div>
       )}
     </AuthenticatedRoute>
