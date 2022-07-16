@@ -1,15 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { XIcon } from '../icons';
 
 export default function PrimaryAlert({ status, children, remove }) {
-  const [visible, setVisible] = useState(true);
-
   useEffect(() => {
     const timer = setTimeout(() => {
-      setVisible(false);
-    }, 4000);
+      remove();
+    }, 3000);
     return () => clearTimeout(timer);
-  }, [4000]);
+  }, [3000]);
 
   function bgColor(status) {
     if (status === 'success') return 'bg-alert-success';
@@ -18,7 +16,7 @@ export default function PrimaryAlert({ status, children, remove }) {
     return 'bg-alert-danger';
   }
 
-  return visible ? (
+  return (
     <div
       className={`${bgColor(
         status,
@@ -29,7 +27,5 @@ export default function PrimaryAlert({ status, children, remove }) {
         <XIcon className="h-5 w-5 text-neutral-01" />
       </button>
     </div>
-  ) : (
-    <></>
   );
 }

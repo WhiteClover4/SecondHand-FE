@@ -31,9 +31,9 @@ export const ShowALert = () => {
     <div
       className={`${
         !alerts.length && 'hidden'
-      } fixed top-[100px] left-0 z-[999] flex w-full justify-center`}
+      } fixed top-[54px] left-0 z-[999] flex w-full justify-center lg:top-[100px]`}
     >
-      <div className="flex w-max min-w-[500px] flex-col space-y-5">
+      <div className="flex w-full flex-col space-y-5 px-4 lg:w-max lg:min-w-[500px] lg:p-0">
         {alerts.map((alert, i) => (
           <MainAlert key={i} remove={() => dispatch(REMOVE_ALERT(i))} status={alert.status}>
             {alert.message}
