@@ -50,7 +50,9 @@ export default function MobileSideNavbar() {
             </li>
           ) : (
             <>
-              <li className="text-body-14">Notifikasi</li>
+              <li className="text-body-14">
+                <Link to="/notification">Notifikasi</Link>
+              </li>
               <li className="text-body-14">
                 <Link to="/seller/products">Daftar Jual</Link>
               </li>
