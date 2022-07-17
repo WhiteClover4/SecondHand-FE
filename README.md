@@ -1,70 +1,89 @@
-# Getting Started with Create React App
+# SecondHand
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+visit app https://secondhand-binar.vercel.app/
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This platform is a place for buying and selling products online, especially used products. This platform opens and provides various types of need categories. Users who register with this application can act as sellers and buyers by using the same 1 (one) account. This platform will bring together sellers and buyers to be able to negotiate products and conduct transactions directly outside the platform.
 
-## Available Scripts
+## Getting Started
 
-In the project directory, you can run:
+To get started running the project locally, please follow the steps below.
 
-### `yarn start`
+First, clone the repository.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```bash
+git clone https://github.com/WhiteClover4/SecondHand-FE.git
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Then, install dependencies and fetch data to your local machine. **Note that we use Yarn, not npm.**
 
-### `yarn test`
+```bash
+cd SecondHand-FE
+yarn install
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Set up environment variable
+- Create .env.local file
+```
+REACT_APP_API_BASE_URL=https://example.com
+REACT_APP_API_STAGING_URL=https://example-staging.com
+REACT_APP_TOKEN_KEY=EXAMPLE_TOKEN_KEY
+```
 
-### `yarn build`
+Finally, run the development server.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+yarn start
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Contributing
 
-### `yarn eject`
+See our contribution guidelines in these languages:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- [English](CONTRIBUTING.md)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+When contributing to our project, please use English when communicating with other people in issues and/or pull requests. [Click here](CONTRIBUTING.md#why-are-we-using-english-in-our-issues--prs) to read why.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Contributors ✨
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Thanks goes to these wonderful people
 
-## Learn More
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/apurnomo144"><img src="https://avatars.githubusercontent.com/u/107606630?v=4" width="100px;" alt=""/><br /><sub><b>Abraham Purnomo</b></sub></a><br /><p style="font-size:12px">Backend Facilitator</p></td>
+    <td align="center"><a href="https://github.com/raihan-muhammad"><img src="https://avatars.githubusercontent.com/u/51007619?v=4" width="100px;" alt=""/><br /><sub><b>Michael Muhammad Raihan</b></sub></a><br /><p style="font-size:12px">Frontend Facilitator</p></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/pupunn"><img src="https://avatars.githubusercontent.com/u/57618565?v=4" width="100px;" alt=""/><br /><sub><b>Arif Saifunnarullah</b></sub></a><br /><p style="font-size:12px">Backend Team Leader</p></td>
+    <td align="center"><a href="https://github.com/nee18"><img src="https://avatars.githubusercontent.com/u/99226926?v=4" width="100px;" alt=""/><br /><sub><b>Nely Dwi Agustin</b></sub></a><br /><p style="font-size:12px">Backend Developer</p></td>
+    <td align="center"><a href="https://github.com/Danz29"><img src="https://avatars.githubusercontent.com/u/99729025?v=4" width="100px;" alt=""/><br /><sub><b>Fardan Fauzi</b></sub></a><br /><p style="font-size:12px">Backend Developer</p></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/alfirmanpahlepi"><img src="https://avatars.githubusercontent.com/u/78687274?s=96&v=4" width="100px;" alt=""/><br /><sub><b>Alfirman Pahlepi</b></sub></a><br /><p style="font-size:12px">Frontend Team Leader</p></td>
+    <td align="center"><a href="https://github.com/syahriful"><img src="https://avatars.githubusercontent.com/u/46914429?v=4" width="100px;" alt=""/><br /><sub><b>Syahriful Hikmatullah</b></sub></a><br /><p style="font-size:12px">Frontend  Developer</p></td>
+    <td align="center"><a href="https://github.com/Sittiarifah"><img src="https://avatars.githubusercontent.com/u/99728741?v=4" width="100px;" alt=""/><br /><sub><b>Sitti Arifah</b></sub></a><br /><p style="font-size:12px">Frontend Developer</p></td>
+  </tr>
+</table>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<!-- ALL-CONTRIBUTORS-LIST:END -->
 
-### Code Splitting
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Supporters
 
-### Analyzing the Bundle Size
+Special thanks goes to our supporters.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<p>
+  <a href="https://www.netlify.com/" target="_blank" rel="noopener noreferrer"><img height="80" src="https://global-uploads.webflow.com/5e70b9a791ceb781b605048c/62c5720d8b3b6003c2f46fa4_logo-binar-academy.svg" alt="Netlify"></a><br/>
+  <a href="https://www.gitbook.com/" target="_blank" rel="noopener noreferrer"><img height="80" src="https://kampusmerdeka.kemdikbud.go.id/static/media/logo-white@2x.5330316a.webp" alt="GitBook Logo"></a></br>
+  <a href="https://www.cypress.io/" target="_blank" rel="noopener noreferrer"><img height="80" alt="Cypress" src="https://kampusmerdeka.kemdikbud.go.id/static/media/logo-pendidikan@2x.0ce0acdc.webp" /></a>
+</p>
