@@ -2,9 +2,10 @@ import { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { localStorageTokenKey } from '../../constants/environment';
-import { ADD_ALERT, SET_ALERT } from '../../redux/slice/alert';
+import { SET_ALERT } from '../../redux/slice/alert';
 import { CHANGE_AUTH, SET_TOKEN } from '../../redux/slice/auth';
 import { loginService, registerService } from '../../services/api/auth';
+import useError from './useError';
 
 export default function useAuth() {
   const { pathname } = useLocation();
@@ -12,26 +13,22 @@ export default function useAuth() {
   const dispatch = useDispatch();
   const { isAuthenticated } = useSelector((state) => state.auth);
   const [loading, setLoading] = useState({ register: false, login: false });
+  const errorHandler = useError();
 
   async function register(name, email, password) {
     setLoading({ ...loading, register: true });
     try {
       const res = await registerService(name, email, password);
 
-      if (res.errors) {
-        res.errors.forEach((error) => {
-          dispatch(ADD_ALERT({ status: 'error', message: error.msg }));
-        });
-        return;
-      }
+      const isError = errorHandler(res);
+
+      if (isError) return;
 
       dispatch(SET_ALERT([{ status: 'success', message: res.msg }]));
 
       navigate('/login');
     } catch (error) {
-      console.log('register error', error);
-
-      dispatch(ADD_ALERT({ status: 'error', message: 'something went wrong' }));
+      errorHandler(error);
     } finally {
       setLoading({ ...loading, register: false });
     }
@@ -42,15 +39,9 @@ export default function useAuth() {
     try {
       const res = await loginService(email, password);
 
-      if (res.errors) {
-        res.errors.forEach((error) => {
-          dispatch(ADD_ALERT({ status: 'error', message: error.msg }));
-        });
-        return;
-      }
+      const isError = errorHandler(res);
 
-      if (res.status === 'Failed')
-        return dispatch(ADD_ALERT({ status: 'error', message: res.msg }));
+      if (isError) return;
 
       dispatch(SET_ALERT([{ status: 'success', message: res.msg }]));
 
@@ -65,9 +56,7 @@ export default function useAuth() {
 
       localStorage.setItem(localStorageTokenKey, JSON.stringify(saveToken));
     } catch (error) {
-      console.log('login error', error);
-
-      dispatch(ADD_ALERT({ status: 'error', message: 'something went wrong' }));
+      errorHandler(error);
     } finally {
       setLoading({ ...loading, login: false });
     }

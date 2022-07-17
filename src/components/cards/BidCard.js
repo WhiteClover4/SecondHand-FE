@@ -9,7 +9,7 @@ export default function BidCard({ data, accept, reject, loading, openStatusModal
         <img
           alt="img-notification"
           className="mr-4 h-12 w-12 rounded-xl object-cover"
-          src={data.product_pictures}
+          src={data.product_pictures || '/img/a5cff95160773ed4b391783e4d440b26.jpeg'}
         />
         <div className="flex w-full flex-col gap-1">
           <div className="flex items-center justify-between text-body-10 ">
@@ -26,9 +26,9 @@ export default function BidCard({ data, accept, reject, loading, openStatusModal
         </div>
       </div>
       {data.status !== 'REJECTED' ? (
-        <div className="mt-6 flex w-full items-center justify-end space-x-4">
+        <div className="mt-6 flex w-full items-center space-x-4 lg:justify-end">
           <SecondaryButton
-            className="w-[158px]"
+            className="w-full lg:w-[158px]"
             isDisable={loading}
             isSmall
             onClick={data.status === 'OFFERED' ? reject : openStatusModal}
@@ -37,7 +37,7 @@ export default function BidCard({ data, accept, reject, loading, openStatusModal
             {data.status === 'OFFERED' ? 'Tolak' : 'Status'}
           </SecondaryButton>
           <PrimaryButton
-            className="w-[158px]"
+            className="w-full lg:w-[158px]"
             isDisable={loading}
             isSmall
             onClick={data.status === 'OFFERED' ? accept : null}
@@ -47,8 +47,12 @@ export default function BidCard({ data, accept, reject, loading, openStatusModal
               'Terima'
             ) : (
               <a
-                className="flex items-center space-x-1"
-                href={textToCustomer(data.buyer_phone_number)}
+                className="flex items-center justify-center space-x-1"
+                href={textToCustomer(
+                  data.buyer_phone_number,
+                  data.product_name,
+                  data.product_offer,
+                )}
                 rel="noreferrer"
                 target="_blank"
               >

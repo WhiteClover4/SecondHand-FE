@@ -16,6 +16,8 @@ export default function Transaction() {
     acceptTransaction,
     rejectTransaction,
     updateTransactionStatus,
+    getTransactionStatus,
+    transactionStatus,
   } = useTransaction();
 
   const query = useQuery();
@@ -29,7 +31,8 @@ export default function Transaction() {
 
   useEffect(() => {
     getTransaction(transactionId);
-  }, [getTransaction, transactionId]);
+    getTransactionStatus(transactionId);
+  }, [getTransaction, getTransactionStatus, transactionId]);
 
   return (
     <AuthenticatedRoute>
@@ -38,19 +41,20 @@ export default function Transaction() {
         <StatusModal
           loading={loading.updateTransactionStatus}
           setModal={setModal}
+          transactionStatus={transactionStatus}
           updateTransactionStatus={(status) => updateTransactionStatus(transactionId, status)}
         />
       )}
       <div className="absolute top-0 h-screen w-full overflow-auto">
         <SimpleNavbar title="Info Penawar" />
-        <div className="relative mx-auto w-[568px]">
+        <div className="relative mx-auto w-full px-4 lg:w-[568px] lg:px-0">
           <BackButton className="absolute -left-[76px] top-0" />
           <div className="mt-10">
             <ProfileCard data={buyerProfile} />
             <p className="my-6 text-body-14 font-medium"> Daftar Produkmu yang Ditawar </p>
             <div className="flex flex-col space-y-6">
               <BidCard
-                accept={() => acceptTransaction(transactionId, () => setModal(true))}
+                accept={() => acceptTransaction(transactionId, () => setModal('success'))}
                 data={transaction}
                 loading={loading.acceptTransaction || loading.rejectTransaction}
                 openStatusModal={() => setModal('status')}

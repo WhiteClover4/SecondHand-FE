@@ -32,12 +32,10 @@ describe('preview product', () => {
   });
 
   it('rendered preview product page properly', async () => {
-    await waitFor(() => {
-      expect(screen.getByText('tesla')).toBeInTheDocument();
-      expect(screen.getByText('ehe')).toBeInTheDocument();
-      expect(screen.getByText('alfirman')).toBeInTheDocument();
-      expect(screen.getByText('MANOKWARI')).toBeInTheDocument();
-    });
+    expect(await screen.findByText('tesla'));
+    expect(await screen.findAllByText('ehe'));
+    expect(await screen.findByText('alfirman'));
+    expect(await screen.findByText('MANOKWARI'));
   });
 });
 

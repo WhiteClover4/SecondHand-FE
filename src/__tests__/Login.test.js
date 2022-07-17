@@ -84,7 +84,8 @@ describe('Login page render alert properly', () => {
 });
 
 function mockFetchLoginAPI(email, password, isServerDown) {
-  if (isServerDown) return (authAPI.loginService = jest.fn().mockRejectedValue('505'));
+  if (isServerDown)
+    return (authAPI.loginService = jest.fn().mockRejectedValue('something went wrong'));
 
   let mockResponse = {};
   const correctEmail = 'correct@mail.com';

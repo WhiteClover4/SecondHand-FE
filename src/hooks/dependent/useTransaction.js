@@ -5,16 +5,19 @@ import {
   acceptTransactionService,
   getAllHistoryService,
   getTransactionService,
+  getTransactionStatusService,
   rejectTransactionService,
   updateTransactionStatusService,
 } from '../../services/api/transaction';
 import { initialTransaction } from '../../utils/initial';
+import useError from './useError';
 
 export default function useTransaction() {
   const dispatch = useDispatch();
   const { token, isAuthenticated } = useSelector((state) => state.auth);
   const [transaction, setTransaction] = useState(initialTransaction);
   const [history, setHistory] = useState([]);
+  const [transactionStatus, setTransactionStatus] = useState(null);
   const [loading, setLoading] = useState({
     getTransaction: false,
     acceptTransaction: false,
@@ -22,6 +25,7 @@ export default function useTransaction() {
     updateTransactionStatus: false,
     getAllHistory: false,
   });
+  const errorHandler = useError();
 
   const getTransaction = useCallback(
     async (transactionId) => {
@@ -31,16 +35,13 @@ export default function useTransaction() {
       try {
         const res = await getTransactionService(token, transactionId);
 
-        if (typeof res === 'string') return dispatch(ADD_ALERT({ status: 'error', message: res }));
+        const isError = errorHandler(res);
 
-        if (res.status === 'error')
-          return dispatch(ADD_ALERT({ status: res.status, message: res.msg }));
+        if (isError) return;
 
         setTransaction(res.data);
       } catch (error) {
-        console.log('error get transaction', error);
-
-        dispatch(ADD_ALERT({ status: 'error', message: 'something went wrong' }));
+        errorHandler(error);
       } finally {
         setLoading({ ...loading, getTransaction: false });
       }
@@ -53,17 +54,17 @@ export default function useTransaction() {
     try {
       const res = await acceptTransactionService(token, transactionId);
 
-      if (typeof res === 'string') return dispatch(ADD_ALERT({ status: 'error', message: res }));
+      const isError = errorHandler(res);
+
+      if (isError) return;
 
       dispatch(ADD_ALERT({ status: res.status, message: res.msg }));
 
-      await getTransaction(transactionId);
-
       openModal();
-    } catch (error) {
-      console.log('error accept transaction', error);
 
-      dispatch(ADD_ALERT({ status: 'error', message: 'something went wrong' }));
+      await getTransaction(transactionId);
+    } catch (error) {
+      errorHandler(error);
     } finally {
       setLoading({ ...loading, acceptTransaction: false });
     }
@@ -74,32 +75,53 @@ export default function useTransaction() {
     try {
       const res = await rejectTransactionService(token, transactionId);
 
-      if (typeof res === 'string') return dispatch(ADD_ALERT({ status: 'error', message: res }));
+      const isError = errorHandler(res);
+
+      if (isError) return;
 
       dispatch(ADD_ALERT({ status: res.status, message: res.msg }));
 
       await getTransaction(transactionId);
     } catch (error) {
-      console.log('error reject transaction', error);
-
-      dispatch(ADD_ALERT({ status: 'error', message: 'something went wrong' }));
+      errorHandler(error);
     } finally {
       setLoading({ ...loading, rejectTransaction: false });
     }
   }
+
+  const getTransactionStatus = useCallback(
+    async (transactionId) => {
+      if (!isAuthenticated) return;
+
+      try {
+        const res = await getTransactionStatusService(token, transactionId);
+
+        const isError = errorHandler(res);
+
+        if (isError) return;
+
+        setTransactionStatus(res.data.isCompleted);
+      } catch (error) {
+        errorHandler(error);
+      }
+    },
+    [dispatch],
+  );
 
   async function updateTransactionStatus(transactionId, status) {
     setLoading({ ...loading, updateTransactionStatus: true });
     try {
       const res = await updateTransactionStatusService(token, transactionId, status);
 
-      if (typeof res === 'string') return dispatch(ADD_ALERT({ status: 'error', message: res }));
+      const isError = errorHandler(res);
+
+      if (isError) return;
 
       dispatch(ADD_ALERT({ status: res.status, message: res.msg }));
-    } catch (error) {
-      console.log('error update transaction status', error);
 
-      dispatch(ADD_ALERT({ status: 'error', message: 'something went wrong' }));
+      await getTransactionStatus(transactionId);
+    } catch (error) {
+      errorHandler(error);
     } finally {
       setLoading({ ...loading, updateTransactionStatus: false });
     }
@@ -112,16 +134,13 @@ export default function useTransaction() {
     try {
       const res = await getAllHistoryService(token);
 
-      if (typeof res === 'string') return dispatch(ADD_ALERT({ status: 'error', message: res }));
+      const isError = errorHandler(res);
 
-      if (res.status === 'error')
-        return dispatch(ADD_ALERT({ status: res.status, message: res.msg }));
+      if (isError) return;
 
       setHistory(res.data);
     } catch (error) {
-      console.log('error get transaction', error);
-
-      dispatch(ADD_ALERT({ status: 'error', message: 'something went wrong' }));
+      errorHandler(error);
     } finally {
       setLoading({ ...loading, getAllHistory: false });
     }
@@ -132,6 +151,8 @@ export default function useTransaction() {
     getTransaction,
     acceptTransaction,
     rejectTransaction,
+    transactionStatus,
+    getTransactionStatus,
     updateTransactionStatus,
     getAllHistory,
     history,

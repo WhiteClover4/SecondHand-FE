@@ -54,6 +54,24 @@ export function rejectTransactionService(token, transactionId) {
   });
 }
 
+export function getTransactionStatusService(token, transactionId) {
+  var myHeaders = new Headers();
+  myHeaders.append('Authorization', `Bearer ${token}`);
+
+  var requestOptions = {
+    method: 'GET',
+    headers: myHeaders,
+    redirect: 'follow',
+  };
+
+  return new Promise((resolve, reject) => {
+    fetch(`${apiStagingURL}/api/transaction/${transactionId}/status`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => resolve(result))
+      .catch((error) => reject(error));
+  });
+}
+
 export function updateTransactionStatusService(token, transactionId, status) {
   var myHeaders = new Headers();
   myHeaders.append('Authorization', `Bearer ${token}`);

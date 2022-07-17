@@ -1,4 +1,6 @@
 /* eslint-disable indent */
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { MainNavbar } from '../../components/navbars';
 import { ProductCard } from '../../components/cards';
 import { SellerLayout } from '../../components/layouts';
@@ -6,16 +8,14 @@ import AuthenticatedRoute from '../../routes/AuthenticatedRoute';
 import useTransaction from '../../hooks/dependent/useTransaction';
 import { ProductCardSkeleton } from '../../components/skeletons';
 import { initialProduct } from '../../utils/initial';
-import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
 
 export default function Sold() {
   const navigate = useNavigate();
   const { getAllHistory, loading, history } = useTransaction();
 
-  function navigateToPreview(name, id) {
+  function navigateToPreview(name, transaction_id) {
     const encodedName = encodeURIComponent(name);
-    navigate(`/seller/product/${encodedName}/preview?product_id=${id}`);
+    navigate(`/seller/transaction/${encodedName}?transaction_id=${transaction_id}`);
   }
 
   useEffect(() => {
@@ -31,7 +31,7 @@ export default function Sold() {
                 <ProductCard
                   key={product.id}
                   data={product}
-                  navigate={() => navigateToPreview(product.name, product.id)}
+                  navigate={() => navigateToPreview(product.name, product.transaction_id)}
                 />
               ))
             : dummiesProducts.map((el, i) => <ProductCardSkeleton key={i} />)}

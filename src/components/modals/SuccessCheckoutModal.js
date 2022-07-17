@@ -1,18 +1,22 @@
+import { textToCustomer } from '../../constants/textToCustomer';
 import { PrimaryButton } from '../buttons';
 import { XIcon, WhatsappIcon } from '../icons';
 
 export default function SuccessCheckoutModal({ data, setModal }) {
   return (
     <div
-      className="fixed top-0 left-0 z-20 flex  h-screen w-screen items-center justify-center bg-[#000]/60"
+      className="fixed top-0 left-0 z-20 flex h-screen w-screen items-end justify-center bg-[#000]/60 lg:items-center"
       onClick={() => setModal('')}
     >
       <div
-        className="relative flex  w-[360px] flex-col rounded-2xl bg-neutral-01  px-8 pt-4 pb-6"
+        className="relative flex  w-[360px] flex-col rounded-t-2xl bg-neutral-01 px-8  pt-4 pb-6 lg:rounded-2xl"
         onClick={(e) => e.stopPropagation()}
       >
+        <div className="mb-6 flex w-full justify-center lg:hidden">
+          <span className="h-[6px] w-[60px] rounded-full bg-[#C4C4C4] "></span>
+        </div>
         <button
-          className="place-self-star mb-4 place-self-end"
+          className="place-self-star mb-4 hidden place-self-end lg:inline-block"
           onClick={() => setModal('')}
           type="button"
         >
@@ -29,8 +33,8 @@ export default function SuccessCheckoutModal({ data, setModal }) {
           <div className="flex flex-row items-center">
             <img
               alt="img-profile"
-              className="mr-4 h-12 w-12 rounded-xl object-cover"
-              src={data.buyer_profile_picture}
+              className="mr-4 h-12 w-12 overflow-hidden rounded-xl object-cover"
+              src={data.buyer_profile_picture || '/img/a5cff95160773ed4b391783e4d440b26.jpeg'}
             />
             <div className="flex grow flex-col gap-y-1">
               <p className="text-body-14 font-medium">{data.buyer_name}</p>
@@ -55,10 +59,15 @@ export default function SuccessCheckoutModal({ data, setModal }) {
           </div>
         </div>
         <PrimaryButton>
-          <div className="flex flex-row items-center">
+          <a
+            className="flex flex-row items-center"
+            href={textToCustomer(data.buyer_phone_number, data.product_name, data.product_offer)}
+            rel="noreferrer"
+            target="_blank"
+          >
             <p className="mr-1 grow  text-center">Hubungi via Whatsapp</p>
             <WhatsappIcon />
-          </div>
+          </a>
         </PrimaryButton>
       </div>
     </div>

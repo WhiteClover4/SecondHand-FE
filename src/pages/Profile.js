@@ -22,16 +22,7 @@ export default function SellerProduct() {
   return (
     <AuthenticatedRoute>
       <div className="absolute top-0 h-screen w-full overflow-auto">
-        <div className="h-13 flex w-full items-center lg:hidden">
-          <BackButton className=" mt-4 ml-4" />
-          <p className="mx-auto mt-4 flex justify-center text-body-14 font-medium">
-            {' '}
-            Lengkapi Info Akun{' '}
-          </p>
-        </div>
-        <div className="hidden lg:block">
-          <SimpleNavbar title="Lengkapi Info Akun" />
-        </div>
+        <SimpleNavbar title="Lengkapi Info Akun" />
         <div className="relative mx-auto mt-10 hidden w-[568px] lg:block">
           <BackButton className="absolute -left-[76px] top-0" />
         </div>

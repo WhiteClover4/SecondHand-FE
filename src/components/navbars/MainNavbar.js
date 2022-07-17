@@ -15,6 +15,9 @@ export default function MainNavbar() {
   const navigate = useNavigate();
   const { isAuthenticated } = useSelector((state) => state.auth);
 
+  const { pathname } = useLocation();
+  const isHomepage = pathname === '/';
+
   const query = useQuery();
   const category = query.get('category');
   const search = query.get('search');
@@ -25,7 +28,11 @@ export default function MainNavbar() {
   }
 
   return (
-    <header className="absolute inset-x-0 top-[38px] z-10 mb-8 flex items-center justify-between bg-transparent px-4 lg:sticky lg:top-0 lg:h-[84px] lg:bg-neutral-01 lg:px-[136px] lg:shadow-high">
+    <header
+      className={`${
+        !isHomepage && 'hidden lg:flex'
+      } absolute inset-x-0 top-[38px] z-10 mb-8 flex items-center justify-between bg-transparent px-4 lg:sticky lg:top-0 lg:h-[84px] lg:bg-neutral-01 lg:px-[136px] lg:shadow-high`}
+    >
       <div className="flex w-full flex-row items-center space-x-4 lg:space-x-6">
         <button
           className="rounded-2xl bg-neutral-01 p-3 lg:hidden"
@@ -132,15 +139,26 @@ const ProfileDropdown = () => {
 };
 
 const Notification = ({ notification, readNotification }) => {
+  const navigate = useNavigate();
+
+  const handleClick = (data) => {
+    if (!data.is_read) readNotification(data.id);
+
+    const encodedProductName = encodeURIComponent(data.product_name);
+
+    if (data.role === 'buyer')
+      return navigate(`/product/${encodedProductName}?product_id=${data.product_id}`);
+
+    data.product_offer_price
+      ? navigate(`/seller/transaction/${encodedProductName}?transaction_id=${data.transaction_id}`)
+      : navigate(`/seller/product/${encodedProductName}/preview?product_id=${data.product_id}`);
+  };
+
   return (
     <div className="absolute top-10 left-1/2 flex w-[376px] -translate-x-1/2 flex-col space-y-4 overflow-hidden rounded-2xl bg-neutral-01 shadow-high">
       <div className="max-h-[300px] w-full overflow-auto px-6">
         {notification.map((notif) => (
-          <NotifCard
-            key={notif.id}
-            data={notif}
-            readNotification={() => readNotification(notif.id)}
-          />
+          <NotifCard key={notif.id} data={notif} handleClick={() => handleClick(notif)} />
         ))}
       </div>
     </div>
