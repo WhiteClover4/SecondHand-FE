@@ -8,24 +8,27 @@ export default function BidModal({ setShow, data, loading, bidProduct }) {
 
   return (
     <div
-      className="fixed top-0 left-0 z-20 flex h-screen w-screen items-center justify-center bg-[#000]/60"
+      className="fixed top-0 left-0 z-20 flex h-screen w-screen items-end justify-center bg-[#000]/60 lg:items-center"
       onClick={() => setShow(false)}
     >
       <div
-        className="w-[360px] rounded-2xl bg-neutral-01 px-8 pt-4 pb-6 shadow-high"
+        className="relative w-[360px] rounded-t-2xl bg-neutral-01 px-8 pt-4 pb-6 shadow-high lg:rounded-2xl"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex justify-end">
+        <div className="absolute inset-0 top-4 flex w-full justify-center lg:hidden">
+          <span className="h-[6px] w-[60px] rounded-full bg-[#C4C4C4] "></span>
+        </div>
+        <div className="hidden justify-end lg:flex">
           <button data-testid="close-modal" onClick={() => setShow(false)} type="button">
             <XIcon className="h-6 w-6 text-neutral-05" />
           </button>
         </div>
-        <h6 className="mt-4 text-body-14 font-medium">Masukkan Harga Tawarmu</h6>
+        <h6 className="mt-6 text-body-14 font-medium lg:mt-4">Masukkan Harga Tawarmu</h6>
         <p className="mt-4 text-body-14  text-neutral-03">
           Harga tawaranmu akan diketahui penual, jika penjual cocok kamu akan segera dihubungi
           penjual.
         </p>
-        <div className="mt-4 flex items-center space-x-4 rounded-2xl bg-[#EEEEEE] p-4 shadow-high">
+        <div className="mt-4 flex items-center space-x-4 rounded-2xl p-4 shadow-low lg:bg-[#EEEEEE] lg:shadow-high">
           <div>
             <img
               alt="product-image"
