@@ -16,20 +16,24 @@ export default function StatusModal({
 
   return (
     <div
-      className="fixed top-0 left-0 z-20 flex h-screen w-screen items-center justify-center bg-[#000]/60"
+      className="lg::items-center fixed top-0 left-0 z-20 flex h-screen w-screen items-end justify-center bg-[#000]/60"
       onClick={() => setModal('')}
     >
       <div
-        className="relative flex w-[360px] flex-col rounded-2xl bg-neutral-01 px-8 pt-4 pb-6 shadow-high"
+        className="relative flex w-[360px] flex-col rounded-t-2xl bg-neutral-01 px-8 pt-4 pb-6 shadow-high lg:rounded-2xl"
         onClick={(e) => e.stopPropagation()}
       >
+        <div className="mb-6 flex w-full justify-center lg:hidden">
+          <span className="h-[6px] w-[60px] rounded-full bg-[#C4C4C4] "></span>
+        </div>
         <button
-          className="place-self-star mb-4 place-self-end"
+          className="place-self-star mb-4 hidden place-self-end lg:inline-block"
           onClick={() => setModal('')}
           type="button"
         >
           <XIcon className="h-6 w-6 text-neutral-05 " />
         </button>
+
         <p className="mb-6 text-body-14 font-medium">Perbarui status penjualan produkmu</p>
         <div className="mb-2 flex flex-row items-center">
           <input

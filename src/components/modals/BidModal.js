@@ -15,7 +15,7 @@ export default function BidModal({ setShow, data, loading, bidProduct }) {
         className="relative w-[360px] rounded-t-2xl bg-neutral-01 px-8 pt-4 pb-6 shadow-high lg:rounded-2xl"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="absolute inset-0 top-4 flex w-full justify-center lg:hidden">
+        <div className="flex w-full justify-center lg:hidden">
           <span className="h-[6px] w-[60px] rounded-full bg-[#C4C4C4] "></span>
         </div>
         <div className="hidden justify-end lg:flex">
