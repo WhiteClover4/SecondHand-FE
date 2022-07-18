@@ -25,7 +25,11 @@ export default function MainNavbar() {
   }
 
   return (
-    <header className="absolute inset-x-0 top-[38px] z-10 mb-8 flex items-center justify-between bg-transparent px-4 lg:sticky lg:top-0 lg:h-[84px] lg:bg-neutral-01 lg:px-[136px] lg:shadow-high">
+    <header
+      className={`${
+        isHome ? 'absolute inset-x-0 top-[38px]' : 'hidden lg:flex'
+      } z-10 mb-8 flex items-center justify-between bg-transparent px-4 lg:sticky lg:top-0 lg:h-[84px] lg:bg-neutral-01 lg:px-[136px] lg:shadow-high`}
+    >
       <div className="flex w-full flex-row items-center space-x-4 lg:space-x-6">
         <button
           className="rounded-2xl bg-neutral-01 p-3 lg:hidden"
@@ -35,11 +39,13 @@ export default function MainNavbar() {
           <MenuIcon className="w-6" />
         </button>
         <Link className="hidden h-[34px] w-[100px] bg-primary-05 lg:inline-block" to="/" />
-        <SearchInput
-          onChange={navigateQuerySearch}
-          placeholder="Cari di sini ..."
-          value={search || ''}
-        />
+        {isHome ? (
+          <SearchInput
+            onChange={navigateQuerySearch}
+            placeholder="Cari di sini ..."
+            value={search || ''}
+          />
+        ) : null}
       </div>
       {isAuthenticated ? (
         <AuthenticatedNav />
@@ -146,3 +152,5 @@ const Notification = ({ notification, readNotification }) => {
     </div>
   );
 };
+
+const isHome = window.location.pathname === '/';
