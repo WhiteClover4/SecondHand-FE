@@ -1,5 +1,5 @@
 /* eslint-disable no-import-assign */
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { ShowALert } from '../App';
