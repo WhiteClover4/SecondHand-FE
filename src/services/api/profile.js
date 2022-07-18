@@ -27,7 +27,7 @@ export function updateProfileService(token, name, city, address, phone_number, f
   formdata.append('city', city);
   formdata.append('address', address);
   formdata.append('phone_number', phone_number);
-  formdata.append('profile_picture', file);
+  if (file) formdata.append('profile_picture', file);
 
   var requestOptions = {
     method: 'PUT',

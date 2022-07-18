@@ -16,7 +16,7 @@ export default function SellerLayout({ active, children }) {
   }, [getProfile]);
 
   return (
-    <div className="space-y-6 px-4 lg:px-[236px]">
+    <div className="px-4 lg:space-y-6 lg:px-[236px]">
       <div className="mb-2 flex items-center gap-4">
         <button
           className="rounded-2xl bg-neutral-01 p-3 lg:hidden"

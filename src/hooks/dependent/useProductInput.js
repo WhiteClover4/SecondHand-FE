@@ -11,9 +11,12 @@ import {
 } from '../../services/api/product';
 import { initialProductInput } from '../../utils/initial';
 import useQuery from '../independent/useQuery';
+import useError from './useError';
+import useNotification from './useNotification';
 import useSellerProduct from './useSellerProduct';
 
 export default function useProductInput() {
+  const { getNotification } = useNotification();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.auth);
@@ -27,6 +30,8 @@ export default function useProductInput() {
   const { getSellerProduct, sellerProduct } = useSellerProduct();
 
   const [deletelistImage, setDeletelistImage] = useState([]);
+
+  const errorHandler = useError();
 
   const query = useQuery();
   const productId = query.get('product_id');
@@ -68,15 +73,17 @@ export default function useProductInput() {
         product_pictures,
       );
 
-      if (res.status === 'error') return;
+      const isError = errorHandler(res);
+
+      if (isError) return;
 
       dispatch(ADD_ALERT({ status: 'success', message: res.msg }));
 
       navigate('/seller/products');
-    } catch (error) {
-      console.log('error publish product', error);
 
-      dispatch(ADD_ALERT({ status: 'error', message: 'something went wrong' }));
+      await getNotification();
+    } catch (error) {
+      errorHandler(error);
     } finally {
       setLoading({ ...loading, publishProduct: false });
     }
@@ -103,9 +110,9 @@ export default function useProductInput() {
         product_pictures,
       );
 
-      if (res.status === 'error') return dispatch(ADD_ALERT({ status: 'error', message: res.msg }));
+      const isError = errorHandler(res);
 
-      if (!res.data) return dispatch(ADD_ALERT({ status: 'error', message: res.msg }));
+      if (isError) return;
 
       dispatch(ADD_ALERT({ status: 'success', message: 'success draft product' }));
 
@@ -113,9 +120,7 @@ export default function useProductInput() {
         `/seller/product/${encodeURIComponent(res.data.name)}/preview?product_id=${res.data.id}`,
       );
     } catch (error) {
-      console.log('error draft product', error);
-
-      dispatch(ADD_ALERT({ status: 'error', message: 'something went wrong' }));
+      errorHandler(error);
     } finally {
       setLoading({ ...loading, draftProduct: false });
     }
@@ -126,20 +131,11 @@ export default function useProductInput() {
     const { name, price, category, description, product_images } = productInput;
 
     try {
-      const resUpdateProduct = await updateProductService(
-        token,
-        productId,
-        name,
-        description,
-        price,
-        category,
-      );
+      const res = await updateProductService(token, productId, name, description, price, category);
 
-      if (resUpdateProduct.status === 'error')
-        return dispatch(ADD_ALERT({ status: 'error', message: resUpdateProduct.msg }));
+      const isError = errorHandler(res);
 
-      if (!resUpdateProduct.data)
-        return dispatch(ADD_ALERT({ status: 'error', message: resUpdateProduct.msg }));
+      if (isError) return;
 
       if (deletelistImage.length) {
         const fetchArr = deletelistImage.map((imageId) => deleteProductImageService(imageId));
@@ -161,11 +157,9 @@ export default function useProductInput() {
         if (resAddImage.msg) dispatch(ADD_ALERT({ status: 'success', message: resAddImage.msg }));
       }
 
-      dispatch(ADD_ALERT({ status: resUpdateProduct.status, message: resUpdateProduct.msg }));
+      dispatch(ADD_ALERT({ status: res.status, message: res.msg }));
     } catch (error) {
-      console.log('error update product', error);
-
-      dispatch(ADD_ALERT({ status: 'error', message: 'something went wrong' }));
+      errorHandler(error);
     } finally {
       setLoading({ ...loading, updateProduct: false });
     }

@@ -12,7 +12,7 @@ export default function ProductCard({ data, navigate }) {
       />
       <p className="mt-2 text-body-14">{data.name}</p>
       <p className="mt-1 text-body-10 text-neutral-03">{data.category}</p>
-      <p className="mt-2 text-body-14">{data.price.toLocaleString('id-ID')}</p>
+      <p className="mt-2 text-body-14">Rp {data.price.toLocaleString('id-ID')}</p>
     </div>
   );
 }

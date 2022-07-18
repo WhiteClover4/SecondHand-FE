@@ -7,18 +7,19 @@ import {
   getProductsService,
 } from '../../services/api/product';
 import { initialProduct } from '../../utils/initial';
+import useError from './useError';
 
 export default function useProduct() {
   const { token } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const [products, setProducts] = useState([]);
   const [product, setProduct] = useState(initialProduct);
-
   const [loading, setLoading] = useState({
     getProducts: false,
     getProduct: false,
     bidProduct: false,
   });
+  const errorHandler = useError();
 
   const getProducts = useCallback(
     async (search, category) => {
@@ -27,14 +28,13 @@ export default function useProduct() {
       try {
         const res = await getProductsService(search, category);
 
-        if (res.status === 'error')
-          return dispatch(ADD_ALERT({ status: 'error', message: res.msg }));
+        const isError = errorHandler(res);
+
+        if (isError) return;
 
         setProducts(res.data);
       } catch (error) {
-        console.log('error get products', error);
-
-        dispatch(ADD_ALERT({ status: 'error', message: 'something went wrong' }));
+        errorHandler(error);
       } finally {
         setLoading({ ...loading, getProducts: false });
       }
@@ -48,13 +48,13 @@ export default function useProduct() {
       try {
         const res = await getProductService(productId);
 
-        if (!res.data) return dispatch(ADD_ALERT({ status: 'error', message: res.msg }));
+        const isError = errorHandler(res);
+
+        if (isError) return;
 
         setProduct(res.data);
       } catch (error) {
-        console.log('error get product', error);
-
-        dispatch(ADD_ALERT({ status: 'error', message: 'something went wrong' }));
+        errorHandler(error);
       } finally {
         setLoading({ ...loading, getProduct: false });
       }
@@ -67,25 +67,15 @@ export default function useProduct() {
     try {
       const res = await bidProductService(token, productId, bidPrice);
 
-      if (typeof res === 'string') return dispatch(ADD_ALERT({ status: 'error', message: res }));
+      const isError = errorHandler(res);
 
-      if (res.errors) {
-        res.errors.forEach((error) => {
-          dispatch(ADD_ALERT({ status: 'error', message: error.msg }));
-        });
-        return;
-      }
-
-      if (res.status === 'Error')
-        return dispatch(ADD_ALERT({ status: 'warning', message: res.msg }));
+      if (isError) return;
 
       dispatch(ADD_ALERT({ status: res.status, message: res.msg }));
 
       closeModal();
     } catch (error) {
-      console.log('error bid product', error);
-
-      dispatch(ADD_ALERT({ status: 'error', message: 'something went wrong' }));
+      errorHandler(error);
     } finally {
       setLoading({ ...loading, bidProduct: false });
     }

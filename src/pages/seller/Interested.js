@@ -1,20 +1,21 @@
 /* eslint-disable indent */
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { MainNavbar } from '../../components/navbars';
 import { SellerLayout } from '../../components/layouts';
 import AuthenticatedRoute from '../../routes/AuthenticatedRoute';
-import { useEffect } from 'react';
 import useSellerProduct from '../../hooks/dependent/useSellerProduct';
 import { ProductCard } from '../../components/cards';
 import { ProductCardSkeleton } from '../../components/skeletons';
-import { useNavigate } from 'react-router-dom';
+import { initialProduct } from '../../utils/initial';
 
 export default function Interested() {
   const navigate = useNavigate();
   const { getWishlistProduct, wishlistProduct, loading } = useSellerProduct();
 
-  function navigateToPreview(name, id) {
+  function navigateToPreview(name, transaction_id) {
     const encodedName = encodeURIComponent(name);
-    navigate(`/seller/product/${encodedName}/preview?product_id=${id}`);
+    navigate(`/seller/transaction/${encodedName}?transaction_id=${transaction_id}`);
   }
 
   useEffect(() => {
@@ -25,19 +26,7 @@ export default function Interested() {
     <AuthenticatedRoute>
       <MainNavbar />
       <SellerLayout active={2}>
-        {wishlistProduct.length ? (
-          <div className="grid grid-cols-2 gap-6 lg:grid-cols-3">
-            {!loading.getWishlistProduct
-              ? wishlistProduct.map((product) => (
-                  <ProductCard
-                    key={product.id}
-                    data={product}
-                    navigate={() => navigateToPreview(product.name, product.id)}
-                  />
-                ))
-              : dummiesProducts.map((el, i) => <ProductCardSkeleton key={i} />)}
-          </div>
-        ) : (
+        {!loading.getWishlistProduct && !wishlistProduct.length ? (
           <div className="flex flex-col items-center">
             <img
               className="mt-14 mb-4 w-[172px] lg:mb-6 lg:w-[276px]"
@@ -47,8 +36,24 @@ export default function Interested() {
               Belum ada produkmu yang diminati nih, sabar ya rejeki nggak kemana kok
             </p>
           </div>
+        ) : (
+          <div className="grid grid-cols-3 gap-6">
+            {!loading.getWishlistProduct
+              ? wishlistProduct.map((product) => (
+                  <ProductCard
+                    key={product.id}
+                    data={product}
+                    navigate={() => navigateToPreview(product.name, product.transaction_id)}
+                  />
+                ))
+              : dummiesProducts.map((el, i) => <ProductCardSkeleton key={i} />)}
+          </div>
         )}
       </SellerLayout>
     </AuthenticatedRoute>
   );
 }
+
+const dummiesProducts = [];
+
+for (let i = 1; i <= 6; i++) dummiesProducts.push(initialProduct);

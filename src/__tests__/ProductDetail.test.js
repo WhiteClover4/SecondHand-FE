@@ -34,13 +34,11 @@ describe('Product detail', () => {
   });
 
   it('rendered product detail page properly', async () => {
-    await waitFor(() => {
-      expect(screen.getByText('iphone 13 pro')).toBeInTheDocument();
-      expect(screen.getByText('hp mahal bos')).toBeInTheDocument();
-      expect(screen.getByText('Elektronik')).toBeInTheDocument();
-      expect(screen.getByText('alfirman')).toBeInTheDocument();
-      expect(screen.getByText('MANOKWARI')).toBeInTheDocument();
-    });
+    expect(await screen.findAllByText('iphone 13 pro'));
+    expect(await screen.findAllByText('hp mahal bos'));
+    expect(await screen.findByText('Elektronik'));
+    expect(await screen.findByText('alfirman'));
+    expect(await screen.findByText('MANOKWARI'));
   });
 
   it('should be able to open and close modal', async () => {

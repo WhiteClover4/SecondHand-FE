@@ -3,7 +3,7 @@ import { PlusIcon } from '../icons';
 export default function FileInput2({ className, onChange }) {
   return (
     <button
-      className={`bg-white relative h-24 w-full rounded-xl border border-dashed border-neutral-02 ${className}`}
+      className={`bg-white relative h-24 w-24 rounded-xl border border-dashed border-neutral-02 lg:w-full ${className}`}
     >
       <input
         accept="image/*"

@@ -10,6 +10,7 @@ import ProductInput from '../pages/seller/product/ProductInput';
 import PreviewProduct from '../pages/seller/product/[product_name]/PreviewProduct';
 import Transaction from '../pages/seller/transaction/[buyer_name]';
 import ProductDetail from '../pages/product/[product_name]';
+import Notification from '../pages/Notification';
 // import Components from '../pages/Components';
 
 export default function RoutesApp() {
@@ -27,6 +28,7 @@ export default function RoutesApp() {
       <Route element={<PreviewProduct />} path="/seller/product/:product_name/preview" />
       <Route element={<Transaction />} path="/seller/transaction/:buyer_name" />
       <Route element={<ProductDetail />} path="/product/:product_name" />
+      <Route element={<Notification />} path="/notification" />
       {/* <Route element={<Components />} path="/components" /> */}
     </Switch>
   );
