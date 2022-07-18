@@ -1,37 +1,37 @@
-name: Deploy
+# name: Deploy
 
 # we use gitlab ci to deploy
 
-on:
-  push:
-    branches:
-    - '!staging'
-    - '!main'
-  pull_request:
-    branches:
-    - '!staging'
-    - '!main'
+# on:
+#   push:
+#     branches:
+#     - 'staging'
+#     - 'main'
+#   pull_request:
+#     branches:
+#     - 'staging'
+#     - 'main'
 
-jobs:
-  development:
-    name: Staging Deployment
-    environment:
-      name: Development
-      url: https://secondhand-binar-staging.herokuapp.com
-    runs-on: ubuntu-latest
-    if: github.event.ref == 'refs/heads/staging'
+# jobs:
+#   development:
+#     name: Staging Deployment
+#     environment:
+#       name: Development
+#       url: https://secondhand-binar-staging.herokuapp.com
+#     runs-on: ubuntu-latest
+#     if: github.event.ref == 'refs/heads/staging'
 
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v3
+#     steps:
+#     - name: Checkout
+#       uses: actions/checkout@v3
 
-    - name: Deploy the Staging App to Heroku
-      uses: akhileshns/heroku-deploy@v3.12.12
-      with:
-        heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-        heroku_app_name: 'secondhand-binar-staging'
-        heroku_email: 'alfirman.pahlepi@gmail.com'
-        branch: 'staging'
+#     - name: Deploy the Staging App to Heroku
+#       uses: akhileshns/heroku-deploy@v3.12.12
+#       with:
+#         heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+#         heroku_app_name: 'secondhand-binar-staging'
+#         heroku_email: 'alfirman.pahlepi@gmail.com'
+#         branch: 'staging'
 
   # production:
   #   name: Production Deployment
