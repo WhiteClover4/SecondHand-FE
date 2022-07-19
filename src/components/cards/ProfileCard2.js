@@ -16,6 +16,7 @@ export default function ProfileCard2({ data }) {
       </div>
       <SecondaryButton
         className="rounded-lg py-1 px-3 font-medium"
+        isSmall
         onClick={() => navigate('/profile')}
         type="button"
       >

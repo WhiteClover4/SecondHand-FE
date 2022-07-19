@@ -28,13 +28,16 @@ export default function Interested() {
       <SellerLayout active={2}>
         {!loading.getWishlistProduct && !wishlistProduct.length ? (
           <div className="flex flex-col items-center">
-            <img className="mb-6" src="/img/img-not-interested.png" />
-            <p className="w-[296px] text-center text-body-14 text-neutral-05">
+            <img
+              className="mt-14 mb-4 w-[172px] lg:mb-6 lg:w-[276px]"
+              src="/img/img-not-interested.png"
+            />
+            <p className="w-[296px] text-center text-body-14 text-neutral-03 lg:text-neutral-05">
               Belum ada produkmu yang diminati nih, sabar ya rejeki nggak kemana kok
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 gap-6 lg:grid-cols-3">
             {!loading.getWishlistProduct
               ? wishlistProduct.map((product) => (
                   <ProductCard
