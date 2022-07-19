@@ -1,11 +1,14 @@
 import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import useProfile from '../../hooks/dependent/useProfile';
+import { OPEN_NAVBAR } from '../../redux/slice/sideNavbar';
 import { ProfileCard2 } from '../cards';
-import { BoxIcon, ChevronRightIcon, DollarSignIcon, HeartIcon } from '../icons';
+import { BoxIcon, ChevronRightIcon, DollarSignIcon, HeartIcon, MenuIcon } from '../icons';
 import { ProfileCardSkeleton } from '../skeletons';
 
 export default function SellerLayout({ active, children }) {
+  const dispatch = useDispatch();
   const { getProfile, userData, loading } = useProfile();
 
   useEffect(() => {
@@ -13,13 +16,22 @@ export default function SellerLayout({ active, children }) {
   }, [getProfile]);
 
   return (
-    <div className="space-y-6 px-[236px]">
-      <p className="text-black text-heading-20 font-bold">Daftar Jual Saya</p>
+    <div className="px-4 lg:space-y-6 lg:px-[236px]">
+      <div className="mb-2 flex items-center gap-4">
+        <button
+          className="rounded-2xl bg-neutral-01 p-3 lg:hidden"
+          onClick={() => dispatch(OPEN_NAVBAR())}
+          type="button"
+        >
+          <MenuIcon className="w-6" />
+        </button>
+        <p className="text-black text-heading-20 font-bold">Daftar Jual Saya</p>
+      </div>
       {!loading.getProfile ? <ProfileCard2 data={userData} /> : <ProfileCardSkeleton />}
-      <div className="flex flex-row gap-8">
-        <div className="flex h-fit w-fit flex-col gap-6 rounded-2xl bg-[#FFFFFF] p-6 shadow-high">
-          <p className="text-title-16 font-medium">Kategori</p>
-          <div className="flex flex-col gap-4">
+      <div className="mt-6 flex flex-col lg:flex-row lg:gap-8">
+        <div className="hide-scrollbar mb-6 flex h-fit flex-col gap-4 overflow-auto lg:mb-0 lg:w-fit lg:gap-6 lg:overflow-visible lg:rounded-2xl lg:bg-[#FFFFFF] lg:p-6 lg:shadow-high">
+          <p className="hidden text-title-16 font-medium lg:block">Kategori</p>
+          <div className="flex gap-4 lg:flex-col">
             {categories.map((category) => (
               <Category key={category.no} active={active} category={category} />
             ))}
@@ -35,29 +47,41 @@ const Category = ({ active, category }) => {
   const navigate = useNavigate();
   return (
     <button
-      className="flex gap-2 border-b-[1px] border-neutral-02 pb-4"
+      className={`${
+        active === category.no
+          ? 'bg-primary-04 lg:border-primary-04 lg:bg-neutral-01'
+          : 'bg-primary-01 lg:border-neutral-02 lg:bg-neutral-01'
+      } flex gap-2 rounded-xl py-3 px-4 lg:rounded-none lg:border-b-[1px] lg:py-0 lg:px-0 lg:pb-4`}
       onClick={() => navigate(category.link)}
       type="button"
     >
       <category.icon
-        className={`${active === category.no ? 'text-primary-04' : 'text-neutral-03'} h-6 w-6 `}
+        className={`${
+          active === category.no
+            ? 'text-neutral-01 lg:text-primary-04'
+            : 'text-neutral-04 lg:text-neutral-03'
+        } h-5 w-5 lg:h-6 lg:w-6 `}
       />
       <p
         className={`${
-          active === category.no ? 'font-medium text-primary-04' : 'text-neutral-05'
-        } w-[156px] text-start text-title-16 `}
+          active === category.no
+            ? 'text-neutral-01 lg:font-medium lg:text-primary-04'
+            : 'text-neutral-04 lg:text-neutral-05'
+        } text-body-14 lg:w-[156px] lg:text-start lg:text-title-16 `}
       >
         {category.name}
       </p>
       <ChevronRightIcon
-        className={`${active === category.no ? 'text-primary-04' : 'text-neutral-02'}h-6 w-6`}
+        className={`${
+          active === category.no ? 'text-primary-04' : 'text-neutral-02'
+        } hidden h-6 w-6 lg:block`}
       />
     </button>
   );
 };
 
 const categories = [
-  { no: 1, link: '/seller/products', name: 'Semua Produk', icon: BoxIcon },
+  { no: 1, link: '/seller/products', name: 'Produk', icon: BoxIcon },
   { no: 2, link: '/seller/interested', name: 'Diminati', icon: HeartIcon },
   { no: 3, link: '/seller/sold', name: 'Terjual', icon: DollarSignIcon },
 ];
