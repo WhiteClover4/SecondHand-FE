@@ -30,7 +30,7 @@ describe('Interested page', () => {
   });
 
   it('Interested page content rendered properly', async () => {
-    expect(screen.getByText('Semua Produk')).toBeInTheDocument();
+    expect(screen.getByText('Produk')).toBeInTheDocument();
     expect(screen.getByText('Diminati')).toBeInTheDocument();
     expect(screen.getByText('Terjual')).toBeInTheDocument();
 
