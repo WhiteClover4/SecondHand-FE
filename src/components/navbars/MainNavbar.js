@@ -31,7 +31,7 @@ export default function MainNavbar() {
     <header
       className={`${
         !isHomepage && 'hidden lg:flex'
-      } absolute inset-x-0 top-[38px] z-10 mb-8 flex items-center justify-between bg-transparent px-4 lg:sticky lg:top-0 lg:h-[84px] lg:bg-neutral-01 lg:px-[136px] lg:shadow-high`}
+      } absolute inset-x-0 top-[38px] z-20 mb-8 flex items-center justify-between bg-transparent px-4 lg:sticky lg:top-0 lg:h-[84px] lg:bg-neutral-01 lg:px-[136px] lg:shadow-high`}
     >
       <div className="flex w-full flex-row items-center space-x-4 lg:space-x-6">
         <button

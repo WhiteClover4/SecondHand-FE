@@ -8,7 +8,7 @@ export default function BidModal({ setShow, data, loading, bidProduct }) {
 
   return (
     <div
-      className="fixed top-0 left-0 z-20 flex h-screen w-screen items-end justify-center bg-[#000]/60 lg:items-center"
+      className="fixed top-0 left-0 z-30 flex h-screen w-screen items-end justify-center bg-[#000]/60 lg:items-center"
       onClick={() => setShow(false)}
     >
       <div
