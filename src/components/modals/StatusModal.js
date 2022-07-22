@@ -16,7 +16,7 @@ export default function StatusModal({
 
   return (
     <div
-      className="lg::items-center fixed top-0 left-0 z-30 flex h-screen w-screen items-end justify-center bg-[#000]/60"
+      className="lg::items-center fixed top-0 left-0 z-30 flex h-screen w-screen items-end justify-center bg-[#000]/60 lg:items-center"
       onClick={() => setModal('')}
     >
       <div
