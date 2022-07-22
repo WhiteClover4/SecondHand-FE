@@ -42,7 +42,9 @@ export default function Transaction() {
           loading={loading.updateTransactionStatus}
           setModal={setModal}
           transactionStatus={transactionStatus}
-          updateTransactionStatus={(status) => updateTransactionStatus(transactionId, status)}
+          updateTransactionStatus={(status) =>
+            updateTransactionStatus(transactionId, status, () => setModal(''))
+          }
         />
       )}
       <div className="absolute top-0 h-screen w-full overflow-auto">

@@ -108,7 +108,7 @@ export default function useTransaction() {
     [dispatch],
   );
 
-  async function updateTransactionStatus(transactionId, status) {
+  async function updateTransactionStatus(transactionId, status, callback) {
     setLoading({ ...loading, updateTransactionStatus: true });
     try {
       const res = await updateTransactionStatusService(token, transactionId, status);
@@ -120,6 +120,8 @@ export default function useTransaction() {
       dispatch(ADD_ALERT({ status: res.status, message: res.msg }));
 
       await getTransactionStatus(transactionId);
+
+      callback();
     } catch (error) {
       errorHandler(error);
     } finally {
