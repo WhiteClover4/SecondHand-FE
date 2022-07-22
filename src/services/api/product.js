@@ -1,4 +1,4 @@
-import { apiStagingURL } from '../../constants/environment';
+import { apiBaseURL } from '../../constants/environment';
 
 export function getProductsService(search, category) {
   var requestOptions = {
@@ -7,7 +7,7 @@ export function getProductsService(search, category) {
   };
 
   return new Promise((resolve, reject) => {
-    fetch(`${apiStagingURL}/api?q=${search || ''}&category=${category || ''}`, requestOptions)
+    fetch(`${apiBaseURL}/api?q=${search || ''}&category=${category || ''}`, requestOptions)
       .then((response) => response.json())
       .then((result) => resolve(result))
       .catch((error) => reject(error));
@@ -21,7 +21,7 @@ export function getProductService(productId) {
   };
 
   return new Promise((resolve, reject) => {
-    fetch(`${apiStagingURL}/api/product/${productId}`, requestOptions)
+    fetch(`${apiBaseURL}/api/product/${productId}`, requestOptions)
       .then((response) => response.json())
       .then((result) => resolve(result))
       .catch((error) => reject(error));
@@ -50,7 +50,7 @@ export function publishProductService(token, name, description, price, category,
   };
 
   return new Promise((resolve, reject) => {
-    fetch(`${apiStagingURL}/api/seller/product/publish`, requestOptions)
+    fetch(`${apiBaseURL}/api/seller/product/publish`, requestOptions)
       .then((response) => response.json())
       .then((result) => resolve(result))
       .catch((error) => reject(error));
@@ -79,7 +79,7 @@ export function draftProductService(token, name, description, price, category, p
   };
 
   return new Promise((resolve, reject) => {
-    fetch(`${apiStagingURL}/api/seller/product/preview`, requestOptions)
+    fetch(`${apiBaseURL}/api/seller/product/preview`, requestOptions)
       .then((response) => response.json())
       .then((result) => resolve(result))
       .catch((error) => reject(error));
@@ -97,7 +97,7 @@ export function getSellerProductsService(token) {
   };
 
   return new Promise((resolve, reject) => {
-    fetch(`${apiStagingURL}/api/seller`, requestOptions)
+    fetch(`${apiBaseURL}/api/seller`, requestOptions)
       .then((response) => response.json())
       .then((result) => resolve(result))
       .catch((error) => reject(error));
@@ -115,7 +115,7 @@ export function getSellerProductService(token, productId) {
   };
 
   return new Promise((resolve, reject) => {
-    fetch(`${apiStagingURL}/api/seller/product/${productId}`, requestOptions)
+    fetch(`${apiBaseURL}/api/seller/product/${productId}`, requestOptions)
       .then((response) => response.json())
       .then((result) => resolve(result))
       .catch((error) => reject(error));
@@ -141,7 +141,7 @@ export function updateProductService(token, productId, name, description, price,
   };
 
   return new Promise((resolve, reject) => {
-    fetch(`${apiStagingURL}/api/seller/product/${productId}`, requestOptions)
+    fetch(`${apiBaseURL}/api/seller/product/${productId}`, requestOptions)
       .then((response) => response.json())
       .then((result) => resolve(result))
       .catch((error) => reject(error));
@@ -165,7 +165,7 @@ export function addProductimageService(token, product_pictures, productId) {
   };
 
   return new Promise((resolve, reject) => {
-    fetch(`${apiStagingURL}/api/seller/product/image/${productId}`, requestOptions)
+    fetch(`${apiBaseURL}/api/seller/product/image/${productId}`, requestOptions)
       .then((response) => response.json())
       .then((result) => resolve(result))
       .catch((error) => reject(error));
@@ -182,7 +182,7 @@ export function deleteProductImageService(imageId) {
   };
 
   return new Promise((resolve, reject) => {
-    fetch(`${apiStagingURL}/api/productImage/${imageId}`, requestOptions)
+    fetch(`${apiBaseURL}/api/productImage/${imageId}`, requestOptions)
       .then((response) => response.json())
       .then((result) => resolve(result))
       .catch((error) => reject(error));
@@ -203,7 +203,7 @@ export function updateStatusToPublishedService(token, productId) {
   };
 
   return new Promise((resolve, reject) => {
-    fetch(`${apiStagingURL}/api/seller/product/publish/${productId}`, requestOptions)
+    fetch(`${apiBaseURL}/api/seller/product/publish/${productId}`, requestOptions)
       .then((response) => response.json())
       .then((result) => resolve(result))
       .catch((error) => reject(error));
@@ -226,7 +226,7 @@ export function bidProductService(token, productId, bidPrice) {
   };
 
   return new Promise((resolve, reject) => {
-    fetch(`${apiStagingURL}/api/transaction/${productId}`, requestOptions)
+    fetch(`${apiBaseURL}/api/transaction/${productId}`, requestOptions)
       .then((response) => response.json())
       .then((result) => resolve(result))
       .catch((error) => reject(error));
@@ -244,7 +244,7 @@ export function getWishlistProductService(token) {
   };
 
   return new Promise((resolve, reject) => {
-    fetch(`${apiStagingURL}/api/transaction/wishlist`, requestOptions)
+    fetch(`${apiBaseURL}/api/transaction/wishlist`, requestOptions)
       .then((response) => response.json())
       .then((result) => resolve(result))
       .catch((error) => reject(error));

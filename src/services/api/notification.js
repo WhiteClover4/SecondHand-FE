@@ -1,4 +1,4 @@
-import { apiStagingURL } from '../../constants/environment';
+import { apiBaseURL } from '../../constants/environment';
 
 export function getNotificationService(token) {
   var myHeaders = new Headers();
@@ -11,7 +11,7 @@ export function getNotificationService(token) {
   };
 
   return new Promise((resolve, reject) => {
-    fetch(`${apiStagingURL}/api/notification`, requestOptions)
+    fetch(`${apiBaseURL}/api/notification`, requestOptions)
       .then((response) => response.json())
       .then((result) => resolve(result))
       .catch((error) => reject(error));
@@ -29,7 +29,7 @@ export function readNotificationService(token, notifId) {
   };
 
   return new Promise((resolve, reject) => {
-    fetch(`${apiStagingURL}/api/notification/read/${notifId}`, requestOptions)
+    fetch(`${apiBaseURL}/api/notification/read/${notifId}`, requestOptions)
       .then((response) => response.json())
       .then((result) => resolve(result))
       .catch((error) => reject(error));

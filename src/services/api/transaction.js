@@ -1,4 +1,4 @@
-import { apiStagingURL } from '../../constants/environment';
+import { apiBaseURL } from '../../constants/environment';
 
 export function getTransactionService(token, transactionId) {
   var myHeaders = new Headers();
@@ -11,7 +11,7 @@ export function getTransactionService(token, transactionId) {
   };
 
   return new Promise((resolve, reject) => {
-    fetch(`${apiStagingURL}/api/transaction/${transactionId}`, requestOptions)
+    fetch(`${apiBaseURL}/api/transaction/${transactionId}`, requestOptions)
       .then((response) => response.json())
       .then((result) => resolve(result))
       .catch((error) => reject(error));
@@ -29,7 +29,7 @@ export function acceptTransactionService(token, transactionId) {
   };
 
   return new Promise((resolve, reject) => {
-    fetch(`${apiStagingURL}/api/transaction/${transactionId}/accept`, requestOptions)
+    fetch(`${apiBaseURL}/api/transaction/${transactionId}/accept`, requestOptions)
       .then((response) => response.json())
       .then((result) => resolve(result))
       .catch((error) => reject(error));
@@ -47,7 +47,7 @@ export function rejectTransactionService(token, transactionId) {
   };
 
   return new Promise((resolve, reject) => {
-    fetch(`${apiStagingURL}/api/transaction/${transactionId}/reject`, requestOptions)
+    fetch(`${apiBaseURL}/api/transaction/${transactionId}/reject`, requestOptions)
       .then((response) => response.json())
       .then((result) => resolve(result))
       .catch((error) => reject(error));
@@ -65,7 +65,7 @@ export function getTransactionStatusService(token, transactionId) {
   };
 
   return new Promise((resolve, reject) => {
-    fetch(`${apiStagingURL}/api/transaction/${transactionId}/status`, requestOptions)
+    fetch(`${apiBaseURL}/api/transaction/${transactionId}/status`, requestOptions)
       .then((response) => response.json())
       .then((result) => resolve(result))
       .catch((error) => reject(error));
@@ -88,7 +88,7 @@ export function updateTransactionStatusService(token, transactionId, status) {
   };
 
   return new Promise((resolve, reject) => {
-    fetch(`${apiStagingURL}/api/transaction/${transactionId}/status`, requestOptions)
+    fetch(`${apiBaseURL}/api/transaction/${transactionId}/status`, requestOptions)
       .then((response) => response.json())
       .then((result) => resolve(result))
       .catch((error) => reject(error));
@@ -106,7 +106,7 @@ export function getAllHistoryService(token) {
   };
 
   return new Promise((resolve, reject) => {
-    fetch(`${apiStagingURL}/api/transaction/history`, requestOptions)
+    fetch(`${apiBaseURL}/api/transaction/history`, requestOptions)
       .then((response) => response.json())
       .then((result) => resolve(result))
       .catch((error) => reject(error));

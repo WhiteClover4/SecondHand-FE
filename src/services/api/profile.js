@@ -1,4 +1,4 @@
-import { apiStagingURL } from '../../constants/environment';
+import { apiBaseURL } from '../../constants/environment';
 
 export function getProfileService(token) {
   var myHeaders = new Headers();
@@ -11,7 +11,7 @@ export function getProfileService(token) {
   };
 
   return new Promise((resolve, reject) => {
-    fetch(`${apiStagingURL}/api/user/data`, requestOptions)
+    fetch(`${apiBaseURL}/api/user/data`, requestOptions)
       .then((response) => response.json())
       .then((result) => resolve(result))
       .catch((error) => reject(error));
@@ -37,7 +37,7 @@ export function updateProfileService(token, name, city, address, phone_number, f
   };
 
   return new Promise((resolve, reject) => {
-    fetch(`${apiStagingURL}/api/user`, requestOptions)
+    fetch(`${apiBaseURL}/api/user`, requestOptions)
       .then((response) => response.json())
       .then((result) => resolve(result))
       .catch((error) => reject(error));

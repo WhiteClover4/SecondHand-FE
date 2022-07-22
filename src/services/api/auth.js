@@ -1,4 +1,4 @@
-import { apiStagingURL } from '../../constants/environment';
+import { apiBaseURL } from '../../constants/environment';
 
 export function registerService(name, email, password) {
   var myHeaders = new Headers();
@@ -17,7 +17,7 @@ export function registerService(name, email, password) {
   };
 
   return new Promise((resolve, reject) => {
-    fetch(`${apiStagingURL}/api/register`, requestOptions)
+    fetch(`${apiBaseURL}/api/register`, requestOptions)
       .then((response) => response.json())
       .then((result) => resolve(result))
       .catch((error) => reject(error));
@@ -40,7 +40,7 @@ export function loginService(email, password) {
   };
 
   return new Promise((resolve, reject) => {
-    fetch(`${apiStagingURL}/api/login`, requestOptions)
+    fetch(`${apiBaseURL}/api/login`, requestOptions)
       .then((response) => response.json())
       .then((result) => resolve(result))
       .catch((error) => reject(error));
