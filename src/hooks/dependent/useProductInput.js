@@ -25,6 +25,7 @@ export default function useProductInput() {
     draftProduct: false,
     updateProduct: false,
   });
+
   const [productInput, setProductInput] = useState(initialProductInput);
 
   const { getSellerProduct, sellerProduct } = useSellerProduct();
@@ -158,6 +159,10 @@ export default function useProductInput() {
       }
 
       dispatch(ADD_ALERT({ status: res.status, message: res.msg }));
+
+      navigate(
+        `/seller/product/${encodeURIComponent(res.data.name)}/preview?product_id=${res.data.id}`,
+      );
     } catch (error) {
       errorHandler(error);
     } finally {
