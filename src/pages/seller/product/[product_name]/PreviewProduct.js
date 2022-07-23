@@ -67,7 +67,9 @@ export default function PreviewProduct() {
             </Swiper>
             <div className="hidden space-y-4 rounded-2xl px-4 pb-[27px] pt-4 shadow-low lg:block">
               <p className="text-black text-body-14 font-medium">{sellerProduct.category}</p>
-              <p className="text-body-14 text-neutral-03 ">{sellerProduct.description}</p>
+              <p className="whitespace-pre-wrap text-body-14 text-neutral-03">
+                {sellerProduct.description}
+              </p>
             </div>
           </div>
           <div className="relative -top-8 z-10 mx-4 space-y-4 lg:static lg:mx-0 lg:w-1/3 lg:space-y-6">
@@ -100,7 +102,7 @@ export default function PreviewProduct() {
             </div>
             <ProfileCard2 data={sellerProduct.seller} />
             <div className="space-y-4 rounded-2xl bg-neutral-01 px-4 pb-[27px] pt-4 shadow-low lg:hidden">
-              <p className="text-black text-body-14 font-medium">Deskripsi</p>
+              <p className="text-black whitespace-pre-wrap text-body-14 font-medium">Deskripsi</p>
               <p className="text-body-14 text-neutral-03">{sellerProduct.description}</p>
             </div>
           </div>
