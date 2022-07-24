@@ -12,7 +12,7 @@ export default function BidModal({ setShow, data, loading, bidProduct }) {
       onClick={() => setShow(false)}
     >
       <div
-        className="relative w-[360px] rounded-t-2xl bg-neutral-01 px-8 pt-4 pb-6 shadow-high lg:rounded-2xl"
+        className="relative w-full rounded-t-2xl bg-neutral-01 px-8 pt-4 pb-6 shadow-high lg:w-[360px] lg:rounded-2xl"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex w-full justify-center lg:hidden">

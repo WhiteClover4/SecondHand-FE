@@ -16,6 +16,7 @@ import DollarSignIcon from './DollarSignIcon';
 import SignInIcon from './SignInIcon';
 import MenuIcon from './MenuIcon';
 import LogInIcon from './LogInIcon';
+import GoogleIcon from './GoogleIcon';
 
 export {
   HeartIcon,
@@ -36,4 +37,5 @@ export {
   SignInIcon,
   MenuIcon,
   LogInIcon,
+  GoogleIcon,
 };
