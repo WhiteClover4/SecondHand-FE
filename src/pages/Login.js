@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { PrimaryButton, BackButton } from '../components/buttons';
+import { GoogleIcon } from '../components/icons';
 import { LabelPasswordInput, LabelTextInput } from '../components/inputs';
 import { AuthLayout } from '../components/layouts';
 import useAuth from '../hooks/dependent/useAuth';
 import AuthenticationRoute from '../routes/AuthenticationRoute';
 
 export default function Login() {
-  const { login, loading } = useAuth();
+  const { login, loading, loginWithGoogle } = useAuth();
   const [form, setForm] = useState({ email: '', password: '' });
 
   const setFormInput = (e) => setForm({ ...form, [e.target.name]: e.target.value });
@@ -50,6 +51,15 @@ export default function Login() {
           >
             Masuk
           </PrimaryButton>
+          <button
+            className="mt-6 flex w-full items-center justify-center space-x-2 rounded-2xl py-2 shadow-low"
+            disabled={loading.login}
+            onClick={loginWithGoogle}
+            type="button"
+          >
+            <span className="text-body-14">Masuk dengan</span>
+            <GoogleIcon className="h-8 w-8" />
+          </button>
         </form>
         <div className="absolute bottom-6 left-0 flex w-full items-center justify-center space-x-2 lg:static lg:mt-10">
           <p className="text-body-14 text-[#151515] lg:text-[#000]">Belum punya akun?</p>

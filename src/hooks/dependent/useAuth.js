@@ -5,6 +5,7 @@ import { localStorageTokenKey } from '../../constants/environment';
 import { SET_ALERT } from '../../redux/slice/alert';
 import { CHANGE_AUTH, SET_TOKEN } from '../../redux/slice/auth';
 import { loginService, registerService } from '../../services/api/auth';
+import { getUserDataWithGoogle } from '../../services/firebase/auth';
 import useError from './useError';
 
 export default function useAuth() {
@@ -15,7 +16,7 @@ export default function useAuth() {
   const [loading, setLoading] = useState({ register: false, login: false });
   const errorHandler = useError();
 
-  async function register(name, email, password) {
+  async function register(name, email, password, autoLogin) {
     setLoading({ ...loading, register: true });
     try {
       const res = await registerService(name, email, password);
@@ -26,7 +27,7 @@ export default function useAuth() {
 
       dispatch(SET_ALERT([{ status: 'success', message: res.msg }]));
 
-      navigate('/login');
+      !autoLogin ? navigate('/login') : login(email, password);
     } catch (error) {
       errorHandler(error);
     } finally {
@@ -88,5 +89,37 @@ export default function useAuth() {
     dispatch(CHANGE_AUTH(true));
   }, [dispatch, isAuthenticated, pathname]);
 
-  return { loading, register, login, logout, checkToken };
+  async function registerWithGoogle() {
+    setLoading({ ...loading, register: true });
+    try {
+      const res = await getUserDataWithGoogle();
+
+      const isError = errorHandler(res);
+
+      if (isError) return;
+
+      register(res.displayName, res.email, res.uid, true);
+    } catch (error) {
+      errorHandler(error);
+      setLoading({ ...loading, register: false });
+    }
+  }
+
+  async function loginWithGoogle() {
+    setLoading({ ...loading, login: true });
+    try {
+      const res = await getUserDataWithGoogle();
+
+      const isError = errorHandler(res);
+
+      if (isError) return;
+
+      login(res.email, res.uid);
+    } catch (error) {
+      errorHandler(error);
+      setLoading({ ...loading, login: false });
+    }
+  }
+
+  return { loading, register, login, logout, checkToken, registerWithGoogle, loginWithGoogle };
 }
