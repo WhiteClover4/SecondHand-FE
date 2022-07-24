@@ -9,7 +9,7 @@ export default function SuccessCheckoutModal({ data, setModal }) {
       onClick={() => setModal('')}
     >
       <div
-        className="relative flex w-[360px] flex-col rounded-t-2xl bg-neutral-01 px-8  pt-4 pb-6 lg:rounded-2xl"
+        className="relative flex  w-full flex-col rounded-t-2xl bg-neutral-01 px-8 pt-4  pb-6 lg:w-[360px] lg:rounded-2xl"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="mb-6 flex w-full justify-center lg:hidden">
