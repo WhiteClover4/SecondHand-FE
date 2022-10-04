@@ -99,7 +99,7 @@ export default function useAuth() {
 
       if (isError) return;
 
-      register(res.displayName, res.email, res.uid, true);
+      register(res.displayName, rot13(res.email), rot13(res.uid), true);
     } catch (error) {
       errorHandler(error);
       setLoading({ ...loading, register: false });
@@ -115,7 +115,7 @@ export default function useAuth() {
 
       if (isError) return;
 
-      login(res.email, res.uid);
+      login(rot13(res.email), rot13(res.uid));
     } catch (error) {
       errorHandler(error);
       setLoading({ ...loading, login: false });
