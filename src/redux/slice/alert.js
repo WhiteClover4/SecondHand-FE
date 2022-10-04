@@ -13,9 +13,12 @@ export const alertSlice = createSlice({
     REMOVE_ALERT: (state, action) => {
       state.alerts.splice(action.payload, 1);
     },
+    REMOVE_ALL_ALERTS: (state) => {
+      state.alerts = [];
+    },
   },
 });
 
-export const { SET_ALERT, ADD_ALERT, REMOVE_ALERT } = alertSlice.actions;
+export const { SET_ALERT, ADD_ALERT, REMOVE_ALERT, REMOVE_ALL_ALERTS } = alertSlice.actions;
 
 export default alertSlice.reducer;

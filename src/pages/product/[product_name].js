@@ -11,10 +11,12 @@ import useProduct from '../../hooks/dependent/useProduct';
 import useQuery from '../../hooks/independent/useQuery';
 import BidModal from '../../components/modals/BidModal';
 import { ArrowLeftIcon } from '../../components/icons';
+import useSellerProduct from '../../hooks/dependent/useSellerProduct';
 
 export default function ProductDetail() {
   const navigate = useNavigate();
   const { isAuthenticated } = useSelector((state) => state.auth);
+  const { isYourProduct, getSellerProducts } = useSellerProduct();
   const { getProduct, product, bidProduct, loading } = useProduct();
   const [iShowBidModal, setShowBidModal] = useState(false);
 
@@ -28,7 +30,8 @@ export default function ProductDetail() {
 
   useEffect(() => {
     getProduct(productId);
-  }, [getProduct, productId]);
+    getSellerProducts(productId);
+  }, [getProduct, getSellerProducts, productId]);
 
   return (
     <>
@@ -96,6 +99,8 @@ export default function ProductDetail() {
               </p>
               <PrimaryButton
                 className="fixed inset-x-0 bottom-6 z-20 mx-4 lg:static lg:z-auto lg:mx-0"
+                disableText="TIdak dapat menawar produk sendiri"
+                isDisable={isYourProduct}
                 onClick={checkout}
                 type="button"
               >
