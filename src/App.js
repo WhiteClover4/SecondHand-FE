@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { MainAlert } from './components/alerts';
-import { REMOVE_ALERT } from './redux/slice/alert';
+import { REMOVE_ALERT, REMOVE_ALL_ALERTS } from './redux/slice/alert';
 import useAuth from './hooks/dependent/useAuth';
 import RoutesApp from './routes';
 import MobileSideNavbar from './components/navbars/MobileSideNavbar';
@@ -35,7 +35,12 @@ export const ShowALert = () => {
     >
       <div className="flex w-full flex-col space-y-5 px-4 lg:w-max lg:min-w-[500px] lg:p-0">
         {alerts.map((alert, i) => (
-          <MainAlert key={i} remove={() => dispatch(REMOVE_ALERT(i))} status={alert.status}>
+          <MainAlert
+            key={i}
+            remove={() => dispatch(REMOVE_ALERT(i))}
+            removeAll={() => dispatch(REMOVE_ALL_ALERTS())}
+            status={alert.status}
+          >
             {alert.message}
           </MainAlert>
         ))}
