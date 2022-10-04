@@ -7,6 +7,7 @@ import { CHANGE_AUTH, SET_TOKEN } from '../../redux/slice/auth';
 import { loginService, registerService } from '../../services/api/auth';
 import { getUserDataWithGoogle } from '../../services/firebase/auth';
 import useError from './useError';
+import { rot13 } from '../../constants/encryption';
 
 export default function useAuth() {
   const { pathname } = useLocation();
@@ -19,7 +20,7 @@ export default function useAuth() {
   async function register(name, email, password, autoLogin) {
     setLoading({ ...loading, register: true });
     try {
-      const res = await registerService(name, email, password);
+      const res = await registerService(name, rot13(email), rot13(password));
 
       const isError = errorHandler(res);
 
@@ -38,7 +39,7 @@ export default function useAuth() {
   async function login(email, password) {
     setLoading({ ...loading, login: true });
     try {
-      const res = await loginService(email, password);
+      const res = await loginService(rot13(email), rot13(password));
 
       const isError = errorHandler(res);
 
@@ -98,7 +99,7 @@ export default function useAuth() {
 
       if (isError) return;
 
-      register(res.displayName, res.email, res.uid, true);
+      register(res.displayName, rot13(res.email), rot13(res.uid), true);
     } catch (error) {
       errorHandler(error);
       setLoading({ ...loading, register: false });
@@ -114,7 +115,7 @@ export default function useAuth() {
 
       if (isError) return;
 
-      login(res.email, res.uid);
+      login(rot13(res.email), rot13(res.uid));
     } catch (error) {
       errorHandler(error);
       setLoading({ ...loading, login: false });
