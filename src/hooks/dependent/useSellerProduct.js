@@ -18,6 +18,7 @@ export default function useSellerProduct() {
   const [sellerProducts, setSellerProducts] = useState([]);
   const [sellerProduct, setSellerProduct] = useState(initialProduct);
   const [wishlistProduct, setWishlistProduct] = useState([]);
+  const [isYourProduct, setYourProduct] = useState(false);
   const [loading, setLoading] = useState({
     getSellerProducts: false,
     getSellerProduct: false,
@@ -26,24 +27,30 @@ export default function useSellerProduct() {
   });
   const errorHandler = useError();
 
-  const getSellerProducts = useCallback(async () => {
-    if (!isAuthenticated) return;
+  const getSellerProducts = useCallback(
+    async (id) => {
+      if (!isAuthenticated) return;
+      setLoading({ ...loading, getSellerProducts: true });
+      try {
+        const res = await getSellerProductsService(token);
 
-    setLoading({ ...loading, getSellerProducts: true });
-    try {
-      const res = await getSellerProductsService(token);
+        const isError = errorHandler(res);
 
-      const isError = errorHandler(res);
+        if (isError) return;
 
-      if (isError) return;
+        setSellerProducts(res.data);
 
-      setSellerProducts(res.data);
-    } catch (error) {
-      errorHandler(error);
-    } finally {
-      setLoading({ ...loading, getSellerProducts: false });
-    }
-  }, [dispatch, isAuthenticated, token]);
+        if (!id) return;
+
+        if (res.data.some((product) => product.id === Number(id))) setYourProduct(true);
+      } catch (error) {
+        errorHandler(error);
+      } finally {
+        setLoading({ ...loading, getSellerProducts: false });
+      }
+    },
+    [dispatch, token, isAuthenticated],
+  );
 
   const getSellerProduct = useCallback(
     async (productId) => {
@@ -115,6 +122,7 @@ export default function useSellerProduct() {
     updateStatusToPublished,
     getWishlistProduct,
     wishlistProduct,
+    isYourProduct,
     loading,
   };
 }
