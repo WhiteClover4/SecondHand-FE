@@ -20,7 +20,7 @@ export default function useAuth() {
   async function register(name, email, password, autoLogin) {
     setLoading({ ...loading, register: true });
     try {
-      const res = await registerService(name, rot13(email), rot13(password));
+      const res = await registerService(name, email, rot13(password));
 
       const isError = errorHandler(res);
 
@@ -39,7 +39,7 @@ export default function useAuth() {
   async function login(email, password) {
     setLoading({ ...loading, login: true });
     try {
-      const res = await loginService(rot13(email), rot13(password));
+      const res = await loginService(email, rot13(password));
 
       const isError = errorHandler(res);
 
@@ -99,7 +99,7 @@ export default function useAuth() {
 
       if (isError) return;
 
-      register(res.displayName, rot13(res.email), rot13(res.uid), true);
+      register(res.displayName, res.email, rot13(res.uid), true);
     } catch (error) {
       errorHandler(error);
       setLoading({ ...loading, register: false });
@@ -115,7 +115,7 @@ export default function useAuth() {
 
       if (isError) return;
 
-      login(rot13(res.email), rot13(res.uid));
+      login(res.email, rot13(res.uid));
     } catch (error) {
       errorHandler(error);
       setLoading({ ...loading, login: false });
