@@ -20,7 +20,7 @@ code {
 }
 
 ::-webkit-scrollbar {
-  width: 12px; /* width of the entire scrollbar */
+  width: 8px; /* width of the entire scrollbar */
 }
 
 ::-webkit-scrollbar-track {
