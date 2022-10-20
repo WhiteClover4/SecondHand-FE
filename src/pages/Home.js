@@ -7,10 +7,10 @@ import { SearchIcon, PlusIcon } from '../components/icons';
 import { ProductCard } from '../components/cards';
 import { SimpleCarousel } from '../components/carousels';
 import { ProductCardSkeleton } from '../components/skeletons';
+import { initialProduct } from '../utils/initial';
 import useQuery from '../hooks/independent/useQuery';
 import useProduct from '../hooks/dependent/useProduct';
 import categories from '../_content/categories.json';
-import { initialProduct } from '../utils/initial';
 
 export default function Home() {
   const navigate = useNavigate();
