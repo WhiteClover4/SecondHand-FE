@@ -7,7 +7,7 @@ export default function ProductCard({ data, navigate }) {
     >
       <img
         alt="CardImage"
-        className="h-[100px] w-full rounded object-contain"
+        className="h-[100px] w-full rounded object-cover"
         src={data.ProductImage || '/img/no-product-image.png'}
       />
       <p className="mt-2 text-body-14">{data.name}</p>
