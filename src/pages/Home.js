@@ -7,10 +7,10 @@ import { SearchIcon, PlusIcon } from '../components/icons';
 import { ProductCard } from '../components/cards';
 import { SimpleCarousel } from '../components/carousels';
 import { ProductCardSkeleton } from '../components/skeletons';
+import { initialProduct } from '../utils/initial';
 import useQuery from '../hooks/independent/useQuery';
 import useProduct from '../hooks/dependent/useProduct';
 import categories from '../_content/categories.json';
-import { initialProduct } from '../utils/initial';
 
 export default function Home() {
   const navigate = useNavigate();
@@ -77,7 +77,7 @@ const Tab = ({ tab }) => {
 
   return (
     <PrimaryButton
-      bgColor={category === tab ? 'bg-primary-04' : 'bg-primary-01'}
+      bgColor={category === tab ? 'bg-primary-04' : 'bg-primary-01 hover:bg-primary-02'}
       color={category === tab ? 'text-neutral-01' : 'text-neutral-04'}
       data-testid={'tab-' + tab}
       onClick={() => navigateQuerySearch(tab)}
