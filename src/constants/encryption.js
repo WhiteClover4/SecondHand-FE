@@ -3,4 +3,4 @@ export const rot13 = (str) =>
     String.fromCharCode(
       (chr <= 'Z' ? 65 : 97) + ((chr.charCodeAt(0) - (chr <= 'Z' ? 65 : 97) + 13) % 26),
     ),
-  );
+  )
