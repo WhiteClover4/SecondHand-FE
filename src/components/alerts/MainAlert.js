@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { XIcon } from '../icons';
 
 export default function PrimaryAlert({ status, children, remove, removeAll }) {
+  
   useEffect(() => {
     const timer = setTimeout(() => {
       removeAll();
